@@ -9,14 +9,19 @@ workflows:
     integrations:
       app_store_connect: takvimtakip_api_key
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.takvimtakip.app2026
       vars:
         XCODE_PROJECT: "ios/TakvimTakip.xcodeproj"
         XCODE_SCHEME: "TakvimTakip"
+        BUNDLE_ID: "com.takvimtakip.app2026"
       xcode: latest
     scripts:
+      - name: Initialize keychain
+        script: keychain initialize
+      - name: Fetch and create code signing files
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles
