@@ -1,0 +1,51 @@
+# -------------------------------------------------------------
+# TAKVİMTAKİP GÜVENLİK SIKILAŞTIRMA VE ROUTING AYARLARI
+# -------------------------------------------------------------
+
+# Dizin Listelemeyi Kapat
+Options -Indexes
+
+# Sunucu İmzasını Gizle
+ServerSignature Off
+
+# Hassas Veritabanı, Log, Config ve Sistem Dosyalarına Doğrudan Web Erişimini Engelle
+<FilesMatch "\.(sqlite|sqlite3|db|log|env|lock|git|yml|yaml|sh|sql|md)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Hassas JSON Yapılandırma Dosyalarını Engelle (manifest.json ve assetlinks.json hariç)
+<FilesMatch "(composer|package|package-lock|tsconfig|settings)\.json$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Hassas Sistem Klasörlerine Doğrudan Web Erişimini Engelle (403 Forbidden)
+RedirectMatch 403 ^/(config|database|src|vendor|\.git)/
+
+# -------------------------------------------------------------
+# URL REWRITE & PUBLIC ROUTING KURALLARI
+# -------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect static asset requests directly to /public/
+    RewriteRule ^manifest\.json$ public/manifest.json [L]
+    RewriteRule ^sw\.js$ public/sw.js [L]
+    RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+    RewriteRule ^css/(.*)$ public/css/$1 [L]
+    RewriteRule ^js/(.*)$ public/js/$1 [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+</IfModule>

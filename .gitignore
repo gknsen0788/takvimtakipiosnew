@@ -1,0 +1,24 @@
+# Environment & local files
+.env
+*.lock
+database/database.sqlite
+database/*.sqlite-journal
+scratch/
+
+# Android build outputs
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+android/**/*.apk
+android/**/*.aab
+
+# iOS & macOS temporary files
+*.DS_Store
+ios/**/xcuserdata/
+ios/**/DerivedData/
+build/
+
+# IDE files
+.idea/
+.vscode/

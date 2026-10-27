@@ -1,0 +1,378 @@
+/* ==========================================================================
+   VillaTakvim Main Custom Stylesheet
+   ========================================================================== */
+
+#publicCalendar .fc-daygrid-day-frame {
+    min-height: 40px !important;
+    padding: 2px !important;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.fc .fc-scroller {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.fc .fc-toolbar {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    margin-bottom: 0.85rem !important;
+}
+
+.fc .fc-toolbar-chunk {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    color: #1e293b !important;
+    letter-spacing: -0.01em;
+}
+
+.fc .fc-button-primary {
+    background-color: #f1f5f9 !important;
+    border-color: #f1f5f9 !important;
+    color: #475569 !important;
+    font-size: 0.75rem !important;
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+    padding: 6px 12px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: all 0.15s ease !important;
+}
+
+.fc .fc-button-primary:hover {
+    background-color: #e2e8f0 !important;
+    border-color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+.fc .fc-button-primary:focus,
+.fc .fc-button-primary:active,
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: #cbd5e1 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Table Column Headers (Pzt, Sal, Çar, etc.) */
+.fc .fc-scrollgrid-section-header,
+.fc .fc-scrollgrid-section-header *,
+.fc .fc-col-header,
+.fc .fc-col-header-cell {
+    position: static !important;
+    transform: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.fc .fc-col-header-cell-cushion {
+    position: static !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-decoration: none !important;
+    padding: 2px 0 4px 0 !important;
+}
+
+.fc-event,
+.fc-event-title,
+.fc-daygrid-event-harness {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. FullCalendar Day Grid Geometry & Styling
+   -------------------------------------------------------------------------- */
+.fc-theme-standard .fc-scrollgrid {
+    border: none !important;
+    background: transparent !important;
+}
+
+.fc td,
+.fc th,
+.fc .fc-theme-standard td,
+.fc .fc-theme-standard th,
+.fc .fc-scrollgrid-section td,
+.fc .fc-scrollgrid-section th,
+.fc .fc-daygrid-day {
+    border: none !important;
+    background-color: transparent !important;
+    padding: 3px !important;
+    box-sizing: border-box !important;
+}
+
+.fc .fc-daygrid-day {
+    height: auto !important;
+    transition: none !important;
+    background-color: transparent !important;
+}
+
+/* Soft Rounded Floating Day Cards */
+.fc .fc-daygrid-day-frame {
+    background-color: #ffffff;
+    aspect-ratio: 1 / 1 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 10px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+    transition: none !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+/* Disable month transition animations */
+.fc-view-harness,
+.fc-view-harness-active,
+.fc-daygrid-body,
+.fc-scrollgrid-sync-table {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Hover elevation and pointer cursor on available cells */
+.fc .fc-daygrid-day:not(.fc-day-other),
+.fc .fc-daygrid-day:not(.fc-day-other) * {
+    cursor: pointer !important;
+}
+
+.fc .fc-day-other,
+.fc .fc-day-other * {
+    cursor: default !important;
+}
+
+.fc .fc-daygrid-day:not(.fc-day-other):hover .fc-daygrid-day-frame {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Header (Day Names) */
+.fc .fc-col-header-cell-cushion {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    padding: 2px 0 4px 0 !important;
+    text-decoration: none !important;
+}
+
+/* Date Numbers Centered */
+.fc .fc-daygrid-day-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: auto !important;
+}
+
+.fc .fc-daygrid-day-number {
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Non-Current Month / Disabled Day / Empty Box Styling (Soluk kutular)
+   -------------------------------------------------------------------------- */
+.fc .fc-day-other,
+.fc .fc-day-other *,
+.fc .fc-day-other .fc-daygrid-day-frame,
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-frame,
+.fc-theme-standard td.fc-day-other .fc-daygrid-day-frame {
+    background-color: transparent !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.fc .fc-day-other .fc-daygrid-day-top,
+.fc .fc-day-other .fc-daygrid-day-number,
+.fc .fc-day-other .fc-daygrid-day-events,
+.fc .fc-day-other .cell-price-tag {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Hide FullCalendar background event overlay layer */
+.fc-daygrid-day-bg,
+.fc-bg-event,
+.fc-event,
+.fc-event-title,
+.fc-daygrid-event-harness {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Selection Highlight & Reserved Date Styles (#fd5a5f)
+   -------------------------------------------------------------------------- */
+.fc-has-reservation .fc-daygrid-day-frame,
+.fc-daygrid-day.fc-has-reservation .fc-daygrid-day-frame {
+    background-color: #fd5a5f !important;
+    background: #fd5a5f !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(253, 90, 95, 0.25) !important;
+}
+
+.fc .fc-highlight,
+.fc-pending-start-cell,
+.fc-pending-start-cell .fc-daygrid-day-frame,
+.fc-selected-range-cell,
+.fc-selected-range-cell .fc-daygrid-day-frame {
+    background-color: #fd5a5f !important;
+    background: #fd5a5f !important;
+    border-color: transparent !important;
+    opacity: 1 !important;
+}
+
+.fc .fc-has-reservation .fc-daygrid-day-number,
+.fc .fc-has-reservation a,
+.fc .fc-has-reservation a.fc-daygrid-day-number,
+.fc-daygrid-day.fc-has-reservation .fc-daygrid-day-number,
+.fc-daygrid-day.fc-has-reservation a,
+.fc-pending-start-cell .fc-daygrid-day-number,
+.fc-pending-start-cell a,
+.fc-selected-range-cell .fc-daygrid-day-number,
+.fc-selected-range-cell a {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    font-weight: 800 !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Dashboard Popup Calendar Specific Overrides
+   -------------------------------------------------------------------------- */
+#popupCalendar .fc-toolbar {
+    margin-bottom: 0.35rem !important;
+}
+
+#popupCalendar .fc-toolbar-title {
+    font-size: 0.85rem !important;
+}
+
+#popupCalendar .fc-button {
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+    border-radius: 9999px !important;
+}
+
+#popupCalendar .fc-col-header-cell-cushion {
+    font-size: 0.7rem !important;
+    padding: 2px !important;
+}
+
+#popupCalendar .fc-daygrid-day-frame {
+    min-height: 42px !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Public Page Price Tag Overrides (Minimal Gray Text)
+   -------------------------------------------------------------------------- */
+.cell-price-tag {
+    font-size: 0.62rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+    letter-spacing: -0.01em !important;
+    z-index: 10 !important;
+    position: absolute !important;
+    bottom: 5px !important;
+    left: 0 !important;
+    right: 0 !important;
+    pointer-events: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    opacity: 1 !important;
+}
+
+.fc-daygrid-day:not(.fc-has-reservation) .cell-price-tag {
+    color: #475569 !important;
+    text-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile Responsiveness (640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    .fc .fc-today-button {
+        display: none !important;
+    }
+    .fc .fc-toolbar-title {
+        font-size: 0.85rem !important;
+    }
+    .fc .fc-button {
+        padding: 4px 8px !important;
+        font-size: 0.7rem !important;
+        border-radius: 9999px !important;
+    }
+    .cell-price-tag {
+        font-size: 0.42rem !important;
+        bottom: 2px !important;
+        letter-spacing: -0.02em !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8. Mobile Experience & Smooth Touch Scrolling
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    -webkit-tap-highlight-color: transparent !important; /* Removes blue/grey tap flash */
+}
+
+/* Allow text selection everywhere by default */
+body {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Smooth Native Touch Scrolling */
+.overflow-auto, .overflow-y-auto, .overflow-x-auto {
+    -webkit-overflow-scrolling: touch !important;
+}
+
