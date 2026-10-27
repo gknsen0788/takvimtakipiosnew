@@ -54,7 +54,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         webView.isOpaque = false
 
         // Custom User-Agent matching app conventions
-        webView.customUserAgent = (webView.value(forKey: "userAgent") as? String ?? "") + " TakvimTakipNativeIOS/1.0"
+        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 TakvimTakipNativeIOS/1.0"
 
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
