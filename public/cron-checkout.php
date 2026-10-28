@@ -10,6 +10,17 @@ use App\Helpers;
 // Initialize Database connection
 $db = Database::getConnection();
 
+// Web tarayıcısı üzerinden çağrılıyorsa Cron Secret Key veya Admin yetkisi doğrula
+if (php_sapi_name() !== 'cli') {
+    $providedKey = $_GET['key'] ?? $_SERVER['HTTP_X_CRON_SECRET'] ?? '';
+    if ($providedKey !== CRON_SECRET && !\App\Auth::isAdmin()) {
+        http_response_code(403);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(['error' => 'Forbidden: Geçersiz Cron Güvenlik Anahtarı (key)']);
+        exit;
+    }
+}
+
 // Ensure checkout_push_sent_at column exists in reservations table
 try {
     $db->exec("ALTER TABLE reservations ADD COLUMN checkout_push_sent_at DATETIME NULL;");
