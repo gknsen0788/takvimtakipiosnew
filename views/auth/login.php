@@ -40,7 +40,7 @@ if (pwaBtn) {
 </script>
 <?php endif; ?>
 
-<div class="w-full max-w-md mx-auto my-auto bg-transparent sm:bg-white p-0 sm:p-8 rounded-none sm:rounded-2xl shadow-none sm:shadow-xl border-0 sm:border border-slate-100">
+<div class="w-full max-w-md mx-auto bg-transparent sm:bg-white p-0 sm:p-8 rounded-none sm:rounded-2xl shadow-none sm:shadow-xl border-0 sm:border border-slate-100">
     <div class="text-center mb-4 sm:mb-8">
         <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-indigo-50 text-indigo-600 mb-2 sm:mb-3 shadow-inner overflow-hidden">
             <img src="<?= APP_URL ?>/uploads/logo-icon.jpg" alt="TakvimTakip" class="w-full h-full object-cover rounded-2xl" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />

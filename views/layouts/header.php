@@ -307,37 +307,9 @@ use App\Helpers;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
             font-weight: 800 !important;
         }
-
-        /* Mobile Auth Screen (No Scroll, Centered, Visible Footer) */
-        @media (max-width: 639px) {
-            body.auth-screen-locked {
-                height: 100vh !important;
-                height: 100dvh !important;
-                max-height: 100dvh !important;
-                overflow: hidden !important;
-                overscroll-behavior-y: none !important;
-            }
-            body.auth-screen-locked #mainContentWrapper {
-                height: 100% !important;
-                min-height: 0 !important;
-                flex: 1 1 0% !important;
-                overflow-y: auto !important;
-                overscroll-behavior-y: none !important;
-            }
-            body.auth-screen-locked main {
-                min-height: 100% !important;
-                flex: 1 1 0% !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
-                align-items: center !important;
-                padding-top: 0.5rem !important;
-                padding-bottom: 0.5rem !important;
-            }
-        }
     </style>
 </head>
-<body class="<?= !empty($hideNav) ? 'auth-screen-locked ' : '' ?>min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
     
 <?php if (Auth::check() && empty($hideNav)): ?>
 <div id="appLayoutWrapper" class="flex-1 flex flex-col lg:flex-row w-full min-w-0 relative">
@@ -633,9 +605,14 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <?php endif; ?>
 
-<!-- Main Content Area Wrapper (Expands in real-time when sidebar collapses to mini mode) -->
+<!-- Main Content Area Wrapper -->
+<?php if (!empty($hideNav)): ?>
+<div id="mainContentWrapper" class="flex-1 flex flex-col justify-center items-center min-w-0 w-full min-h-0 transition-all duration-300 ease-in-out">
+    <main class="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-6 flex flex-col justify-center items-center flex-1">
+<?php else: ?>
 <div id="mainContentWrapper" class="flex-1 flex flex-col min-w-0 w-full min-h-screen transition-all duration-300 ease-in-out">
     <main class="flex-grow w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-x-hidden">
+<?php endif; ?>
 
 <?php if ($flashError = Helpers::getFlash('error')): ?>
     <div class="mb-4 bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg shadow-sm flex items-center justify-between text-rose-800">
