@@ -50,7 +50,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         webView.uiDelegate = self
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.bounces = true
-        webView.scrollView.alwaysBounceVertical = true
+        webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .systemBackground
         webView.isOpaque = false
 

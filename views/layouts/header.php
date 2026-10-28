@@ -307,9 +307,37 @@ use App\Helpers;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
             font-weight: 800 !important;
         }
+
+        /* Mobile Auth Screen (No Scroll, Centered, Visible Footer) */
+        @media (max-width: 639px) {
+            body.auth-screen-locked {
+                height: 100vh !important;
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                overflow: hidden !important;
+                overscroll-behavior-y: none !important;
+            }
+            body.auth-screen-locked #mainContentWrapper {
+                height: 100% !important;
+                min-height: 0 !important;
+                flex: 1 1 0% !important;
+                overflow-y: auto !important;
+                overscroll-behavior-y: none !important;
+            }
+            body.auth-screen-locked main {
+                min-height: 100% !important;
+                flex: 1 1 0% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+        }
     </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
+<body class="<?= !empty($hideNav) ? 'auth-screen-locked ' : '' ?>min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
     
 <?php if (Auth::check() && empty($hideNav)): ?>
 <div id="appLayoutWrapper" class="flex-1 flex flex-col lg:flex-row w-full min-w-0 relative">
