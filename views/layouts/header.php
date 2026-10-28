@@ -45,16 +45,41 @@ use App\Helpers;
     <script>
         (function() {
             const uid = "<?= (string)Auth::id() ?>";
+            let attempts = 0;
+            const maxAttempts = 20;
+
             function notifyNativeApp() {
+                attempts++;
+                let handled = false;
+
                 // 1. Android Native Bridge
                 if (window.AndroidBridge && typeof window.AndroidBridge.setUserId === 'function') {
-                    window.AndroidBridge.setUserId(uid);
+                    try {
+                        window.AndroidBridge.setUserId(uid);
+                        handled = true;
+                    } catch (e) {
+                        console.error('[NativeBridge] Android setUserId error:', e);
+                    }
                 }
+
                 // 2. iOS Native Bridge
                 if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.setUserId) {
-                    window.webkit.messageHandlers.setUserId.postMessage(uid);
+                    try {
+                        window.webkit.messageHandlers.setUserId.postMessage(uid);
+                        handled = true;
+                    } catch (e) {
+                        console.error('[NativeBridge] iOS setUserId error:', e);
+                    }
+                }
+
+                if (handled || attempts >= maxAttempts) {
+                    if (typeof bridgeInterval !== 'undefined') {
+                        clearInterval(bridgeInterval);
+                    }
                 }
             }
+
+            const bridgeInterval = setInterval(notifyNativeApp, 300);
             notifyNativeApp();
             document.addEventListener('DOMContentLoaded', notifyNativeApp);
             window.addEventListener('load', notifyNativeApp);

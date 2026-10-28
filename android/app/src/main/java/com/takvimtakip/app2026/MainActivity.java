@@ -40,6 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String APP_URL = "https://takvimtakip.com.tr/login";
     private static final String ONESIGNAL_APP_ID = "7c2b7d4b-9b10-4207-85df-a911a52ef70c";
+    private static final String PREFS_NAME = "takvimtakip_prefs";
+    private static final String KEY_USER_ID = "user_id";
+
+    private void saveUserId(String userId) {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putString(KEY_USER_ID, userId)
+            .apply();
+    }
+
+    private String getSavedUserId() {
+        return getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .getString(KEY_USER_ID, null);
+    }
 
     // Javascript Interface for Web-to-Android Communication
     public class WebAppInterface {
@@ -55,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void setUserId(String userId) {
             if (userId != null && !userId.trim().isEmpty()) {
-                OneSignal.login(userId.trim());
+                String cleanUid = userId.trim();
+                saveUserId(cleanUid);
+                OneSignal.login(cleanUid);
             }
         }
 
         @JavascriptInterface
         public void logout() {
+            saveUserId(null);
             OneSignal.logout();
         }
     }
@@ -71,7 +88,21 @@ public class MainActivity extends AppCompatActivity {
 
         // OneSignal 5.x Native Push Initialization
         OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
-        OneSignal.getNotifications().requestPermission(true, Continue.with(r -> {}));
+
+        // If user ID was previously persisted, associate immediately
+        String savedUid = getSavedUserId();
+        if (savedUid != null && !savedUid.trim().isEmpty()) {
+            OneSignal.login(savedUid.trim());
+        }
+
+        // Request Push Notification Permission
+        OneSignal.getNotifications().requestPermission(true, Continue.with(r -> {
+            String currentUid = getSavedUserId();
+            if (currentUid != null && !currentUid.trim().isEmpty()) {
+                OneSignal.login(currentUid.trim());
+            }
+        }));
+
         OneSignal.getNotifications().addClickListener(event -> {
             String launchUrl = event.getNotification().getLaunchURL();
             if (launchUrl != null && !launchUrl.isEmpty()) {
