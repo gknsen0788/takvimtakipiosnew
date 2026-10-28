@@ -38,24 +38,127 @@ use App\Helpers;
         })();
     </script>
 
-    <!-- OneSignal Push Notifications SDK -->
-    <?php if (defined('ONESIGNAL_APP_ID') && !empty(ONESIGNAL_APP_ID) && !str_contains(ONESIGNAL_APP_ID, 'BURAYA')): ?>
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <!-- Native Web Push Notifications (RFC 8291 / RFC 8292 VAPID) -->
+    <?php if (Auth::check()): ?>
     <script>
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
-            await OneSignal.init({
-                appId: "<?= ONESIGNAL_APP_ID ?>",
-                notifyButton: {
-                    enable: false,
-                },
-                allowLocalhostAsSecureOrigin: true,
-            });
+        window.VAPID_PUBLIC_KEY = "<?= \App\WebPush::getPublicKey() ?>";
+        window.APP_URL = "<?= APP_URL ?>";
 
-            <?php if (Auth::check()): ?>
-            // Oturum açan kullanıcının ID'sini OneSignal ile eşle
-            OneSignal.login("<?= (string)Auth::id() ?>");
-            <?php endif; ?>
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        async function initWebPush() {
+            if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+                return;
+            }
+
+            try {
+                const reg = await navigator.serviceWorker.ready;
+                
+                // Eğer daha önceden izin verilmişse sessizce abone yap veya doğrula
+                if (Notification.permission === 'granted') {
+                    let sub = await reg.pushManager.getSubscription();
+                    if (!sub) {
+                        sub = await reg.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: urlBase64ToUint8Array(window.VAPID_PUBLIC_KEY)
+                        });
+                    }
+                    if (sub) {
+                        await sendSubscriptionToServer(sub);
+                    }
+                } else if (Notification.permission === 'default') {
+                    showPushBanner();
+                }
+            } catch (err) {
+                console.warn('Web Push Başlatma Hatası:', err);
+            }
+        }
+
+        async function sendSubscriptionToServer(subscription) {
+            try {
+                const json = subscription.toJSON();
+                await fetch(window.APP_URL + '/api/push-subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(json)
+                });
+            } catch (e) {
+                console.warn('Abonelik sunucuya iletilemedi:', e);
+            }
+        }
+
+        window.requestPushPermission = async function() {
+            if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+                alert('Tarayıcınız veya cihazınız Web Push bildirimlerini desteklemiyor.');
+                return false;
+            }
+
+            try {
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    hidePushBanner();
+                    const reg = await navigator.serviceWorker.ready;
+                    let sub = await reg.pushManager.getSubscription();
+                    if (!sub) {
+                        sub = await reg.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: urlBase64ToUint8Array(window.VAPID_PUBLIC_KEY)
+                        });
+                    }
+                    if (sub) {
+                        await sendSubscriptionToServer(sub);
+                    }
+                    if (typeof showToast === 'function') {
+                        showToast('Bildirimler başarıyla açıldı! Çıkış hatırlatmalarını artık telefonunuzdan alacaksınız.', 'success');
+                    } else {
+                        alert('Bildirimler başarıyla açıldı! Yarınki çıkış hatırlatmaları telefonunuza iletilecektir.');
+                    }
+                    return true;
+                } else if (permission === 'denied') {
+                    hidePushBanner();
+                    alert('Bildirim izinleri engellenmiş. Tarayıcınızın site ayarlarından bildirimlere izin verebilirsiniz.');
+                    return false;
+                }
+            } catch (e) {
+                console.error('Bildirim izin hatası:', e);
+            }
+            return false;
+        };
+
+        function showPushBanner() {
+            const dismissedAt = localStorage.getItem('push_banner_dismissed_at');
+            if (dismissedAt && (Date.now() - parseInt(dismissedAt, 10)) < 3 * 86400 * 1000) {
+                return;
+            }
+            const banner = document.getElementById('pushPermissionBanner');
+            if (banner) {
+                banner.classList.remove('hidden');
+            }
+        }
+
+        window.dismissPushBanner = function() {
+            localStorage.setItem('push_banner_dismissed_at', Date.now().toString());
+            hidePushBanner();
+        };
+
+        function hidePushBanner() {
+            const banner = document.getElementById('pushPermissionBanner');
+            if (banner) {
+                banner.classList.add('hidden');
+            }
+        }
+
+        window.addEventListener('load', function() {
+            initWebPush();
         });
     </script>
     <?php endif; ?>
@@ -643,6 +746,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <?php else: ?>
 <div id="mainContentWrapper" class="flex-1 flex flex-col min-w-0 w-full min-h-screen transition-all duration-300 ease-in-out">
     <main class="flex-grow w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-x-hidden">
+
+    <?php if (Auth::check()): ?>
+    <!-- Web Push Permission Prompt Banner -->
+    <div id="pushPermissionBanner" class="hidden mb-6 bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 text-white p-3.5 sm:p-4 rounded-2xl shadow-lg border border-indigo-700/60 relative z-20">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
+            <div class="flex items-center space-x-3">
+                <span class="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0 text-base shadow-inner">
+                    <i class="fa-solid fa-bell"></i>
+                </span>
+                <div>
+                    <strong class="text-white font-bold block sm:inline">📱 Mobil Çıkış Bildirimleri:</strong>
+                    <span class="text-indigo-100"> Yarın çıkış yapacak misafirler için cep telefonunuza anlık bildirim almak ister misiniz?</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 self-end sm:self-auto shrink-0">
+                <button type="button" onclick="requestPushPermission()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl transition active:scale-95 shadow-md text-xs cursor-pointer flex items-center space-x-1.5">
+                    <i class="fa-solid fa-bell-ring"></i>
+                    <span>Bildirimleri Aç</span>
+                </button>
+                <button type="button" onclick="dismissPushBanner()" class="text-indigo-200 hover:text-white px-2.5 py-2 rounded-xl text-xs transition cursor-pointer" title="Daha sonra">
+                    Daha Sonra
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php if ($flashError = Helpers::getFlash('error')): ?>

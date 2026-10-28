@@ -107,6 +107,67 @@ if ($uri === '/cron/send-checkout-reminders' || $uri === '/cron-checkout') {
     exit;
 }
 
+// -------------------------------------------------------------
+// NATIVE WEB PUSH SUBSCRIPTION ROUTES
+// -------------------------------------------------------------
+if ($uri === '/api/push-subscribe' || $uri === '/api/push-subscribe.php') {
+    header('Content-Type: application/json; charset=utf-8');
+
+    if (!Auth::check()) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => 'Oturum açılmadı.']);
+        exit;
+    }
+
+    $rawInput = file_get_contents('php://input');
+    $input = json_decode((string)$rawInput, true);
+
+    if (empty($input['endpoint'])) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Eksik endpoint bilgisi.']);
+        exit;
+    }
+
+    if (isset($input['action']) && $input['action'] === 'unsubscribe') {
+        \App\WebPush::deleteSubscription($input['endpoint']);
+        echo json_encode(['success' => true, 'action' => 'unsubscribed']);
+        exit;
+    }
+
+    $p256dh = $input['keys']['p256dh'] ?? '';
+    $auth = $input['keys']['auth'] ?? '';
+
+    if (empty($p256dh) || empty($auth)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Eksik şifreleme anahtarları (p256dh, auth).']);
+        exit;
+    }
+
+    $saved = \App\WebPush::saveSubscription(
+        Auth::id(),
+        $input['endpoint'],
+        $p256dh,
+        $auth,
+        $_SERVER['HTTP_USER_AGENT'] ?? null
+    );
+
+    echo json_encode([
+        'success' => $saved,
+        'user_id' => Auth::id(),
+        'message' => $saved ? 'Abonelik başarıyla kaydedildi.' : 'Abonelik kaydedilemedi.'
+    ]);
+    exit;
+}
+
+if ($uri === '/api/push-vapid-public-key') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'success' => true,
+        'publicKey' => \App\WebPush::getPublicKey()
+    ]);
+    exit;
+}
+
 if ($uri === '/send-sample-checkout-mail') {
     Auth::requireAdmin();
     require_once __DIR__ . '/../send-sample-checkout-mail.php';

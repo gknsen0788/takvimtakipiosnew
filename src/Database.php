@@ -130,6 +130,26 @@ class Database {
         } catch (\PDOException $e) {}
 
         try {
+            self::$instance->exec("ALTER TABLE reservations ADD COLUMN checkout_push_sent_at DATETIME NULL;");
+        } catch (\PDOException $e) {}
+
+        try {
+            self::$instance->exec("
+                CREATE TABLE IF NOT EXISTS user_push_subscriptions (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    endpoint TEXT NOT NULL UNIQUE,
+                    p256dh TEXT NOT NULL,
+                    auth TEXT NOT NULL,
+                    user_agent TEXT,
+                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                );
+            ");
+        } catch (\PDOException $e) {}
+
+        try {
             $allVillas = self::$instance->query("SELECT id, name, slug FROM villas")->fetchAll();
             foreach ($allVillas as $v) {
                 $cleanSlug = Helpers::slugify($v['name']);

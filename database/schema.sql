@@ -124,9 +124,22 @@ CREATE TABLE IF NOT EXISTS user_tokens (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS user_push_subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    endpoint TEXT NOT NULL UNIQUE,
+    p256dh TEXT NOT NULL,
+    auth TEXT NOT NULL,
+    user_agent TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Indexes for optimal calendar querying & tenant protection
 CREATE INDEX IF NOT EXISTS idx_villas_user ON villas(user_id);
 CREATE INDEX IF NOT EXISTS idx_res_dates ON reservations(villa_id, start_date, end_date);
 CREATE INDEX IF NOT EXISTS idx_price_dates ON price_periods(villa_id, start_date, end_date);
 CREATE INDEX IF NOT EXISTS idx_ext_cal_villa ON external_calendars(villa_id);
 CREATE INDEX IF NOT EXISTS idx_user_tokens ON user_tokens(token);
+CREATE INDEX IF NOT EXISTS idx_push_user ON user_push_subscriptions(user_id);

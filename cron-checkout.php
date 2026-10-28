@@ -4,7 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/config/app.php';
 
 use App\Database;
-use App\PushNotification;
+use App\WebPush;
 use App\Helpers;
 
 // Initialize Database connection
@@ -12,10 +12,8 @@ $db = Database::getConnection();
 
 // Ensure checkout_push_sent_at column exists in reservations table
 try {
-    $db->exec("ALTER TABLE reservations ADD COLUMN checkout_push_sent_at DATETIME NULL DEFAULT NULL;");
-} catch (\Throwable $e) {
-    // Column already exists
-}
+    $db->exec("ALTER TABLE reservations ADD COLUMN checkout_push_sent_at DATETIME NULL;");
+} catch (\Throwable $e) {}
 
 // Target date: tomorrow (guest checkout day)
 $tomorrow = date('Y-m-d', strtotime('+1 day'));
@@ -67,7 +65,7 @@ foreach ($upcomingCheckouts as $item) {
         'note' => $item['note'] ?: ''
     ];
 
-    $pushResult = PushNotification::sendCheckoutReminder($details);
+    $pushResult = WebPush::sendCheckoutReminder($details);
 
     if ($pushResult['success']) {
         $upStmt = $db->prepare("UPDATE reservations SET checkout_push_sent_at = CURRENT_TIMESTAMP WHERE id = :id");
@@ -78,18 +76,18 @@ foreach ($upcomingCheckouts as $item) {
             'villa' => $item['villa_name'],
             'user_id' => $item['user_id'],
             'owner_name' => $item['owner_name'],
-            'onesignal_id' => $pushResult['response']['id'] ?? null
+            'devices_sent' => $pushResult['sent_count'] ?? 1
         ];
     } else {
-        $errors[] = "Rezervasyon #{$item['id']} ({$item['owner_name']}) push bildirimi gönderilemedi: " . ($pushResult['error'] ?? 'Bilinmeyen hata');
+        $errors[] = "Rezervasyon #{$item['id']} ({$item['owner_name']}) push bildirimi iletilemedi: " . ($pushResult['error'] ?? 'Bilinmeyen hata');
     }
 }
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode([
     'success' => true,
-    'channel' => 'onesignal_push',
-    'message' => "Çıkış hatırlatma push bildirimi cron görevi tamamlandı. Toplam {$sentCount} ev sahibine mobil push bildirimi gönderildi.",
+    'channel' => 'native_web_push',
+    'message' => "Çıkış hatırlatma push bildirimi cron görevi tamamlandı. Toplam {$sentCount} ev sahibine yerel Web Push bildirimi iletildi.",
     'target_checkout_date' => $tomorrow,
     'sent_count' => $sentCount,
     'sent_details' => $sentDetails,

@@ -34,14 +34,6 @@ if (session_status() === PHP_SESSION_NONE) {
 define('APP_NAME', 'TakvimTakip');
 define('CRON_SECRET', 'takvim_cron_sec_8f9a2b4c');
 
-// OneSignal Push Bildirim Ayarları (onesignal.com panelinden alınır)
-if (!defined('ONESIGNAL_APP_ID')) {
-    define('ONESIGNAL_APP_ID', getenv('ONESIGNAL_APP_ID') ?: 'ONESIGNAL_APP_ID_BURAYA');
-}
-if (!defined('ONESIGNAL_REST_API_KEY')) {
-    define('ONESIGNAL_REST_API_KEY', getenv('ONESIGNAL_REST_API_KEY') ?: 'ONESIGNAL_REST_API_KEY_BURAYA');
-}
-
 if (!defined('APP_URL')) {
     $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
