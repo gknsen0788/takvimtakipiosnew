@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/config/app.php';
 
 use App\Database;
+use App\PushNotification;
 use App\WebPush;
 use App\Helpers;
 
@@ -76,9 +77,13 @@ foreach ($upcomingCheckouts as $item) {
         'note' => $item['note'] ?: ''
     ];
 
-    $pushResult = WebPush::sendCheckoutReminder($details);
+    // 1. OneSignal Native Push (Google Play Store & Apple App Store)
+    $oneSignalRes = PushNotification::sendCheckoutReminder($details);
 
-    if ($pushResult['success']) {
+    // 2. Web Push (Masaüstü & PWA Tarayıcıları)
+    $webPushRes = WebPush::sendCheckoutReminder($details);
+
+    if ($oneSignalRes['success'] || $webPushRes['success']) {
         $upStmt = $db->prepare("UPDATE reservations SET checkout_push_sent_at = CURRENT_TIMESTAMP WHERE id = :id");
         $upStmt->execute(['id' => $item['id']]);
         $sentCount++;
@@ -87,18 +92,19 @@ foreach ($upcomingCheckouts as $item) {
             'villa' => $item['villa_name'],
             'user_id' => $item['user_id'],
             'owner_name' => $item['owner_name'],
-            'devices_sent' => $pushResult['sent_count'] ?? 1
+            'onesignal_ok' => $oneSignalRes['success'],
+            'webpush_ok' => $webPushRes['success']
         ];
     } else {
-        $errors[] = "Rezervasyon #{$item['id']} ({$item['owner_name']}) push bildirimi iletilemedi: " . ($pushResult['error'] ?? 'Bilinmeyen hata');
+        $errors[] = "Rezervasyon #{$item['id']} ({$item['owner_name']}) bildirim iletilemedi: " . ($oneSignalRes['error'] ?? $webPushRes['error'] ?? 'Bilinmeyen hata');
     }
 }
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode([
     'success' => true,
-    'channel' => 'native_web_push',
-    'message' => "Çıkış hatırlatma push bildirimi cron görevi tamamlandı. Toplam {$sentCount} ev sahibine yerel Web Push bildirimi iletildi.",
+    'channel' => 'hybrid_push (onesignal_native + web_push)',
+    'message' => "Çıkış hatırlatma push bildirimi cron görevi tamamlandı. Toplam {$sentCount} ev sahibine bildirim iletildi.",
     'target_checkout_date' => $tomorrow,
     'sent_count' => $sentCount,
     'sent_details' => $sentDetails,

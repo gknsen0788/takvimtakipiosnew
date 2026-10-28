@@ -1,5 +1,6 @@
 # Environment & local files
 .env
+config/onesignal.json
 *.lock
 database/database.sqlite
 database/*.sqlite-journal

@@ -24,13 +24,23 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
     private func setupWebView() {
         let contentController = WKUserContentController()
 
-        // Inject bridge so web code's `window.AndroidBridge.setSwipeRefreshEnabled` works seamlessly on iOS too!
+        // Inject bridge so web code's `window.AndroidBridge` works seamlessly on iOS too!
         let bridgeScriptSource = """
         if (!window.AndroidBridge) {
             window.AndroidBridge = {
                 setSwipeRefreshEnabled: function(enabled) {
                     try {
                         window.webkit.messageHandlers.swipeRefresh.postMessage(Boolean(enabled));
+                    } catch(e) {}
+                },
+                setUserId: function(userId) {
+                    try {
+                        window.webkit.messageHandlers.setUserId.postMessage(String(userId));
+                    } catch(e) {}
+                },
+                logout: function() {
+                    try {
+                        window.webkit.messageHandlers.logout.postMessage("");
                     } catch(e) {}
                 }
             };
@@ -39,6 +49,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         let bridgeScript = WKUserScript(source: bridgeScriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(bridgeScript)
         contentController.add(self, name: "swipeRefresh")
+        contentController.add(self, name: "setUserId")
+        contentController.add(self, name: "logout")
 
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
@@ -121,6 +133,12 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "swipeRefresh", let enabled = message.body as? Bool {
             setSwipeRefreshEnabled(enabled)
+        } else if message.name == "setUserId", let userId = message.body as? String {
+            NSLog("[OneSignal] Received User ID: %@", userId)
+            UserDefaults.standard.set(userId, forKey: "takvim_user_id")
+        } else if message.name == "logout" {
+            NSLog("[OneSignal] User logged out")
+            UserDefaults.standard.removeObject(forKey: "takvim_user_id")
         }
     }
 

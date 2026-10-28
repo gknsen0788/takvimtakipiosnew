@@ -40,6 +40,28 @@ use App\Helpers;
         })();
     </script>
 
+    <!-- Native Mobile App (Android Play Store & iOS App Store) OneSignal Bridge -->
+    <?php if (Auth::check()): ?>
+    <script>
+        (function() {
+            const uid = "<?= (string)Auth::id() ?>";
+            function notifyNativeApp() {
+                // 1. Android Native Bridge
+                if (window.AndroidBridge && typeof window.AndroidBridge.setUserId === 'function') {
+                    window.AndroidBridge.setUserId(uid);
+                }
+                // 2. iOS Native Bridge
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.setUserId) {
+                    window.webkit.messageHandlers.setUserId.postMessage(uid);
+                }
+            }
+            notifyNativeApp();
+            document.addEventListener('DOMContentLoaded', notifyNativeApp);
+            window.addEventListener('load', notifyNativeApp);
+        })();
+    </script>
+    <?php endif; ?>
+
     <!-- Native Web Push Notifications (RFC 8291 / RFC 8292 VAPID) -->
     <?php if (Auth::check()): ?>
     <script>

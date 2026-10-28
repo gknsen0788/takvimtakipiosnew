@@ -28,6 +28,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.onesignal.OneSignal;
+import com.onesignal.Continue;
+
 public class MainActivity extends AppCompatActivity {
 
     private WebView webView;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> fileChooserLauncher;
 
     private static final String APP_URL = "https://takvimtakip.com.tr/login";
+    private static final String ONESIGNAL_APP_ID = "7c2b7d4b-9b10-4207-85df-a911a52ef70c";
 
     // Javascript Interface for Web-to-Android Communication
     public class WebAppInterface {
@@ -47,11 +51,37 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        @JavascriptInterface
+        public void setUserId(String userId) {
+            if (userId != null && !userId.trim().isEmpty()) {
+                OneSignal.login(userId.trim());
+            }
+        }
+
+        @JavascriptInterface
+        public void logout() {
+            OneSignal.logout();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // OneSignal 5.x Native Push Initialization
+        OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
+        OneSignal.getNotifications().requestPermission(true, Continue.with(r -> {}));
+        OneSignal.getNotifications().addClickListener(event -> {
+            String launchUrl = event.getNotification().getLaunchURL();
+            if (launchUrl != null && !launchUrl.isEmpty()) {
+                runOnUiThread(() -> {
+                    if (webView != null) {
+                        webView.loadUrl(launchUrl);
+                    }
+                });
+            }
+        });
 
         // Edge-to-Edge with proper system insets handling for targetSdk 35/36+
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);

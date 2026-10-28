@@ -34,6 +34,18 @@ if (session_status() === PHP_SESSION_NONE) {
 define('APP_NAME', 'TakvimTakip');
 define('CRON_SECRET', 'takvim_cron_sec_8f9a2b4c');
 
+// OneSignal Native Push Bildirim Ayarları (Android Play Store & iOS App Store)
+$osConfigFile = __DIR__ . '/onesignal.json';
+$osAppId = '7c2b7d4b-9b10-4207-85df-a911a52ef70c';
+$osRestKey = '';
+if (file_exists($osConfigFile)) {
+    $osData = json_decode((string)file_get_contents($osConfigFile), true);
+    $osAppId = $osData['appId'] ?? $osAppId;
+    $osRestKey = $osData['restApiKey'] ?? '';
+}
+define('ONESIGNAL_APP_ID', getenv('ONESIGNAL_APP_ID') ?: $osAppId);
+define('ONESIGNAL_REST_API_KEY', getenv('ONESIGNAL_REST_API_KEY') ?: $osRestKey);
+
 if (!defined('APP_URL')) {
     $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
