@@ -197,8 +197,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['action']) && 
             }
 
             try {
-                const reg = await navigator.serviceWorker.register('<?= APP_URL ?>/sw.js');
-                await navigator.serviceWorker.ready;
+                let reg = await navigator.serviceWorker.getRegistration('/sw.js');
+                if (!reg) {
+                    reg = await navigator.serviceWorker.register('/sw.js');
+                }
+                reg = await navigator.serviceWorker.ready;
 
                 const permission = await Notification.requestPermission();
                 if (permission !== 'granted') {
@@ -215,9 +218,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['action']) && 
                 }
 
                 const json = sub.toJSON();
-                const res = await fetch('<?= APP_URL ?>/api/push-subscribe', {
+                const res = await fetch('/api/push-subscribe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify(json)
                 });
                 const data = await res.json();

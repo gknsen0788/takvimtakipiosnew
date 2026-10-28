@@ -24,7 +24,9 @@ use App\Helpers;
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('<?= APP_URL ?>/sw.js').catch(function(err) {});
+                navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                    console.warn('ServiceWorker kayıt hatası:', err);
+                });
             });
         }
         // Force Android Navigation Bar Theme Color to Black (#000000)
@@ -42,7 +44,6 @@ use App\Helpers;
     <?php if (Auth::check()): ?>
     <script>
         window.VAPID_PUBLIC_KEY = "<?= \App\WebPush::getPublicKey() ?>";
-        window.APP_URL = "<?= APP_URL ?>";
 
         function urlBase64ToUint8Array(base64String) {
             const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -61,7 +62,11 @@ use App\Helpers;
             }
 
             try {
-                const reg = await navigator.serviceWorker.ready;
+                let reg = await navigator.serviceWorker.getRegistration('/sw.js');
+                if (!reg) {
+                    reg = await navigator.serviceWorker.register('/sw.js');
+                }
+                reg = await navigator.serviceWorker.ready;
                 
                 // Eğer daha önceden izin verilmişse sessizce abone yap veya doğrula
                 if (Notification.permission === 'granted') {
@@ -86,9 +91,10 @@ use App\Helpers;
         async function sendSubscriptionToServer(subscription) {
             try {
                 const json = subscription.toJSON();
-                await fetch(window.APP_URL + '/api/push-subscribe', {
+                await fetch('/api/push-subscribe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify(json)
                 });
             } catch (e) {
@@ -106,7 +112,11 @@ use App\Helpers;
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
                     hidePushBanner();
-                    const reg = await navigator.serviceWorker.ready;
+                    let reg = await navigator.serviceWorker.getRegistration('/sw.js');
+                    if (!reg) {
+                        reg = await navigator.serviceWorker.register('/sw.js');
+                    }
+                    reg = await navigator.serviceWorker.ready;
                     let sub = await reg.pushManager.getSubscription();
                     if (!sub) {
                         sub = await reg.pushManager.subscribe({
