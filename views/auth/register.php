@@ -5,7 +5,7 @@ $hideNav = true;
 require __DIR__ . '/../layouts/header.php';
 ?>
 
-<div class="max-w-md mx-auto my-6 bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+<div class="max-w-md mx-auto my-2 sm:my-6 bg-transparent sm:bg-white p-0 sm:p-8 rounded-none sm:rounded-2xl shadow-none sm:shadow-xl border-0 sm:border border-slate-100">
     <div class="text-center mb-6">
         <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 text-2xl mb-2 shadow-inner">
             <i class="fa-solid fa-user-plus"></i>
@@ -58,7 +58,7 @@ require __DIR__ . '/../layouts/header.php';
         </button>
     </form>
 
-    <div class="mt-6 text-center border-t border-slate-100 pt-4 text-sm text-slate-600">
+    <div class="mt-6 text-center border-t border-slate-200/80 sm:border-slate-100 pt-4 text-sm text-slate-600">
         Zaten hesabınız var mı? 
         <a href="<?= APP_URL ?>/login" class="font-bold text-indigo-600 hover:underline">Giriş Yapın</a>
     </div>

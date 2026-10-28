@@ -40,8 +40,8 @@ if (pwaBtn) {
 </script>
 <?php endif; ?>
 
-<div class="max-w-md mx-auto my-6 bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
-    <div class="text-center mb-8">
+<div class="max-w-md mx-auto my-2 sm:my-6 bg-transparent sm:bg-white p-0 sm:p-8 rounded-none sm:rounded-2xl shadow-none sm:shadow-xl border-0 sm:border border-slate-100">
+    <div class="text-center mb-6 sm:mb-8">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 mb-3 shadow-inner overflow-hidden">
             <img src="<?= APP_URL ?>/uploads/logo-icon.jpg" alt="TakvimTakip" class="w-full h-full object-cover rounded-2xl" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
             <i class="fa-solid fa-calendar-check text-3xl" style="display:none;"></i>
@@ -80,7 +80,7 @@ if (pwaBtn) {
         </button>
     </form>
 
-    <div class="mt-8 text-center border-t border-slate-100 pt-6 text-sm text-slate-600">
+    <div class="mt-8 text-center border-t border-slate-200/80 sm:border-slate-100 pt-6 text-sm text-slate-600">
         Hesabınız yok mu? 
         <a href="<?= APP_URL ?>/register" class="font-bold text-indigo-600 hover:underline">Hemen Üye Olun</a>
     </div>
