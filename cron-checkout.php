@@ -30,7 +30,11 @@ try {
 // Target date: tomorrow (guest checkout day)
 $tomorrow = date('Y-m-d', strtotime('+1 day'));
 
-// Fetch upcoming checkouts for tomorrow where push reminder has not been sent yet
+// Test modunda veya zorla tekrar gönderimde (&force=1) daha önce gönderilmiş olanları da dahil et
+$force = isset($_GET['force']) && $_GET['force'] == '1';
+$sentFilter = $force ? "" : "AND r.checkout_push_sent_at IS NULL";
+
+// Fetch upcoming checkouts for tomorrow (booked, agency, blocked)
 $stmt = $db->prepare("
     SELECT 
         r.*, 
@@ -44,8 +48,8 @@ $stmt = $db->prepare("
     JOIN villas v ON r.villa_id = v.id
     JOIN users u ON v.user_id = u.id
     WHERE r.end_date = :tomorrow
-      AND r.status IN ('booked', 'agency')
-      AND r.checkout_push_sent_at IS NULL
+      AND r.status != 'cancelled'
+      $sentFilter
 ");
 
 $stmt->execute(['tomorrow' => $tomorrow]);
