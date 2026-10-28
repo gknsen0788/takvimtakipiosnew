@@ -53,53 +53,19 @@ use App\Helpers;
         }
 
         /* Document Root Isolation & Full-Height Setup for Mobile & WebViews */
-        html {
-            height: 100% !important;
+        html, body {
             max-width: 100vw !important;
             width: 100% !important;
             color-scheme: light !important;
+        }
+
+        html {
+            height: 100%;
         }
 
         body {
-            min-height: 100% !important;
-            min-height: 100vh !important;
-            max-width: 100vw !important;
-            width: 100% !important;
-            color-scheme: light !important;
-        }
-
-        /* Auth Screen Flex Layout (Android WebView & iOS Compatible) */
-        body.auth-page {
-            height: 100% !important;
-            min-height: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-
-        body.auth-page #mainContentWrapper {
-            flex: 1 1 0% !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            min-height: 0 !important;
-            width: 100% !important;
-        }
-
-        body.auth-page main {
-            flex: 1 1 0% !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            width: 100% !important;
-            min-height: 0 !important;
-        }
-
-        body.auth-page footer {
-            flex-shrink: 0 !important;
-            margin-top: auto !important;
-            width: 100% !important;
+            min-height: 100%;
+            min-height: 100vh;
         }
 
         #ganttRightPane, .overflow-auto, .overflow-x-auto {
@@ -352,7 +318,7 @@ use App\Helpers;
         }
     </style>
 </head>
-<body class="<?= !empty($hideNav) ? 'auth-page ' : '' ?>min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
     
 <?php if (Auth::check() && empty($hideNav)): ?>
 <div id="appLayoutWrapper" class="flex-1 flex flex-col lg:flex-row w-full min-w-0 relative">
@@ -650,8 +616,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Main Content Area Wrapper -->
 <?php if (!empty($hideNav)): ?>
-<div id="mainContentWrapper" class="flex-1 flex flex-col justify-center items-center min-w-0 w-full min-h-0 transition-all duration-300 ease-in-out">
-    <main class="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-6 flex flex-col justify-center items-center flex-1">
+<div id="mainContentWrapper" class="flex-1 flex flex-col justify-center items-center min-w-0 w-full transition-all duration-300 ease-in-out" style="min-height: calc(100vh - 65px);">
+    <main class="w-full max-w-md mx-auto px-4 py-4 sm:py-8 flex flex-col justify-center items-center flex-1">
 <?php else: ?>
 <div id="mainContentWrapper" class="flex-1 flex flex-col min-w-0 w-full min-h-screen transition-all duration-300 ease-in-out">
     <main class="flex-grow w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-x-hidden">

@@ -10,6 +10,29 @@
     </div>
 </footer>
 
+<?php if (!empty($hideNav)): ?>
+<script>
+(function() {
+    function adjustAuthHeight() {
+        var wrapper = document.getElementById('mainContentWrapper');
+        var footer = document.querySelector('footer');
+        if (wrapper && footer) {
+            var vh = window.innerHeight || document.documentElement.clientHeight;
+            var footerH = footer.offsetHeight || 50;
+            var targetH = vh - footerH;
+            if (targetH > 350) {
+                wrapper.style.minHeight = targetH + 'px';
+            }
+        }
+    }
+    adjustAuthHeight();
+    window.addEventListener('resize', adjustAuthHeight);
+    window.addEventListener('orientationchange', adjustAuthHeight);
+    document.addEventListener('DOMContentLoaded', adjustAuthHeight);
+})();
+</script>
+<?php endif; ?>
+
 </body>
 </html>
 
