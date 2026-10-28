@@ -7,7 +7,7 @@ use App\Helpers;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="color-scheme" content="dark light">
+    <meta name="color-scheme" content="light">
     <title><?= Helpers::sanitize($title ?? 'TakvimTakip - Müsaitlik & Takvim Yönetimi') ?></title>
     
     <!-- PWA & Mobile Web App Meta Tags -->
@@ -48,18 +48,40 @@ use App\Helpers;
     <!-- Custom App CSS with Cache Buster -->
     <link rel="stylesheet" href="<?= APP_URL ?>/css/app.css?v=<?= time() ?>">
     <style>
+        :root {
+            color-scheme: light !important;
+        }
+
         /* Document Root Horizontal Overflow Isolation for Mobile/Safari */
         html, body {
             max-width: 100vw !important;
             width: 100% !important;
+            color-scheme: light !important;
         }
 
         #ganttRightPane, .overflow-auto, .overflow-x-auto {
             touch-action: auto !important;
         }
 
+        /* iOS Safari & Dark Mode Override: Ensure all input controls stay light */
+        input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+        select,
+        textarea {
+            background-color: #ffffff;
+            color: #1e293b;
+            -webkit-text-fill-color: #1e293b;
+            color-scheme: light !important;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #94a3b8;
+            -webkit-text-fill-color: #94a3b8;
+            opacity: 1;
+        }
+
         /* iOS Safari Form Inputs & Grid Overflow Fix */
-        input[type="date"], select, input[type="text"], input[type="tel"] {
+        input[type="date"], select, input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
             -webkit-appearance: none !important;
             -moz-appearance: none !important;
             appearance: none !important;

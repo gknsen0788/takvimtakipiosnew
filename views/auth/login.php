@@ -55,7 +55,7 @@ if (pwaBtn) {
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">E-posta Adresi veya Cep Telefonu</label>
             <input type="text" name="email" required placeholder="E-posta adresi veya 05XX XXX XX XX"
-                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
@@ -64,7 +64,7 @@ if (pwaBtn) {
                 <a href="<?= APP_URL ?>/forgot-password" class="text-xs font-bold text-indigo-600 hover:underline">Şifremi Unuttum?</a>
             </div>
             <input type="password" name="password" required placeholder="••••••••"
-                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div class="flex items-center justify-between pt-1">

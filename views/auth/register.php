@@ -19,25 +19,25 @@ require __DIR__ . '/../layouts/header.php';
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Ad Soyad</label>
             <input type="text" name="full_name" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">E-posta Adresi</label>
             <input type="email" name="email" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Telefon Numarası</label>
             <input type="tel" name="phone" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Şifre</label>
             <input type="password" name="password" required minlength="6"
-                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <!-- Checkboxes for Privacy & KVKK -->

@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         view.backgroundColor = UIColor(red: 0x43/255.0, green: 0x38/255.0, blue: 0xca/255.0, alpha: 1.0) // #4338ca header color
 
         setupWebView()

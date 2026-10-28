@@ -21,13 +21,13 @@ require __DIR__ . '/../layouts/header.php';
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Yeni Şifre</label>
             <input type="password" name="password" required minlength="6" placeholder="••••••••"
-                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Yeni Şifre (Tekrar)</label>
             <input type="password" name="password_confirm" required minlength="6" placeholder="••••••••"
-                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition">
+                   class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base rounded-xl shadow-lg shadow-indigo-200 transition active:scale-[0.99]">
