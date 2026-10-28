@@ -38,6 +38,28 @@ use App\Helpers;
         })();
     </script>
 
+    <!-- OneSignal Push Notifications SDK -->
+    <?php if (defined('ONESIGNAL_APP_ID') && !empty(ONESIGNAL_APP_ID) && !str_contains(ONESIGNAL_APP_ID, 'BURAYA')): ?>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "<?= ONESIGNAL_APP_ID ?>",
+                notifyButton: {
+                    enable: false,
+                },
+                allowLocalhostAsSecureOrigin: true,
+            });
+
+            <?php if (Auth::check()): ?>
+            // Oturum açan kullanıcının ID'sini OneSignal ile eşle
+            OneSignal.login("<?= (string)Auth::id() ?>");
+            <?php endif; ?>
+        });
+    </script>
+    <?php endif; ?>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome / Lucide Icons -->
