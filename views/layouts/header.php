@@ -52,11 +52,54 @@ use App\Helpers;
             color-scheme: light !important;
         }
 
-        /* Document Root Horizontal Overflow Isolation for Mobile/Safari */
-        html, body {
+        /* Document Root Isolation & Full-Height Setup for Mobile & WebViews */
+        html {
+            height: 100% !important;
             max-width: 100vw !important;
             width: 100% !important;
             color-scheme: light !important;
+        }
+
+        body {
+            min-height: 100% !important;
+            min-height: 100vh !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            color-scheme: light !important;
+        }
+
+        /* Auth Screen Flex Layout (Android WebView & iOS Compatible) */
+        body.auth-page {
+            height: 100% !important;
+            min-height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        body.auth-page #mainContentWrapper {
+            flex: 1 1 0% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            min-height: 0 !important;
+            width: 100% !important;
+        }
+
+        body.auth-page main {
+            flex: 1 1 0% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 0 !important;
+        }
+
+        body.auth-page footer {
+            flex-shrink: 0 !important;
+            margin-top: auto !important;
+            width: 100% !important;
         }
 
         #ganttRightPane, .overflow-auto, .overflow-x-auto {
@@ -309,7 +352,7 @@ use App\Helpers;
         }
     </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
+<body class="<?= !empty($hideNav) ? 'auth-page ' : '' ?>min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col overflow-x-hidden max-w-full w-full relative">
     
 <?php if (Auth::check() && empty($hideNav)): ?>
 <div id="appLayoutWrapper" class="flex-1 flex flex-col lg:flex-row w-full min-w-0 relative">
