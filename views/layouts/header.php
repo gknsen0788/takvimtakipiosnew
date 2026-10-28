@@ -67,21 +67,55 @@ use App\Helpers;
                     reg = await navigator.serviceWorker.register('/sw.js');
                 }
                 reg = await navigator.serviceWorker.ready;
+
+                async function doSubscribe() {
+                    try {
+                        let sub = await reg.pushManager.getSubscription();
+                        if (!sub) {
+                            sub = await reg.pushManager.subscribe({
+                                userVisibleOnly: true,
+                                applicationServerKey: urlBase64ToUint8Array(window.VAPID_PUBLIC_KEY)
+                            });
+                        }
+                        if (sub) {
+                            await sendSubscriptionToServer(sub);
+                        }
+                    } catch (subErr) {
+                        console.warn('Push subscription failed:', subErr);
+                    }
+                }
                 
-                // Eğer daha önceden izin verilmişse sessizce abone yap veya doğrula
+                // 1. Eğer daha önceden izin verilmişse sessizce otomatik abone yap / yenile
                 if (Notification.permission === 'granted') {
-                    let sub = await reg.pushManager.getSubscription();
-                    if (!sub) {
-                        sub = await reg.pushManager.subscribe({
-                            userVisibleOnly: true,
-                            applicationServerKey: urlBase64ToUint8Array(window.VAPID_PUBLIC_KEY)
-                        });
-                    }
-                    if (sub) {
-                        await sendSubscriptionToServer(sub);
-                    }
-                } else if (Notification.permission === 'default') {
+                    await doSubscribe();
+                } 
+                // 2. Henüz izin verilmemişse: ilk dokunmada / tıklamada yerel tarayıcı izin kutusunu tetikle
+                else if (Notification.permission === 'default') {
                     showPushBanner();
+
+                    const triggerPermission = async function() {
+                        document.removeEventListener('click', triggerPermission);
+                        document.removeEventListener('touchend', triggerPermission);
+                        try {
+                            const perm = await Notification.requestPermission();
+                            if (perm === 'granted') {
+                                hidePushBanner();
+                                await doSubscribe();
+                            }
+                        } catch (e) {}
+                    };
+
+                    document.addEventListener('click', triggerPermission, { once: true });
+                    document.addEventListener('touchend', triggerPermission, { once: true });
+
+                    // Doğrudan da izin istemeyi dene
+                    try {
+                        const perm = await Notification.requestPermission();
+                        if (perm === 'granted') {
+                            hidePushBanner();
+                            await doSubscribe();
+                        }
+                    } catch (e) {}
                 }
             } catch (err) {
                 console.warn('Web Push Başlatma Hatası:', err);

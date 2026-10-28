@@ -251,10 +251,31 @@ class WebPush
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 'Content-Type: application/octet-stream',
                 'Content-Encoding: aes128gcm',
+                'Content-Length: ' . strlen($encrypted),
                 'TTL: 86400',
                 'Urgency: high',
-                'Authorization: vapid t=' . $jwt . ', k=' . $vapid['publicKey']
+                'Authorization: vapid t=' . $jwt . ', k=' . $vapid['publicKey'],
+                'Crypto-Key: p256ecdsa=' . $vapid['publicKey']
             ]);
+
+            // Windows / cURL SSL CA bundle desteği
+            $possibleCaPaths = [
+                'C:/wamp64/apps/phpmyadmin5.2.3/vendor/composer/ca-bundle/res/cacert.pem',
+                'C:/wamp64/bin/php/cacert.pem',
+                ini_get('curl.cainfo'),
+                ini_get('openssl.cafile')
+            ];
+            $caFound = false;
+            foreach ($possibleCaPaths as $caPath) {
+                if (!empty($caPath) && file_exists($caPath)) {
+                    curl_setopt($ch, CURLOPT_CAINFO, $caPath);
+                    $caFound = true;
+                    break;
+                }
+            }
+            if (!$caFound && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            }
 
             $response = curl_exec($ch);
             $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
