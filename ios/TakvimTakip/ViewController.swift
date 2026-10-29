@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import OneSignalFramework
 
 class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
 
@@ -134,11 +135,16 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         if message.name == "swipeRefresh", let enabled = message.body as? Bool {
             setSwipeRefreshEnabled(enabled)
         } else if message.name == "setUserId", let userId = message.body as? String {
-            NSLog("[OneSignal] Received User ID: %@", userId)
-            UserDefaults.standard.set(userId, forKey: "takvim_user_id")
+            let cleanId = userId.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !cleanId.isEmpty {
+                NSLog("[OneSignal] Received User ID: %@", cleanId)
+                UserDefaults.standard.set(cleanId, forKey: "takvim_user_id")
+                OneSignal.login(cleanId)
+            }
         } else if message.name == "logout" {
             NSLog("[OneSignal] User logged out")
             UserDefaults.standard.removeObject(forKey: "takvim_user_id")
+            OneSignal.logout()
         }
     }
 
