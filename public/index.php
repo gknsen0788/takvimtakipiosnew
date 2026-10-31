@@ -300,6 +300,29 @@ if ($uri === '/logout') {
 }
 
 // -------------------------------------------------------------
+// PUBLIC LEGAL & INSTITUTIONAL ROUTES (App Store / KVKK)
+// -------------------------------------------------------------
+if ($uri === '/gizlilik' || $uri === '/privacy') {
+    require __DIR__ . '/../views/legal/privacy.php';
+    exit;
+}
+
+if ($uri === '/kullanim-kosullari' || $uri === '/terms') {
+    require __DIR__ . '/../views/legal/terms.php';
+    exit;
+}
+
+if ($uri === '/kvkk') {
+    require __DIR__ . '/../views/legal/kvkk.php';
+    exit;
+}
+
+if ($uri === '/iletisim' || $uri === '/contact') {
+    require __DIR__ . '/../views/legal/contact.php';
+    exit;
+}
+
+// -------------------------------------------------------------
 // PUBLIC LANDING PAGE ROUTE
 // -------------------------------------------------------------
 if ($uri === '/' || $uri === '') {

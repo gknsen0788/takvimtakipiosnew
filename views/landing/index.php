@@ -1468,11 +1468,11 @@ $T = [
             <div class="space-y-3">
                 <h4 class="font-bold <?= $T['footer_title'] ?> text-xs uppercase tracking-wider">Kurumsal & Yasal</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><button onclick="openLegalModal('contact')" class="<?= $T['footer_link'] ?> transition text-left">İletişim Bilgileri</button></li>
-                    <li><button onclick="openLegalModal('privacy')" class="<?= $T['footer_link'] ?> transition text-left">Gizlilik Sözleşmesi</button></li>
-                    <li><button onclick="openLegalModal('terms')" class="<?= $T['footer_link'] ?> transition text-left">Kullanım Koşulları</button></li>
-                    <li><button onclick="openLegalModal('kvkk')" class="<?= $T['footer_link'] ?> transition text-left">KVKK Aydınlatma Metni</button></li>
-                    <li><a href="<?= $loginUrl ?>" class="<?= $T['footer_link'] ?> transition">Giriş Yap</a></li>
+                    <li><a href="<?= APP_URL ?>/iletisim" class="<?= $T['footer_link'] ?> transition block text-left">İletişim Bilgileri</a></li>
+                    <li><a href="<?= APP_URL ?>/gizlilik" class="<?= $T['footer_link'] ?> transition block text-left">Gizlilik Sözleşmesi</a></li>
+                    <li><a href="<?= APP_URL ?>/kullanim-kosullari" class="<?= $T['footer_link'] ?> transition block text-left">Kullanım Koşulları</a></li>
+                    <li><a href="<?= APP_URL ?>/kvkk" class="<?= $T['footer_link'] ?> transition block text-left">KVKK Aydınlatma Metni</a></li>
+                    <li><a href="<?= $loginUrl ?>" class="<?= $T['footer_link'] ?> transition block">Giriş Yap</a></li>
                 </ul>
             </div>
 
