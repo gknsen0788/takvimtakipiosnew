@@ -821,20 +821,6 @@ $T = [
 
                     <!-- Smartphone Outer Chassis -->
                     <div class="relative bg-slate-950 p-2 sm:p-2.5 rounded-[46px] sm:rounded-[50px] shadow-[0_25px_60px_-15px_rgba(15,23,42,0.45)] border-4 border-slate-800 ring-1 ring-slate-700/60">
-                        
-                        <!-- Side Hardware Buttons -->
-                        <!-- Silent Switch -->
-                        <div class="absolute -left-[6px] top-24 w-[3px] h-6 bg-slate-700 rounded-l-sm"></div>
-                        <!-- Volume Up -->
-                        <div class="absolute -left-[6px] top-36 w-[3px] h-10 bg-slate-700 rounded-l-sm"></div>
-                        <!-- Volume Down -->
-                        <div class="absolute -left-[6px] top-50 w-[3px] h-10 bg-slate-700 rounded-l-sm"></div>
-                        <!-- Power Button -->
-                        <div class="absolute -right-[6px] top-32 w-[3px] h-14 bg-slate-700 rounded-r-sm"></div>
-
-                        <!-- Top Speaker Notch / Ear Speaker Bar -->
-                        <div class="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-slate-900 rounded-full z-20 pointer-events-none"></div>
-
                         <!-- Screen Bezel Container -->
                         <div class="relative overflow-hidden rounded-[38px] sm:rounded-[42px] bg-black shadow-inner">
                             <img src="<?= APP_URL ?>/uploads/phone_view.jpeg" 
