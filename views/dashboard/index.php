@@ -365,9 +365,9 @@ $waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
 </div>
 
 <!-- Action Modal / Edit Popup for Dashboard -->
-<div id="dashboardModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden overflow-y-auto p-3 sm:p-6">
-    <div class="min-h-full flex items-center justify-center">
-        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl p-5 sm:p-6 border border-slate-100 relative my-auto">
+<div id="dashboardModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden overflow-y-auto p-2 sm:p-6 pb-48 sm:pb-6">
+    <div class="min-h-full flex items-start sm:items-center justify-center py-2 sm:py-6">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl p-4 sm:p-6 border border-slate-100 relative mb-32 sm:mb-auto">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div>
                     <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 bg-indigo-50 text-indigo-700 rounded-md text-[11px] font-bold mb-1">
@@ -460,11 +460,11 @@ $waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
                         <div class="grid grid-cols-2 gap-2 sm:gap-3">
                             <div class="min-w-0">
                                 <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Yetişkin Sayısı</label>
-                                <input type="number" name="adult_count" id="dashInputAdultCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                                <input type="number" name="adult_count" id="dashInputAdultCount" inputmode="numeric" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
                             </div>
                             <div class="min-w-0">
                                 <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Çocuk Sayısı</label>
-                                <input type="number" name="child_count" id="dashInputChildCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                                <input type="number" name="child_count" id="dashInputChildCount" inputmode="numeric" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
                             </div>
                         </div>
 
@@ -472,21 +472,21 @@ $waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
                             <div class="min-w-0">
                                 <label class="block text-[10px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Toplam Fiyat</label>
                                 <div class="relative flex items-center">
-                                    <input type="text" name="price" id="dashInputPrice" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <input type="text" name="price" id="dashInputPrice" inputmode="numeric" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500">
                                     <span class="absolute right-2.5 text-slate-400 font-bold text-xs pointer-events-none">₺</span>
                                 </div>
                             </div>
                             <div class="min-w-0">
                                 <label class="block text-[10px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Ön Ödeme</label>
                                 <div class="relative flex items-center">
-                                    <input type="text" name="down_payment" id="dashInputDownPayment" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <input type="text" name="down_payment" id="dashInputDownPayment" inputmode="numeric" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500">
                                     <span class="absolute right-2.5 text-slate-400 font-bold text-xs pointer-events-none">₺</span>
                                 </div>
                             </div>
                             <div class="min-w-0">
                                 <label class="block text-[10px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Kalan Ödeme</label>
                                 <div class="relative flex items-center">
-                                    <input type="text" name="remaining_payment" id="dashInputRemainingPayment" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-50/50 outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <input type="text" name="remaining_payment" id="dashInputRemainingPayment" inputmode="numeric" oninput="handleMoneyInput(this)" placeholder="0" class="w-full min-w-0 max-w-full pl-2 sm:pl-3 pr-6 py-2 rounded-xl border border-slate-300 text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-50/50 outline-none focus:ring-2 focus:ring-indigo-500">
                                     <span class="absolute right-2.5 text-emerald-600 font-bold text-xs pointer-events-none">₺</span>
                                 </div>
                             </div>
@@ -1565,6 +1565,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const upcomingSelectEl = document.getElementById('upcomingVillaSelect');
     if (upcomingSelectEl) {
         loadUpcomingVillaReservations(upcomingSelectEl.value);
+    }
+
+    // Auto-scroll focused input into comfortable view when soft keyboard opens on mobile
+    const dashModal = document.getElementById('dashboardModal');
+    if (dashModal) {
+        dashModal.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', function() {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 280);
+            });
+        });
+    }
+
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => {
+            const active = document.activeElement;
+            if (active && dashModal && dashModal.contains(active)) {
+                setTimeout(() => {
+                    active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        });
     }
 });
 </script>
