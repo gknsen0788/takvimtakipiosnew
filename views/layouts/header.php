@@ -84,6 +84,23 @@ use App\Helpers;
             document.addEventListener('DOMContentLoaded', notifyNativeApp);
             window.addEventListener('load', notifyNativeApp);
         })();
+
+        // Mobile / WebView helper: redirect internal target="_blank" links in-app
+        document.addEventListener('click', function(e) {
+            const a = e.target.closest('a[target="_blank"]');
+            if (!a) return;
+            const href = a.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+            if (href.startsWith('https://wa.me') || href.startsWith('whatsapp:') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+            
+            // If on mobile device or native app, open internal links in same window
+            if (/iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent) || window.innerWidth < 1024) {
+                if (href.startsWith('/') || href.includes(window.location.hostname)) {
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            }
+        }, { capture: true });
     </script>
     <?php endif; ?>
 

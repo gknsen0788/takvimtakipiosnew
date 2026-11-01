@@ -173,7 +173,7 @@ require __DIR__ . '/../layouts/header.php';
                                 <span>Düzenle</span>
                             </a>
                             <?php if (!empty($v['slug']) && !str_starts_with($v['slug'], 'draft-')): ?>
-                                <a href="<?= APP_URL ?>/villa/<?= $v['slug'] ?>" target="_blank" class="py-2 px-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition flex flex-col sm:flex-row items-center justify-center space-x-0 sm:space-x-1" title="Önizle (Müşteri Takvimi Sayfası)">
+                                <a href="<?= APP_URL ?>/villa/<?= $v['slug'] ?>" target="_blank" rel="noopener noreferrer" onclick="if (window.innerWidth < 1024 || /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)) { window.location.href = this.href; return false; }" class="py-2 px-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition flex flex-col sm:flex-row items-center justify-center space-x-0 sm:space-x-1 cursor-pointer active:scale-95" title="Önizle (Müşteri Takvimi Sayfası)">
                                     <i class="fa-solid fa-eye text-indigo-600 mb-0.5 sm:mb-0"></i>
                                     <span>Önizle</span>
                                 </a>

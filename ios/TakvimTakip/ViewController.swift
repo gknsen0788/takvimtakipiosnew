@@ -195,6 +195,11 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
 
         // Internal app links -> load inside webView
         if host.contains("takvimtakip.com.tr") || host.contains("localhost") {
+            if navigationAction.targetFrame == nil {
+                webView.load(navigationAction.request)
+                decisionHandler(.cancel)
+                return
+            }
             decisionHandler(.allow)
             return
         }
@@ -207,6 +212,29 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         }
 
         decisionHandler(.allow)
+    }
+
+    // MARK: - WKUIDelegate (Window.open / target="_blank" support)
+    func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            if let url = navigationAction.request.url {
+                let scheme = url.scheme?.lowercased() ?? ""
+                let host = url.host?.lowercased() ?? ""
+                if scheme == "whatsapp" || host.contains("wa.me") || scheme == "tel" || scheme == "mailto" {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else if host.contains("takvimtakip.com.tr") || host.contains("localhost") {
+                    webView.load(navigationAction.request)
+                } else if scheme == "http" || scheme == "https" {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
+        return nil
     }
 
     // MARK: - WKUIDelegate (Native Alerts)

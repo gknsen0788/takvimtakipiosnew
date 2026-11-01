@@ -35,10 +35,18 @@ if ($cleanPhone && str_starts_with($cleanPhone, '0')) {
     
     <!-- TOP HEADER ELEMENTS (Without card background) -->
     <div class="flex items-center justify-between gap-3 px-1">
-        <h1 class="text-sm sm:text-base font-extrabold text-slate-800 tracking-tight flex items-center space-x-2 truncate">
-            <i class="fa-solid fa-house-chimney text-indigo-600 text-base shrink-0"></i>
-            <span class="truncate"><?= Helpers::sanitize($villa['name']) ?> Müsaitlik Takvimi</span>
-        </h1>
+        <div class="flex items-center space-x-2 truncate">
+            <?php if (\App\Auth::check()): ?>
+                <a href="<?= APP_URL ?>/villas" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0" title="Konut Listesine Geri Dön">
+                    <i class="fa-solid fa-arrow-left text-indigo-600"></i>
+                    <span>Geri</span>
+                </a>
+            <?php endif; ?>
+            <h1 class="text-sm sm:text-base font-extrabold text-slate-800 tracking-tight flex items-center space-x-2 truncate">
+                <i class="fa-solid fa-house-chimney text-indigo-600 text-base shrink-0"></i>
+                <span class="truncate"><?= Helpers::sanitize($villa['name']) ?> Müsaitlik Takvimi</span>
+            </h1>
+        </div>
         <button onclick="sharePublicPage(this)" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0">
             <i class="fa-solid fa-share-nodes text-indigo-600 text-xs"></i>
             <span>Paylaş</span>
