@@ -812,52 +812,40 @@ $T = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Phone Screen Visual -->
-            <div class="lg:col-span-5 flex justify-center order-2 lg:order-1">
-                <div class="w-full max-w-[290px] bg-slate-900 p-4 rounded-[40px] border-4 border-slate-800 shadow-2xl space-y-4 relative">
+            <!-- Phone Screen Visual (Realistic Smartphone Mockup) -->
+            <div class="lg:col-span-5 flex justify-center items-center order-2 lg:order-1">
+                <div class="relative mx-auto w-full max-w-[260px] xs:max-w-[275px] sm:max-w-[285px] lg:max-w-[280px] xl:max-w-[295px] transition-transform duration-300 hover:scale-[1.01]">
                     
-                    <!-- Phone Notch -->
-                    <div class="w-28 h-4 bg-slate-800 rounded-b-xl mx-auto"></div>
+                    <!-- Ambient Glow Behind Phone -->
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 via-emerald-500/10 to-indigo-600/20 rounded-[56px] blur-2xl opacity-70 -z-10 pointer-events-none"></div>
 
-                    <!-- Phone Screen Content -->
-                    <div class="bg-white rounded-2xl p-3 text-slate-800 space-y-3 shadow-inner">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <span class="font-extrabold text-xs text-slate-900">TakvimTakip Mobil</span>
-                            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Mobil Uyumlu</span>
+                    <!-- Smartphone Outer Chassis -->
+                    <div class="relative bg-slate-950 p-2 sm:p-2.5 rounded-[46px] sm:rounded-[50px] shadow-[0_25px_60px_-15px_rgba(15,23,42,0.45)] border-4 border-slate-800 ring-1 ring-slate-700/60">
+                        
+                        <!-- Side Hardware Buttons -->
+                        <!-- Silent Switch -->
+                        <div class="absolute -left-[6px] top-24 w-[3px] h-6 bg-slate-700 rounded-l-sm"></div>
+                        <!-- Volume Up -->
+                        <div class="absolute -left-[6px] top-36 w-[3px] h-10 bg-slate-700 rounded-l-sm"></div>
+                        <!-- Volume Down -->
+                        <div class="absolute -left-[6px] top-50 w-[3px] h-10 bg-slate-700 rounded-l-sm"></div>
+                        <!-- Power Button -->
+                        <div class="absolute -right-[6px] top-32 w-[3px] h-14 bg-slate-700 rounded-r-sm"></div>
+
+                        <!-- Top Speaker Notch / Ear Speaker Bar -->
+                        <div class="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-slate-900 rounded-full z-20 pointer-events-none"></div>
+
+                        <!-- Screen Bezel Container -->
+                        <div class="relative overflow-hidden rounded-[38px] sm:rounded-[42px] bg-black shadow-inner">
+                            <img src="<?= APP_URL ?>/uploads/phone_view.jpeg" 
+                                 alt="TakvimTakip Mobil Uygulama Ekranı" 
+                                 class="w-full h-auto block object-cover select-none pointer-events-none"
+                                 loading="lazy" />
+                            
+                            <!-- Subtle Screen Glare Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.06] pointer-events-none"></div>
                         </div>
-
-                        <div class="text-[11px] font-bold text-slate-700">Müsaitlik Takvimi</div>
-
-                        <div class="grid grid-cols-7 gap-1 text-[9px] text-center font-bold text-slate-400">
-                            <div>P</div><div>S</div><div>Ç</div><div>P</div><div>C</div><div>C</div><div>P</div>
-                        </div>
-
-                        <!-- Mini Mobile Grid -->
-                        <div class="grid grid-cols-7 gap-1 text-[10px] font-bold text-center">
-                            <div class="p-1 rounded bg-slate-100 text-slate-400">28</div>
-                            <div class="p-1 rounded bg-slate-100 text-slate-400">29</div>
-                            <div class="p-1 rounded bg-slate-100 text-slate-400">30</div>
-                            <div class="p-1 rounded bg-slate-50">1</div>
-                            <div class="p-1 rounded bg-slate-50">2</div>
-                            <div class="p-1 rounded bg-slate-50">3</div>
-                            <div class="p-1 rounded bg-slate-50">4</div>
-
-                            <div class="p-1 rounded gradient-checkout text-slate-800">5</div>
-                            <div class="p-1 rounded bg-rose-500 text-white">6</div>
-                            <div class="p-1 rounded bg-rose-500 text-white">7</div>
-                            <div class="p-1 rounded bg-rose-500 text-white">8</div>
-                            <div class="p-1 rounded gradient-checkin text-slate-800">9</div>
-                            <div class="p-1 rounded bg-slate-50">10</div>
-                            <div class="p-1 rounded bg-slate-50">11</div>
-                        </div>
-
-                        <button class="w-full py-2 bg-indigo-600 text-white font-bold text-xs rounded-xl shadow">
-                            Tarih Kapat
-                        </button>
                     </div>
-
-                    <!-- Home Bar -->
-                    <div class="w-20 h-1 bg-slate-700 rounded-full mx-auto"></div>
                 </div>
             </div>
 
