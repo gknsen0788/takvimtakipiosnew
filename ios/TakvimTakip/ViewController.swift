@@ -103,9 +103,10 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
     private func checkAndToggleSwipeRefresh(url: URL?) {
         guard let urlString = url?.absoluteString.lowercased() else { return }
 
-        // Disable pull-to-refresh on calendar/matrix/form screens to avoid accidental reload while dragging
+        // Disable pull-to-refresh on calendar/matrix/public-calendar/form screens to avoid accidental reload while dragging
         if urlString.contains("/occupancy-calendar")
             || urlString.contains("/calendar")
+            || urlString.contains("/villa/")
             || urlString.contains("/new")
             || urlString.contains("/edit") {
             setSwipeRefreshEnabled(false)

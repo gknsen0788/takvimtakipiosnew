@@ -338,10 +338,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkAndToggleSwipeRefresh(String url) {
         if (swipeRefreshLayout == null) return;
-        // Doluluk Takvimi (/occupancy-calendar), Takvim Yönetimi (/calendar), formlar ve detay sayfalarında
-        // aşağı çek-yenile özelliği devre dışı bırakılır; diğer genel sayfalarda (Anasayfa, villalar vb.) açık tutulur.
+        // Doluluk Takvimi (/occupancy-calendar), Takvim Yönetimi (/calendar), Public Takvim (/villa/),
+        // formlar ve detay sayfalarında aşağı çek-yenile özelliği devre dışı bırakılır;
+        // diğer genel sayfalarda (Anasayfa, villalar vb.) açık tutulur.
         if (url != null && (url.contains("/occupancy-calendar")
                 || url.contains("/calendar")
+                || url.contains("/villa/")
                 || url.contains("/new")
                 || url.contains("/edit"))) {
             swipeRefreshLayout.setEnabled(false);

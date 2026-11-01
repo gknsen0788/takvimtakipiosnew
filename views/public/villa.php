@@ -28,6 +28,32 @@ if ($cleanPhone && str_starts_with($cleanPhone, '0')) {
 
     <!-- Custom App CSS with Cache Buster -->
     <link rel="stylesheet" href="<?= APP_URL ?>/css/app.css?v=<?= time() ?>">
+
+    <style>
+        /* Prevent pull-to-refresh & overscroll bounce on calendar pages & modals */
+        html, body {
+            overscroll-behavior-y: contain;
+        }
+        body.modal-open {
+            overflow: hidden !important;
+            overscroll-behavior: none !important;
+            overscroll-behavior-y: none !important;
+            height: 100vh !important;
+        }
+        #yearlyCalendarModalPopup,
+        #pricingModalPopup,
+        #photosModalPopup {
+            overscroll-behavior: contain;
+            overscroll-behavior-y: contain;
+            touch-action: pan-y;
+        }
+        #yearly12MonthsGrid {
+            overscroll-behavior: contain;
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+    </style>
 </head>
 <body class="h-full flex flex-col justify-between text-slate-800 antialiased">
 
@@ -497,6 +523,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.publicMainCalendar = calendar;
+
+    // Disable native Android / iOS pull-to-refresh on this public calendar page
+    disableNativeSwipeRefresh();
+
+    // Prevent pull-to-refresh / overscroll chaining when interacting with the yearly calendar modal
+    const yearlyModal = document.getElementById('yearlyCalendarModalPopup');
+    const grid = document.getElementById('yearly12MonthsGrid');
+
+    if (yearlyModal) {
+        // Prevent default touchmove on backdrop and headers so dragging outside the grid doesn't pull-to-refresh
+        yearlyModal.addEventListener('touchmove', function(e) {
+            if (!grid || !grid.contains(e.target)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
+
+    if (grid) {
+        let touchStartY = 0;
+        grid.addEventListener('touchstart', function(e) {
+            if (e.touches && e.touches.length === 1) {
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        grid.addEventListener('touchmove', function(e) {
+            if (e.touches && e.touches.length === 1) {
+                const currentY = e.touches[0].clientY;
+                const diffY = currentY - touchStartY;
+                // If user is at the top of the grid and pulls downwards, prevent pull-to-refresh
+                if (diffY > 0 && grid.scrollTop <= 0) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
+    }
 });
 
 const TURKISH_MONTHS = [
@@ -636,6 +698,31 @@ function render12MonthsYearlyCalendar(year) {
     container.innerHTML = html;
 }
 
+function disableNativeSwipeRefresh() {
+    try {
+        if (window.AndroidBridge && typeof window.AndroidBridge.setSwipeRefreshEnabled === 'function') {
+            window.AndroidBridge.setSwipeRefreshEnabled(false);
+        }
+    } catch (e) {}
+}
+
+window.addEventListener('load', disableNativeSwipeRefresh);
+setTimeout(disableNativeSwipeRefresh, 150);
+setTimeout(disableNativeSwipeRefresh, 600);
+setTimeout(disableNativeSwipeRefresh, 1500);
+
+function checkModalsClosed() {
+    const yearly = document.getElementById('yearlyCalendarModalPopup');
+    const pricing = document.getElementById('pricingModalPopup');
+    const photos = document.getElementById('photosModalPopup');
+    const anyOpen = (yearly && !yearly.classList.contains('hidden')) ||
+                    (pricing && !pricing.classList.contains('hidden')) ||
+                    (photos && !photos.classList.contains('hidden'));
+    if (!anyOpen) {
+        document.body.classList.remove('modal-open');
+    }
+}
+
 function prevYearlyCalendar() {
     render12MonthsYearlyCalendar(currentYearlyViewYear - 1);
 }
@@ -648,6 +735,8 @@ function openYearlyCalendarModal() {
     const modal = document.getElementById('yearlyCalendarModalPopup');
     if (!modal) return;
     modal.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    disableNativeSwipeRefresh();
     const activeYear = window.publicMainCalendar ? window.publicMainCalendar.getDate().getFullYear() : new Date().getFullYear();
     render12MonthsYearlyCalendar(activeYear);
 }
@@ -655,20 +744,27 @@ function openYearlyCalendarModal() {
 function closeYearlyCalendarModal() {
     const modal = document.getElementById('yearlyCalendarModalPopup');
     if (modal) modal.classList.add('hidden');
+    checkModalsClosed();
 }
 
 function openPricingModal() {
     document.getElementById('pricingModalPopup').classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    disableNativeSwipeRefresh();
 }
 function closePricingModal() {
     document.getElementById('pricingModalPopup').classList.add('hidden');
+    checkModalsClosed();
 }
 
 function openPhotosModal() {
     document.getElementById('photosModalPopup').classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    disableNativeSwipeRefresh();
 }
 function closePhotosModal() {
     document.getElementById('photosModalPopup').classList.add('hidden');
+    checkModalsClosed();
 }
 
 function sharePublicPage(btn) {
@@ -853,7 +949,7 @@ function copyPublicUrl(text, btn) {
         </div>
 
         <!-- 12-Month Calendar Container (Mobile: Scroll 2x6, Desktop: No Scroll 6x2) -->
-        <div id="yearly12MonthsGrid" class="flex-1 overflow-y-auto lg:overflow-hidden p-1 pr-1.5"></div>
+        <div id="yearly12MonthsGrid" class="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden p-1 pr-1.5" style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch; touch-action: pan-y;"></div>
     </div>
 </div>
 
