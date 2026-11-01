@@ -456,6 +456,18 @@ $waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
                             </div>
                         </div>
 
+                        <!-- Yetişkin & Çocuk Sayısı Kutuları -->
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3">
+                            <div class="min-w-0">
+                                <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Yetişkin Sayısı</label>
+                                <input type="number" name="adult_count" id="dashInputAdultCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                            </div>
+                            <div class="min-w-0">
+                                <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Çocuk Sayısı</label>
+                                <input type="number" name="child_count" id="dashInputChildCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                            </div>
+                        </div>
+
                         <div class="grid grid-cols-3 gap-1.5 sm:gap-3">
                             <div class="min-w-0">
                                 <label class="block text-[10px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Toplam Fiyat</label>
@@ -1092,6 +1104,8 @@ function openModalForDashboardReservation(id, mode = 'edit') {
     document.getElementById('dashInputCustomerName').value = item.customer_name || '';
     document.getElementById('dashInputCustomerPhone').value = item.customer_phone || '';
     document.getElementById('dashInputAgencyName').value = item.agency_name || '';
+    document.getElementById('dashInputAdultCount').value = (item.adult_count && parseInt(item.adult_count) > 0) ? item.adult_count : '';
+    document.getElementById('dashInputChildCount').value = (item.child_count && parseInt(item.child_count) > 0) ? item.child_count : '';
     
     const bookingDateVal = item.booking_date || (item.created_at ? item.created_at.substring(0, 10) : getTodayString());
     setDashBookingDateValue(bookingDateVal);
@@ -1225,6 +1239,8 @@ function openDashboardModalForNew(startDate, endDate) {
     document.getElementById('dashInputCustomerName').value = '';
     document.getElementById('dashInputCustomerPhone').value = '';
     document.getElementById('dashInputAgencyName').value = '';
+    document.getElementById('dashInputAdultCount').value = '';
+    document.getElementById('dashInputChildCount').value = '';
     setDashBookingDateValue(getTodayString());
     document.getElementById('dashInputPrice').value = '';
     document.getElementById('dashInputDownPayment').value = '';
@@ -1331,6 +1347,14 @@ function handleDashboardReservationSubmit(e) {
                 msg += `Konut Adı : ${villaName}\n`;
                 msg += `Giriş Tarihi / Saati : ${startDate}${checkinTime ? ' / ' + checkinTime : ''}\n`;
                 msg += `Çıkış Tarihi / Saati : ${endDate}${checkoutTime ? ' / ' + checkoutTime : ''}\n`;
+                const adultVal = parseInt(formData.get('adult_count') || document.getElementById('dashInputAdultCount')?.value) || 0;
+                const childVal = parseInt(formData.get('child_count') || document.getElementById('dashInputChildCount')?.value) || 0;
+                if (adultVal > 0 || childVal > 0) {
+                    let guests = [];
+                    if (adultVal > 0) guests.push(`${adultVal} Yetişkin`);
+                    if (childVal > 0) guests.push(`${childVal} Çocuk`);
+                    msg += `Misafir Sayısı : ${guests.join(', ')}\n`;
+                }
                 msg += `Toplam Ödeme : ${priceVal}\n`;
                 msg += `Ön Ödeme : ${downVal}\n`;
                 msg += `Kalan Ödeme : ${remainingVal}\n`;

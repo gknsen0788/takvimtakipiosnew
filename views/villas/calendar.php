@@ -158,6 +158,18 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
                         </div>
 
+                        <!-- Yetişkin & Çocuk Sayısı Kutuları -->
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3">
+                            <div class="min-w-0">
+                                <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Yetişkin Sayısı</label>
+                                <input type="number" name="adult_count" id="inputAdultCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                            </div>
+                            <div class="min-w-0">
+                                <label class="block text-[11px] sm:text-xs font-semibold text-slate-700 mb-1 truncate">Çocuk Sayısı</label>
+                                <input type="number" name="child_count" id="inputChildCount" min="0" placeholder="0" class="w-full min-w-0 max-w-full px-2.5 sm:px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                            </div>
+                        </div>
+
                         <!-- Financial Fields: Toplam Fiyat, Ön Ödeme, Kalan Ödeme (Formatted as Turkish Currency) -->
                         <div class="grid grid-cols-3 gap-1.5 sm:gap-3">
                             <div class="min-w-0">
@@ -919,6 +931,8 @@ function openModal(startDate, endDate, existingProps = null) {
         document.getElementById('inputCustomerName').value = existingProps.customer_name || '';
         document.getElementById('inputCustomerPhone').value = existingProps.customer_phone || '';
         document.getElementById('inputAgencyName').value = existingProps.agency_name || '';
+        document.getElementById('inputAdultCount').value = (existingProps.adult_count && parseInt(existingProps.adult_count) > 0) ? existingProps.adult_count : '';
+        document.getElementById('inputChildCount').value = (existingProps.child_count && parseInt(existingProps.child_count) > 0) ? existingProps.child_count : '';
         
         const bookingDateVal = existingProps.booking_date || (existingProps.created_at ? existingProps.created_at.substring(0, 10) : getTodayString());
         setBookingDateValue(bookingDateVal);
@@ -1008,6 +1022,8 @@ function openModal(startDate, endDate, existingProps = null) {
         document.getElementById('inputCustomerName').value = '';
         document.getElementById('inputCustomerPhone').value = '';
         document.getElementById('inputAgencyName').value = '';
+        document.getElementById('inputAdultCount').value = '';
+        document.getElementById('inputChildCount').value = '';
         setBookingDateValue(getTodayString());
         document.getElementById('inputPrice').value = '';
         document.getElementById('inputDownPayment').value = '';
@@ -1133,6 +1149,14 @@ function handleReservationSubmit(e) {
                 msg += `Konut Adı : ${villaName}\n`;
                 msg += `Giriş Tarihi / Saati : ${startDate}${checkinTime ? ' / ' + checkinTime : ''}\n`;
                 msg += `Çıkış Tarihi / Saati : ${endDate}${checkoutTime ? ' / ' + checkoutTime : ''}\n`;
+                const adultVal = parseInt(formData.get('adult_count') || document.getElementById('inputAdultCount')?.value) || 0;
+                const childVal = parseInt(formData.get('child_count') || document.getElementById('inputChildCount')?.value) || 0;
+                if (adultVal > 0 || childVal > 0) {
+                    let guests = [];
+                    if (adultVal > 0) guests.push(`${adultVal} Yetişkin`);
+                    if (childVal > 0) guests.push(`${childVal} Çocuk`);
+                    msg += `Kişi Sayısı : ${guests.join(', ')}\n`;
+                }
                 msg += `Toplam Ödeme : ${priceVal}\n`;
                 msg += `Ön Ödeme : ${downVal}\n`;
                 msg += `Kalan Ödeme : ${remainingVal}\n`;

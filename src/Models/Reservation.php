@@ -32,6 +32,9 @@ class Reservation {
             $source = 'acente';
         }
 
+        $adultCount = isset($data['adult_count']) && $data['adult_count'] !== '' ? max(0, (int)$data['adult_count']) : 0;
+        $childCount = isset($data['child_count']) && $data['child_count'] !== '' ? max(0, (int)$data['child_count']) : 0;
+
         if ($reservationId) {
             $stmt = $db->prepare("
                 UPDATE reservations SET
@@ -42,6 +45,8 @@ class Reservation {
                     booking_date = :booking_date,
                     customer_name = :customer_name,
                     customer_phone = :customer_phone,
+                    adult_count = :adult_count,
+                    child_count = :child_count,
                     agency_name = :agency_name,
                     price = :price,
                     down_payment = :down_payment,
@@ -60,6 +65,8 @@ class Reservation {
                 'booking_date' => $bookingDate,
                 'customer_name' => $data['customer_name'] ?? null,
                 'customer_phone' => $data['customer_phone'] ?? null,
+                'adult_count' => $adultCount,
+                'child_count' => $childCount,
                 'agency_name' => $data['agency_name'] ?? null,
                 'price' => isset($data['price']) && $data['price'] !== '' ? (float)$data['price'] : null,
                 'down_payment' => isset($data['down_payment']) && $data['down_payment'] !== '' ? (float)$data['down_payment'] : null,
@@ -74,10 +81,10 @@ class Reservation {
             $stmt = $db->prepare("
                 INSERT INTO reservations (
                     villa_id, start_date, end_date, status, source, booking_date,
-                    external_calendar_id, customer_name, customer_phone, agency_name, price, down_payment, remaining_payment, note
+                    external_calendar_id, customer_name, customer_phone, adult_count, child_count, agency_name, price, down_payment, remaining_payment, note
                 ) VALUES (
                     :villa_id, :start_date, :end_date, :status, :source, :booking_date,
-                    :external_calendar_id, :customer_name, :customer_phone, :agency_name, :price, :down_payment, :remaining_payment, :note
+                    :external_calendar_id, :customer_name, :customer_phone, :adult_count, :child_count, :agency_name, :price, :down_payment, :remaining_payment, :note
                 )
             ");
 
@@ -91,6 +98,8 @@ class Reservation {
                 'external_calendar_id' => $data['external_calendar_id'] ?? null,
                 'customer_name' => $data['customer_name'] ?? null,
                 'customer_phone' => $data['customer_phone'] ?? null,
+                'adult_count' => $adultCount,
+                'child_count' => $childCount,
                 'agency_name' => $data['agency_name'] ?? null,
                 'price' => isset($data['price']) && $data['price'] !== '' ? (float)$data['price'] : null,
                 'down_payment' => isset($data['down_payment']) && $data['down_payment'] !== '' ? (float)$data['down_payment'] : null,

@@ -310,6 +310,8 @@ $waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
                                          data-agency="<?= Helpers::sanitize($res['agency_name'] ?? '') ?>"
                                          data-customer="<?= Helpers::sanitize($res['customer_name'] ?? '') ?>"
                                          data-phone="<?= Helpers::sanitize($res['customer_phone'] ?? '') ?>"
+                                         data-adult="<?= (int)($res['adult_count'] ?? 0) ?>"
+                                         data-child="<?= (int)($res['child_count'] ?? 0) ?>"
                                          data-start="<?= date('d.m.Y', strtotime($res['start_date'])) ?>"
                                          data-end="<?= date('d.m.Y', strtotime($res['end_date'])) ?>"
                                          data-price="<?= !empty($res['price']) ? Helpers::formatMoney($res['price']) : '' ?>"
@@ -503,6 +505,8 @@ function openResModal(el) {
     const agency = el.getAttribute('data-agency') || '';
     const customer = el.getAttribute('data-customer') || '';
     const phone = el.getAttribute('data-phone') || '';
+    const adult = parseInt(el.getAttribute('data-adult')) || 0;
+    const child = parseInt(el.getAttribute('data-child')) || 0;
     const start = el.getAttribute('data-start') || '';
     const end = el.getAttribute('data-end') || '';
     const price = el.getAttribute('data-price') || '';
@@ -518,7 +522,11 @@ function openResModal(el) {
     
     let displayCust = agency ? (`Acente: ${agency}`) : (customer || 'Belirtilmedi');
     custNameEl.textContent = displayCust;
-    custPhoneEl.textContent = phone ? (`İletişim: ${phone}`) : '';
+    let guestInfo = [];
+    if (adult > 0) guestInfo.push(`${adult} Yetişkin`);
+    if (child > 0) guestInfo.push(`${child} Çocuk`);
+    const guestText = guestInfo.length > 0 ? ` • ${guestInfo.join(', ')}` : '';
+    custPhoneEl.textContent = (phone ? `İletişim: ${phone}` : '') + guestText;
 
     const priceBox = document.getElementById('modalPriceBox');
     const priceEl = document.getElementById('modalPrice');

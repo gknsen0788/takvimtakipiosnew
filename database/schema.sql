@@ -71,6 +71,8 @@ CREATE TABLE IF NOT EXISTS reservations (
     down_payment REAL,
     remaining_payment REAL,
     booking_date TEXT, -- YYYY-MM-DD (Rezervasyon Alınma Tarihi)
+    adult_count INTEGER DEFAULT 0,
+    child_count INTEGER DEFAULT 0,
     note TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,

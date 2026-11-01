@@ -63,6 +63,14 @@ class Database {
         } catch (\PDOException $e) {}
 
         try {
+            self::$instance->exec("ALTER TABLE reservations ADD COLUMN adult_count INTEGER DEFAULT 0;");
+        } catch (\PDOException $e) {}
+
+        try {
+            self::$instance->exec("ALTER TABLE reservations ADD COLUMN child_count INTEGER DEFAULT 0;");
+        } catch (\PDOException $e) {}
+
+        try {
             self::$instance->exec("ALTER TABLE price_periods ADD COLUMN weekly_price REAL;");
         } catch (\PDOException $e) {}
 
