@@ -250,7 +250,7 @@ $T = [
         <nav class="hidden md:flex items-center space-x-6 xl:space-x-8 text-xs font-semibold">
             <a href="#how-it-works" class="<?= $T['nav_link'] ?> transition-colors">Nasıl Çalışır?</a>
             <a href="#features" class="<?= $T['nav_link'] ?> transition-colors">Özellikler</a>
-            <a href="#uygulama" class="<?= $T['nav_link'] ?> transition-colors">Uygulama</a>
+            <a href="#uygulama" class="text-[#FED452] hover:text-yellow-300 font-bold transition-colors">Mobil Uygulama</a>
             <a href="#ical-sync" class="<?= $T['nav_link'] ?> transition-colors">iCal Entegrasyonu</a>
             <a href="#pricing" class="<?= $T['nav_link'] ?> transition-colors">Fiyatlandırma</a>
             <a href="#faq" class="<?= $T['nav_link'] ?> transition-colors">SSS</a>
@@ -292,7 +292,7 @@ $T = [
     <div id="mobileMenu" class="hidden md:hidden <?= $T['mobile_menu'] ?> px-4 pt-3 pb-6 space-y-3">
         <a href="#how-it-works" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Nasıl Çalışır?</a>
         <a href="#features" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Özellikler</a>
-        <a href="#uygulama" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Uygulama</a>
+        <a href="#uygulama" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-[#FED452] hover:text-yellow-300 transition-colors">Mobil Uygulama</a>
         <a href="#ical-sync" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">iCal Entegrasyonu</a>
         <a href="#pricing" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Fiyatlandırma</a>
         <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">SSS</a>
@@ -1486,7 +1486,7 @@ $T = [
                     <li><a href="#how-it-works" class="<?= $T['footer_link'] ?> transition">Nasıl Çalışır?</a></li>
                     <li><a href="#interactive-showcase" class="<?= $T['footer_link'] ?> transition">Canlı Simülasyon</a></li>
                     <li><a href="#features" class="<?= $T['footer_link'] ?> transition">Özellikler</a></li>
-                    <li><a href="#uygulama" class="<?= $T['footer_link'] ?> transition">Uygulama</a></li>
+                    <li><a href="#uygulama" class="<?= $T['footer_link'] ?> transition">Mobil Uygulama</a></li>
                     <li><a href="#ical-sync" class="<?= $T['footer_link'] ?> transition">iCal Senkronizasyonu</a></li>
                     <li><a href="#pricing" class="<?= $T['footer_link'] ?> transition">Fiyatlandırma</a></li>
                     <li><a href="#contact" class="<?= $T['footer_link'] ?> transition">İletişim</a></li>
