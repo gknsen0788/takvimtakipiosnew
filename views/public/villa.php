@@ -60,23 +60,32 @@ if ($cleanPhone && str_starts_with($cleanPhone, '0')) {
 <div class="max-w-5xl mx-auto w-full p-4 sm:p-6 space-y-5">
     
     <!-- TOP HEADER ELEMENTS (Without card background) -->
-    <div class="flex items-center justify-between gap-3 px-1">
-        <div class="flex items-center space-x-2 truncate">
+    <div class="flex items-center justify-between gap-2 px-1">
+        <!-- Left Action: Back Button (if logged in) or spacer to balance centering -->
+        <div class="flex items-center justify-start min-w-[70px] shrink-0">
             <?php if (\App\Auth::check()): ?>
                 <a href="<?= APP_URL ?>/villas" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0" title="Konut Listesine Geri Dön">
                     <i class="fa-solid fa-arrow-left text-indigo-600"></i>
                     <span>Geri</span>
                 </a>
             <?php endif; ?>
-            <h1 class="text-sm sm:text-base font-extrabold text-slate-800 tracking-tight flex items-center space-x-2 truncate">
-                <i class="fa-solid fa-house-chimney text-indigo-600 text-base shrink-0"></i>
+        </div>
+
+        <!-- Center: Villa Name -->
+        <div class="flex-1 flex items-center justify-center min-w-0 px-1 text-center">
+            <h1 class="text-sm sm:text-base font-extrabold text-slate-800 tracking-tight flex items-center justify-center space-x-1.5 sm:space-x-2 truncate">
+                <i class="fa-solid fa-house-chimney text-indigo-600 text-sm sm:text-base shrink-0"></i>
                 <span class="truncate"><?= Helpers::sanitize($villa['name']) ?></span>
             </h1>
         </div>
-        <button onclick="sharePublicPage(this)" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0">
-            <i class="fa-solid fa-share-nodes text-indigo-600 text-xs"></i>
-            <span>Paylaş</span>
-        </button>
+
+        <!-- Right Action: Share Button -->
+        <div class="flex items-center justify-end min-w-[70px] shrink-0">
+            <button onclick="sharePublicPage(this)" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0">
+                <i class="fa-solid fa-share-nodes text-indigo-600 text-xs"></i>
+                <span>Paylaş</span>
+            </button>
+        </div>
     </div>
 
     <!-- 2-COLUMN GRID (Equal Top Alignment) -->
