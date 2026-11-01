@@ -374,6 +374,14 @@ use App\Helpers;
             padding-right: 0 !important;
         }
 
+        /* Mobile Drawer Header right edge fix: keep right vertical line blue like header background */
+        #mobileDrawerHeader {
+            margin-right: -1px !important;
+            width: calc(100% + 1px) !important;
+            border-right: 1px solid #4338ca !important;
+            box-shadow: 1px 0 0 #4338ca !important;
+        }
+
         /* Modern Soft & Sleek Calendar UI Architecture */
         .fc-theme-standard .fc-scrollgrid {
             border: none !important;
@@ -622,7 +630,7 @@ $isAdminUsers = str_contains($currentUri, '/admin');
 <div id="mobileMenuDrawer" class="fixed inset-y-0 left-0 w-72 max-w-[80vw] bg-white text-slate-800 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-between lg:hidden border-r border-slate-200">
     <div>
         <!-- Drawer Header -->
-        <div class="h-16 px-4 border-b border-indigo-600/60 flex items-center justify-between bg-[#4338ca]">
+        <div id="mobileDrawerHeader" class="h-16 px-4 border-b border-indigo-600/60 flex items-center justify-between bg-[#4338ca] relative -mr-px w-[calc(100%+1px)] border-r border-[#4338ca] z-10" style="box-shadow: 1px 0 0 #4338ca;">
             <a href="<?= APP_URL ?>/dashboard" class="flex items-center space-x-2 font-bold text-lg tracking-tight text-white">
                 <img src="<?= APP_URL ?>/uploads/logo.png" alt="TakvimTakip" class="h-9 w-auto object-contain max-h-10" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
                 <div class="flex items-center space-x-2" style="display:none;">
