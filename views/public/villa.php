@@ -13,7 +13,7 @@ if ($cleanPhone && str_starts_with($cleanPhone, '0')) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= Helpers::sanitize($villa['name']) ?> - Müsaitlik Takvimi</title>
+    <title><?= Helpers::sanitize($villa['name']) ?></title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -70,7 +70,7 @@ if ($cleanPhone && str_starts_with($cleanPhone, '0')) {
             <?php endif; ?>
             <h1 class="text-sm sm:text-base font-extrabold text-slate-800 tracking-tight flex items-center space-x-2 truncate">
                 <i class="fa-solid fa-house-chimney text-indigo-600 text-base shrink-0"></i>
-                <span class="truncate"><?= Helpers::sanitize($villa['name']) ?> Müsaitlik Takvimi</span>
+                <span class="truncate"><?= Helpers::sanitize($villa['name']) ?></span>
             </h1>
         </div>
         <button onclick="sharePublicPage(this)" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 text-xs font-bold rounded-xl shadow-sm transition active:scale-95 shrink-0">
