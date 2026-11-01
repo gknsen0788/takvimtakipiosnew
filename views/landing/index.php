@@ -250,6 +250,7 @@ $T = [
         <nav class="hidden md:flex items-center space-x-6 xl:space-x-8 text-xs font-semibold">
             <a href="#how-it-works" class="<?= $T['nav_link'] ?> transition-colors">Nasıl Çalışır?</a>
             <a href="#features" class="<?= $T['nav_link'] ?> transition-colors">Özellikler</a>
+            <a href="#uygulama" class="<?= $T['nav_link'] ?> transition-colors">Uygulama</a>
             <a href="#ical-sync" class="<?= $T['nav_link'] ?> transition-colors">iCal Entegrasyonu</a>
             <a href="#pricing" class="<?= $T['nav_link'] ?> transition-colors">Fiyatlandırma</a>
             <a href="#faq" class="<?= $T['nav_link'] ?> transition-colors">SSS</a>
@@ -291,6 +292,7 @@ $T = [
     <div id="mobileMenu" class="hidden md:hidden <?= $T['mobile_menu'] ?> px-4 pt-3 pb-6 space-y-3">
         <a href="#how-it-works" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Nasıl Çalışır?</a>
         <a href="#features" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Özellikler</a>
+        <a href="#uygulama" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Uygulama</a>
         <a href="#ical-sync" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">iCal Entegrasyonu</a>
         <a href="#pricing" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Fiyatlandırma</a>
         <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">SSS</a>
@@ -804,9 +806,9 @@ $T = [
 </section>
 
 <!-- =========================================================================
-     7. MOBİL DENEYİM (TAKVİMİNİZ CEBİNİZDE)
+     7. MOBİL DENEYİM & RESMİ UYGULAMALAR (GOOGLE PLAY & APP STORE)
      ========================================================================= -->
-<section class="py-20 <?= $T['sec_alt_bg'] ?>">
+<section id="uygulama" class="py-20 <?= $T['sec_alt_bg'] ?> scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -871,7 +873,7 @@ $T = [
                 </h2>
 
                 <p class="text-sm sm:text-base <?= $T['body_sub'] ?> leading-relaxed">
-                    Bilgisayar başında durmak zorunda değilsiniz. Akıllı telefonunuzun tarayıcısından istediğiniz an giriş yapın, yoldayken veya dışarıdayken tarihinizi saniyeler içinde güncelleyin.
+                    Bilgisayar başında durmak zorunda değilsiniz. Akıllı telefonunuzun tarayıcısından veya resmi mobil uygulamalarımızdan istediğiniz an giriş yapın, yoldayken veya dışarıdayken tarihinizi saniyeler içinde güncelleyin.
                 </p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -890,6 +892,45 @@ $T = [
                         </div>
                         <p class="text-xs <?= $T['body_muted'] ?>">Parmağınızla tarih aralığı seçmek ve butonlara basmak çok rahat.</p>
                     </div>
+                </div>
+
+                <!-- Google Play Store & Apple App Store Download Badges -->
+                <div class="pt-3 space-y-3">
+                    <div class="text-xs font-bold uppercase tracking-wider <?= $T['tag_indigo'] ?> flex items-center space-x-2">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        <span>Mobil Uygulamalarımızı Ücretsiz İndirin</span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Google Play Store Badge -->
+                        <a href="https://play.google.com/store/apps/details?id=com.takvimtakip.app2026" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="flex items-center space-x-3.5 px-5 py-3 bg-slate-900 hover:bg-black text-white rounded-2xl border border-slate-700/80 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group">
+                            <i class="fa-brands fa-google-play text-2xl text-emerald-400 group-hover:scale-110 transition-transform duration-200"></i>
+                            <div class="text-left leading-tight">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Google Play'den</span>
+                                <span class="block text-sm font-bold text-white tracking-wide">İNDİRİN</span>
+                            </div>
+                        </a>
+
+                        <!-- Apple App Store Badge -->
+                        <a href="https://apps.apple.com/app/takvimtakip/id6738372671" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="flex items-center space-x-3.5 px-5 py-3 bg-slate-900 hover:bg-black text-white rounded-2xl border border-slate-700/80 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group">
+                            <i class="fa-brands fa-apple text-3xl text-white group-hover:scale-110 transition-transform duration-200"></i>
+                            <div class="text-left leading-tight">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold">App Store'dan</span>
+                                <span class="block text-sm font-bold text-white tracking-wide">İNDİRİN</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <p class="text-[11px] <?= $T['body_muted'] ?> flex items-center space-x-1.5 pt-0.5">
+                        <i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i>
+                        <span>Android ve iOS cihazlarınızla tam uyumlu anlık bildirim destekli resmi uygulamalar.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1468,6 +1509,7 @@ $T = [
                     <li><a href="#how-it-works" class="<?= $T['footer_link'] ?> transition">Nasıl Çalışır?</a></li>
                     <li><a href="#interactive-showcase" class="<?= $T['footer_link'] ?> transition">Canlı Simülasyon</a></li>
                     <li><a href="#features" class="<?= $T['footer_link'] ?> transition">Özellikler</a></li>
+                    <li><a href="#uygulama" class="<?= $T['footer_link'] ?> transition">Uygulama</a></li>
                     <li><a href="#ical-sync" class="<?= $T['footer_link'] ?> transition">iCal Senkronizasyonu</a></li>
                     <li><a href="#pricing" class="<?= $T['footer_link'] ?> transition">Fiyatlandırma</a></li>
                     <li><a href="#contact" class="<?= $T['footer_link'] ?> transition">İletişim</a></li>
