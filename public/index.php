@@ -237,7 +237,7 @@ if ($uri === '/register') {
             Helpers::redirect('/register');
         }
         if (Auth::register($_POST['full_name'] ?? '', $_POST['email'] ?? '', $_POST['phone'] ?? '', $_POST['password'] ?? '')) {
-            Helpers::redirect('/dashboard');
+            Helpers::redirect('/login');
         } else {
             Helpers::redirect('/register');
         }

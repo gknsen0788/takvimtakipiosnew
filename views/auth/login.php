@@ -2,6 +2,8 @@
 use App\Helpers;
 $title = 'Giriş Yap - TakvimTakip';
 $hideNav = true;
+$regEmail = $_SESSION['registered_email'] ?? '';
+unset($_SESSION['registered_email']);
 require __DIR__ . '/../layouts/header.php';
 ?>
 
@@ -54,7 +56,7 @@ if (pwaBtn) {
         <?= Helpers::csrfField() ?>
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1 sm:mb-2">E-posta Adresi veya Cep Telefonu</label>
-            <input type="text" name="email" required placeholder="E-posta adresi veya 05XX XXX XX XX"
+            <input type="text" name="email" value="<?= Helpers::sanitize($regEmail) ?>" required placeholder="E-posta adresi veya 05XX XXX XX XX"
                    class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 

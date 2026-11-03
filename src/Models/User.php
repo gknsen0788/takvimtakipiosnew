@@ -90,7 +90,7 @@ class User {
         $phone = trim($data['phone'] ?? '');
         $password = $data['password'] ?? '';
         $role = $data['role'] ?? 'owner';
-        $licenseDays = (int)($data['license_days'] ?? 7);
+        $licenseDays = (int)($data['license_days'] ?? 14);
         $customExpDate = trim($data['license_expires_at'] ?? '');
 
         if (empty($fullName) || empty($email) || empty($password)) {

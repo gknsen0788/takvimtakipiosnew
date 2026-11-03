@@ -44,14 +44,14 @@ class Auth {
             return false;
         }
 
-        // Create new user with 7 days free trial
+        // Create new user with 14 days free trial
         $res = User::create([
             'full_name' => $fullName,
             'email' => $email,
             'phone' => $phone,
             'password' => $password,
             'role' => 'owner',
-            'license_days' => 7
+            'license_days' => 14
         ]);
 
         if (!$res['success']) {
@@ -69,15 +69,8 @@ class Auth {
             error_log('New user registration notification email failed: ' . $e->getMessage());
         }
 
-        // Automatically log in the newly registered user
-        if (self::login($email, $password, true)) {
-            $u = self::user();
-            if ($u) {
-                Helpers::auditLog((int)$u['id'], 'USER_REGISTERED', 'users', (int)$u['id']);
-            }
-            Helpers::setFlash('success', 'Hesabınız başarıyla oluşturuldu! 7 günlük ücretsiz deneme süreniz başladı.');
-            return true;
-        }
+        // Pre-fill email in login screen
+        $_SESSION['registered_email'] = $email;
 
         Helpers::setFlash('success', 'Hesabınız başarıyla oluşturuldu. Lütfen giriş yapınız.');
         return true;
