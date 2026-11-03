@@ -4,10 +4,83 @@ declare(strict_types=1);
 namespace App;
 
 use PDO;
+use App\Models\User;
 
 class Auth {
     public static function validatePasswordComplexity(string $password): bool {
         return (strlen($password) >= 6);
+    }
+
+    public static function register(string $fullName, string $email, string $phone, string $password): bool {
+        $fullName = trim($fullName);
+        $email = strtolower(trim($email));
+        $phone = trim($phone);
+
+        // Store old values in case of validation failure
+        $_SESSION['old_register'] = [
+            'full_name' => $fullName,
+            'email' => $email,
+            'phone' => $phone
+        ];
+
+        if (empty($fullName) || empty($email) || empty($phone) || empty($password)) {
+            Helpers::setFlash('error', 'Lütfen Ad Soyad, E-posta, Telefon ve Şifre alanlarının tamamını doldurunuz.');
+            return false;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Helpers::setFlash('error', 'Lütfen geçerli bir e-posta adresi giriniz.');
+            return false;
+        }
+
+        $phoneDigits = preg_replace('/[^0-9]/', '', $phone);
+        if (strlen($phoneDigits) < 10) {
+            Helpers::setFlash('error', 'Lütfen en az 10 haneli geçerli bir cep telefonu numarası giriniz.');
+            return false;
+        }
+
+        if (!self::validatePasswordComplexity($password)) {
+            Helpers::setFlash('error', 'Şifreniz en az 6 karakter uzunluğunda olmalıdır.');
+            return false;
+        }
+
+        // Create new user with 7 days free trial
+        $res = User::create([
+            'full_name' => $fullName,
+            'email' => $email,
+            'phone' => $phone,
+            'password' => $password,
+            'role' => 'owner',
+            'license_days' => 7
+        ]);
+
+        if (!$res['success']) {
+            Helpers::setFlash('error', $res['message']);
+            return false;
+        }
+
+        // Clean old input from session upon success
+        unset($_SESSION['old_register']);
+
+        // Send registration notification email to admin in a try-catch so mail issues never block registration
+        try {
+            Mailer::sendNewUserRegistrationNotification($fullName, $email, $phone);
+        } catch (\Throwable $e) {
+            error_log('New user registration notification email failed: ' . $e->getMessage());
+        }
+
+        // Automatically log in the newly registered user
+        if (self::login($email, $password, true)) {
+            $u = self::user();
+            if ($u) {
+                Helpers::auditLog((int)$u['id'], 'USER_REGISTERED', 'users', (int)$u['id']);
+            }
+            Helpers::setFlash('success', 'Hesabınız başarıyla oluşturuldu! 7 günlük ücretsiz deneme süreniz başladı.');
+            return true;
+        }
+
+        Helpers::setFlash('success', 'Hesabınız başarıyla oluşturuldu. Lütfen giriş yapınız.');
+        return true;
     }
 
     public static function login(string $emailOrPhone, string $password, bool $rememberMe = false): bool {

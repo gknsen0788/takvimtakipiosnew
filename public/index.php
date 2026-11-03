@@ -232,7 +232,10 @@ if ($uri === '/register') {
         Helpers::redirect('/dashboard');
     }
     if ($method === 'POST') {
-        if (!Helpers::verifyCsrf()) die('CSRF Token Mismatch');
+        if (!Helpers::verifyCsrf()) {
+            Helpers::setFlash('error', 'Güvenlik doğrulaması (CSRF) zaman aşımına uğradı. Lütfen formu tekrar doldurunuz.');
+            Helpers::redirect('/register');
+        }
         if (Auth::register($_POST['full_name'] ?? '', $_POST['email'] ?? '', $_POST['phone'] ?? '', $_POST['password'] ?? '')) {
             Helpers::redirect('/dashboard');
         } else {

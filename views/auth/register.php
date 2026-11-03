@@ -2,6 +2,8 @@
 use App\Helpers;
 $title = 'Yeni Hesap Oluştur - TakvimTakip';
 $hideNav = true;
+$old = $_SESSION['old_register'] ?? [];
+unset($_SESSION['old_register']);
 require __DIR__ . '/../layouts/header.php';
 ?>
 
@@ -18,19 +20,19 @@ require __DIR__ . '/../layouts/header.php';
         <?= Helpers::csrfField() ?>
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Ad Soyad</label>
-            <input type="text" name="full_name" required
+            <input type="text" name="full_name" value="<?= Helpers::sanitize($old['full_name'] ?? '') ?>" required
                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">E-posta Adresi</label>
-            <input type="email" name="email" required
+            <input type="email" name="email" value="<?= Helpers::sanitize($old['email'] ?? '') ?>" required
                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
         <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Telefon Numarası</label>
-            <input type="tel" name="phone" required
+            <input type="tel" name="phone" value="<?= Helpers::sanitize($old['phone'] ?? '') ?>" required placeholder="05XXXXXXXXX"
                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm outline-none transition bg-white text-slate-800">
         </div>
 
