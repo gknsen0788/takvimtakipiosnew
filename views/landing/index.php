@@ -396,7 +396,7 @@ $T = [
             </div>
 
             <!-- Hero Store Subtext & Highlights -->
-            <div class="pt-4 max-w-xl mx-auto space-y-2">
+            <div class="pt-4 max-w-3xl mx-auto space-y-2">
                 <div class="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs sm:text-[13px] <?= $T['body_muted'] ?> font-medium">
                     <span class="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-semibold">
                         <i class="fa-solid fa-circle-check mr-1.5"></i>Ücretsiz İndirin
@@ -410,7 +410,7 @@ $T = [
                         <i class="fa-solid fa-arrows-rotate text-sky-500 mr-1.5"></i>Otomatik Senkronizasyon
                     </span>
                 </div>
-                <p class="text-xs sm:text-sm <?= $T['body_muted'] ?> leading-relaxed">
+                <p class="text-xs sm:text-sm <?= $T['body_muted'] ?> leading-relaxed md:whitespace-nowrap">
                     Android ve iOS cihazlarınızdan tek dokunuşla tüm takviminizi yönetin, gelen talepleri anında yanıtlayın.
                 </p>
             </div>
