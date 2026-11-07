@@ -383,7 +383,7 @@ $T = [
                 </a>
 
                 <!-- App Store Badge -->
-                <a href="https://apps.apple.com/app/takvimtakip/id6738372671" 
+                <a href="https://apps.apple.com/us/app/takvim-takip/id6827547168" 
                    target="_blank" 
                    rel="noopener noreferrer" 
                    class="flex items-center space-x-3 px-4 py-2.5 bg-slate-900 hover:bg-black text-white rounded-2xl border border-slate-700/80 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group">
@@ -393,6 +393,26 @@ $T = [
                         <span class="block text-xs font-bold text-white tracking-wide">İNDİRİN</span>
                     </div>
                 </a>
+            </div>
+
+            <!-- Hero Store Subtext & Highlights -->
+            <div class="pt-4 max-w-xl mx-auto space-y-2">
+                <div class="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs sm:text-[13px] <?= $T['body_muted'] ?> font-medium">
+                    <span class="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i>Ücretsiz İndirin
+                    </span>
+                    <span class="hidden sm:inline text-slate-300 dark:text-slate-600">•</span>
+                    <span class="inline-flex items-center">
+                        <i class="fa-solid fa-bolt text-indigo-500 mr-1.5"></i>Anlık Bildirimler
+                    </span>
+                    <span class="hidden sm:inline text-slate-300 dark:text-slate-600">•</span>
+                    <span class="inline-flex items-center">
+                        <i class="fa-solid fa-arrows-rotate text-sky-500 mr-1.5"></i>Otomatik Senkronizasyon
+                    </span>
+                </div>
+                <p class="text-xs sm:text-sm <?= $T['body_muted'] ?> leading-relaxed">
+                    Android ve iOS cihazlarınızdan tek dokunuşla tüm takviminizi yönetin, gelen talepleri anında yanıtlayın.
+                </p>
             </div>
 
         </div>
@@ -922,7 +942,7 @@ $T = [
                         </a>
 
                         <!-- Apple App Store Badge -->
-                        <a href="https://apps.apple.com/app/takvimtakip/id6738372671" 
+                        <a href="https://apps.apple.com/us/app/takvim-takip/id6827547168" 
                            target="_blank" 
                            rel="noopener noreferrer" 
                            class="flex items-center space-x-3.5 px-5 py-3 bg-slate-900 hover:bg-black text-white rounded-2xl border border-slate-700/80 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group">
