@@ -354,7 +354,9 @@ use App\Helpers;
         }
 
         /* Mini Icon-Only Sidebar Mode (Daraltılmış Sol Menü) */
-        #desktopSidebar.sidebar-collapsed-mini {
+        #desktopSidebar.sidebar-collapsed-mini,
+        #desktopSidebar.sidebar-collapsed-mini + #desktopSidebarSpacer,
+        #desktopSidebarSpacer.sidebar-collapsed-mini {
             width: 4.5rem !important; /* 72px */
         }
         #desktopSidebar.sidebar-collapsed-mini .sidebar-text,
@@ -704,7 +706,7 @@ $isAdminUsers = str_contains($currentUri, '/admin');
 <!-- ========================================================= -->
 <!-- 2. DESKTOP PERMANENT LEFT SIDEBAR (Visible on screens >= 1024px) -->
 <!-- ========================================================= -->
-<aside id="desktopSidebar" class="hidden lg:flex w-64 shrink-0 bg-white border-r border-slate-200/90 flex-col justify-between h-screen sticky top-0 z-30 shadow-xs select-none transition-all duration-300 ease-in-out overflow-x-hidden">
+<aside id="desktopSidebar" class="hidden lg:flex w-64 shrink-0 bg-white border-r border-slate-200/90 flex-col justify-between h-screen fixed top-0 left-0 z-30 shadow-xs select-none transition-all duration-300 ease-in-out overflow-y-auto overflow-x-hidden">
     <div>
         <!-- Sidebar Top Header / Logo + Hamburger Button -->
         <div class="h-16 px-3 border-b border-indigo-600/60 flex items-center justify-between bg-[#4338ca] shrink-0 sidebar-header-box">
@@ -778,9 +780,13 @@ $isAdminUsers = str_contains($currentUri, '/admin');
     </div>
 </aside>
 
+<!-- Desktop Sidebar Layout Spacer (Keeps page layout aligned when sidebar is fixed) -->
+<div id="desktopSidebarSpacer" class="hidden lg:block w-64 shrink-0 transition-all duration-300 ease-in-out pointer-events-none" aria-hidden="true"></div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('desktopSidebar');
+    const spacer = document.getElementById('desktopSidebarSpacer');
     const toggleBtn = document.getElementById('sidebarToggleBtn');
     const openBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('mobileMenuCloseBtn');
@@ -795,10 +801,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function collapseSidebarMini(animate = true) {
         if (!sidebar) return;
-        if (!animate) sidebar.classList.add('duration-0');
+        if (!animate) {
+            sidebar.classList.add('duration-0');
+            if (spacer) spacer.classList.add('duration-0');
+        }
         sidebar.classList.remove('w-64');
         sidebar.classList.add('sidebar-collapsed-mini');
-        if (!animate) setTimeout(() => sidebar.classList.remove('duration-0'), 50);
+        if (spacer) {
+            spacer.classList.remove('w-64');
+            spacer.classList.add('sidebar-collapsed-mini');
+        }
+        if (!animate) {
+            setTimeout(() => {
+                sidebar.classList.remove('duration-0');
+                if (spacer) spacer.classList.remove('duration-0');
+            }, 50);
+        }
         localStorage.setItem('sidebar_mini', 'true');
     }
 
@@ -806,6 +824,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!sidebar) return;
         sidebar.classList.remove('sidebar-collapsed-mini');
         sidebar.classList.add('w-64');
+        if (spacer) {
+            spacer.classList.remove('sidebar-collapsed-mini');
+            spacer.classList.add('w-64');
+        }
         localStorage.setItem('sidebar_mini', 'false');
     }
 
