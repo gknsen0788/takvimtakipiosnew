@@ -309,7 +309,7 @@ $T = [
 <!-- =========================================================================
      2. HERO SECTION
      ========================================================================= -->
-<section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden hero-gradient">
+<section class="relative pt-32 pb-4 md:pt-40 md:pb-6 overflow-hidden hero-gradient">
     <!-- Ambient Background Glows -->
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] <?= $T['hero_glow_1'] ?> blur-[140px] rounded-full pointer-events-none"></div>
     <div class="absolute top-1/3 right-10 w-[350px] h-[350px] <?= $T['hero_glow_2'] ?> blur-[120px] rounded-full pointer-events-none"></div>
@@ -422,7 +422,7 @@ $T = [
 <!-- =========================================================================
      3. ANA DEĞER ÖNERİSİ (CORE VALUE PROPOSITION - 3 CARDS)
      ========================================================================= -->
-<section class="py-20 <?= $T['sec_alt_bg'] ?>">
+<section class="pt-6 pb-16 md:pt-8 md:pb-20 <?= $T['sec_alt_bg'] ?>">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
