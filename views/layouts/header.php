@@ -683,10 +683,6 @@ $isAdminUsers = str_contains($currentUri, '/admin');
                     <i class="fa-solid fa-user-shield text-indigo-600 w-5 text-center text-base shrink-0"></i>
                     <span class="truncate">Admin Paneli</span>
                 </a>
-                <a href="<?= APP_URL ?>/reels_studio.html" target="_blank" class="flex items-center space-x-3 px-3.5 py-3 rounded-xl font-bold text-xs text-amber-600 hover:bg-amber-50 hover:text-amber-700 transition" title="Reels Video Stüdyosu">
-                    <i class="fa-solid fa-video text-amber-500 w-5 text-center text-base shrink-0"></i>
-                    <span class="truncate">Reels Video Stüdyosu</span>
-                </a>
             <?php endif; ?>
         </nav>
     </div>
@@ -764,10 +760,6 @@ $isAdminUsers = str_contains($currentUri, '/admin');
                 <a href="<?= APP_URL ?>/admin/users" class="sidebar-nav-item flex items-center space-x-3 px-3.5 py-3 rounded-xl font-bold text-xs transition <?= $isAdminUsers ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600 shadow-2xs' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900 font-semibold' ?>" title="Admin Paneli">
                     <i class="fa-solid fa-user-shield text-indigo-600 w-5 text-center text-base shrink-0"></i>
                     <span class="sidebar-text truncate">Admin Paneli</span>
-                </a>
-                <a href="<?= APP_URL ?>/reels_studio.html" target="_blank" class="sidebar-nav-item flex items-center space-x-3 px-3.5 py-3 rounded-xl font-bold text-xs text-amber-600 hover:bg-amber-50 hover:text-amber-700 transition" title="Reels Video Stüdyosu">
-                    <i class="fa-solid fa-video text-amber-500 w-5 text-center text-base shrink-0"></i>
-                    <span class="sidebar-text truncate">Reels Video Stüdyosu</span>
                 </a>
             <?php endif; ?>
         </nav>
