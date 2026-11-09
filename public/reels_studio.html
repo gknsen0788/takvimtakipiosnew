@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TakvimTakip - 15s Reels / TikTok Video Stüdyosu</title>
+    <title>TakvimTakip - 30s Reels & TikTok Video Stüdyosu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -36,17 +36,15 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
-        /* Custom sleek scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
-        /* Smartphone preview frame */
         .phone-mockup-wrapper {
             position: relative;
             width: 380px;
-            height: 675px; /* 9:16 aspect ratio scaled */
+            height: 675px;
             max-width: 100%;
             border-radius: 44px;
             padding: 10px;
@@ -65,7 +63,7 @@
             overflow: hidden;
             background: #000;
         }
-        #reelsCanvas {
+        #reelsCanvas, #renderedVideoPlayer {
             width: 100%;
             height: 100%;
             display: block;
@@ -84,30 +82,11 @@
             pointer-events: none;
             box-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
-
-        /* Glass Cards */
         .glass-panel {
             background: rgba(17, 24, 39, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        /* Shimmer effect */
-        @keyframes shimmerGlow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
-        .shimmer-bar {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer-bar::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmerGlow 2s infinite;
         }
     </style>
 </head>
@@ -118,39 +97,52 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                        <i class="fa-solid fa-film text-amber-300 text-lg"></i>
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-amber-300 font-black text-lg">
+                        <i class="fa-solid fa-play"></i>
                     </div>
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base tracking-tight text-white flex items-center space-x-2">
+                    <h1 class="text-sm font-extrabold tracking-tight text-white flex items-center space-x-2">
                         <span>TakvimTakip</span>
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase tracking-wider">Reels Studio</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30">30s REELS / TIKTOK</span>
                     </h1>
-                    <p class="text-[11px] text-slate-400">15 Saniyelik Instagram & TikTok Video Üretici (1080x1920 60 FPS)</p>
+                    <p class="text-[11px] text-slate-400 font-medium">Gerçek Uygulama Ekranları • Seslendirmesiz Dinamik Ritim • 7 Sahne</p>
                 </div>
             </div>
 
+            <!-- Header Quick Actions -->
             <div class="flex items-center space-x-3">
-                <a href="/dashboard" class="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold border border-slate-800 transition flex items-center space-x-1.5">
-                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                    <span>Panele Dön</span>
-                </a>
-                <button id="quickExportBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-black text-xs transition shadow-lg shadow-emerald-500/25 active:scale-95 flex items-center space-x-2 cursor-pointer">
+                <a href="TakvimTakip_30s_Reels.mp4" download="TakvimTakip_30s_Reels.mp4" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition flex items-center space-x-2 shadow-lg shadow-amber-400/20">
                     <i class="fa-solid fa-download"></i>
-                    <span>Video İndir (.MP4 / .WEBM)</span>
-                </button>
+                    <span>Hazır MP4 İndir (30s)</span>
+                </a>
+                <a href="../TakvimTakip_30s_Reels_Pazarlama_Senaryosu.html" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center space-x-2 border border-slate-700">
+                    <i class="fa-solid fa-file-lines text-indigo-400"></i>
+                    <span>Senaryo Tablosu</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Workspace -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+    <!-- Main Studio Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             <!-- LEFT COLUMN: Phone Frame Preview -->
             <div class="lg:col-span-5 xl:col-span-5 flex flex-col items-center">
                 
+                <!-- Player Mode Segmented Switch -->
+                <div class="mb-3 flex items-center bg-slate-900 border border-slate-800 rounded-2xl p-1 text-xs">
+                    <button id="viewRenderedBtn" class="px-3 py-1.5 rounded-xl font-bold bg-amber-400 text-slate-950 transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span>Render Edilmiş MP4</span>
+                    </button>
+                    <button id="viewCanvasBtn" class="px-3 py-1.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Canlı Canvas Stüdyo</span>
+                    </button>
+                </div>
+
                 <div class="phone-mockup-wrapper">
                     <div class="phone-inner-screen">
                         <!-- Dynamic Island Notch -->
@@ -159,8 +151,11 @@
                             <span class="w-2 h-2 rounded-full bg-indigo-900/40"></span>
                         </div>
 
-                        <!-- 1080 x 1920 Native Canvas -->
-                        <canvas id="reelsCanvas" width="1080" height="1920"></canvas>
+                        <!-- 1. Native Rendered MP4 Video Player -->
+                        <video id="renderedVideoPlayer" src="TakvimTakip_30s_Reels.mp4" playsinline controls loop class="w-full h-full object-cover"></video>
+
+                        <!-- 2. 1080 x 1920 Native Canvas (Hidden by default when MP4 mode active) -->
+                        <canvas id="reelsCanvas" width="1080" height="1920" class="hidden"></canvas>
 
                         <!-- Recording Overlay Indicator -->
                         <div id="recordingBadge" class="hidden absolute top-4 right-4 z-50 bg-rose-600/90 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-black text-white flex items-center space-x-1.5 animate-pulse shadow-lg">
@@ -176,224 +171,201 @@
                     <span class="text-slate-600">•</span>
                     <span>Format: 9:16 (1080x1920)</span>
                     <span class="text-slate-600">•</span>
-                    <span class="font-mono text-slate-300">15.0s</span>
+                    <span class="font-mono text-slate-300">30.0s</span>
                 </div>
 
-                <!-- Scene Quick Indicators -->
+                <!-- 7 Scene Indicators -->
                 <div class="mt-3 grid grid-cols-4 gap-1.5 w-full max-w-[380px]">
-                    <div id="scenePill0" class="px-2 py-1.5 rounded-lg text-center text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
-                        1. Kanca
+                    <div id="scenePill0" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-amber-400 text-slate-950 border border-amber-300 transition">
+                        1. Kanca (0-4s)
                     </div>
-                    <div id="scenePill1" class="px-2 py-1.5 rounded-lg text-center text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
-                        2. Mobil
+                    <div id="scenePill1" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        2. Giriş/Çıkış
                     </div>
-                    <div id="scenePill2" class="px-2 py-1.5 rounded-lg text-center text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
-                        3. İşlem
+                    <div id="scenePill2" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        3. Bildirim
                     </div>
-                    <div id="scenePill3" class="px-2 py-1.5 rounded-lg text-center text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
-                        4. İndir
+                    <div id="scenePill3" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        4. iCal Senk.
+                    </div>
+                    <div id="scenePill4" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        5. Tanıtım Linki
+                    </div>
+                    <div id="scenePill5" class="px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        6. WhatsApp
+                    </div>
+                    <div id="scenePill6" class="col-span-2 px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition">
+                        7. Kapanış & CTA (25-30s)
                     </div>
                 </div>
 
             </div>
 
-            <!-- RIGHT COLUMN: Studio Controls & Configuration -->
+            <!-- RIGHT COLUMN: Studio Controls & Scene Table -->
             <div class="lg:col-span-7 xl:col-span-7 space-y-6">
                 
-                <!-- Main Playback Control Bar -->
+                <!-- Main Action & Export Card -->
                 <div class="glass-panel rounded-3xl p-6 shadow-xl space-y-5">
                     
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-2">
                             <i class="fa-solid fa-sliders text-indigo-400 text-sm"></i>
-                            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">Video Oynatıcı Kontrolleri</h2>
+                            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">Reels Video Kontrolleri</h2>
                         </div>
-                        <span id="playbackStatusBadge" class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-semibold flex items-center space-x-1.5">
-                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                            <span>Hazır</span>
+                        <span id="playbackStatusBadge" class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold flex items-center space-x-1.5 border border-emerald-500/30">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span>Full HD MP4 Hazır</span>
                         </span>
                     </div>
 
                     <!-- Progress Bar Scrub Slider -->
                     <div class="space-y-1.5">
                         <div class="relative w-full h-3 bg-slate-800/80 rounded-full overflow-hidden cursor-pointer select-none" id="progressBarContainer">
-                            <div id="progressBarFill" class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-indigo-500 via-amber-400 to-emerald-400 w-0 transition-all duration-75"></div>
-                            <!-- Scene markers on progress bar -->
-                            <div class="absolute top-0 bottom-0 left-[21.3%] w-0.5 bg-slate-700/80" title="Sahne 2 Başlangıcı (3.2s)"></div>
-                            <div class="absolute top-0 bottom-0 left-[46.6%] w-0.5 bg-slate-700/80" title="Sahne 3 Başlangıcı (7.0s)"></div>
-                            <div class="absolute top-0 bottom-0 left-[74.6%] w-0.5 bg-slate-700/80" title="Sahne 4 Başlangıcı (11.2s)"></div>
+                            <div id="progressBarFill" class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-400 via-indigo-500 to-emerald-400 w-0 transition-all duration-75"></div>
+                            <!-- Scene markers (4s, 8s, 12s, 17s, 21s, 25s, 30s) -->
+                            <div class="absolute top-0 bottom-0 left-[13.3%] w-0.5 bg-slate-600/80" title="Sahne 2 (4s)"></div>
+                            <div class="absolute top-0 bottom-0 left-[26.6%] w-0.5 bg-slate-600/80" title="Sahne 3 (8s)"></div>
+                            <div class="absolute top-0 bottom-0 left-[40.0%] w-0.5 bg-slate-600/80" title="Sahne 4 (12s)"></div>
+                            <div class="absolute top-0 bottom-0 left-[56.6%] w-0.5 bg-slate-600/80" title="Sahne 5 (17s)"></div>
+                            <div class="absolute top-0 bottom-0 left-[70.0%] w-0.5 bg-slate-600/80" title="Sahne 6 (21s)"></div>
+                            <div class="absolute top-0 bottom-0 left-[83.3%] w-0.5 bg-slate-600/80" title="Sahne 7 (25s)"></div>
                         </div>
                         <div class="flex justify-between text-[10px] text-slate-500 font-medium px-0.5">
                             <span>0s (Kanca)</span>
-                            <span>3.2s (Çözüm)</span>
-                            <span>7.0s (Özellik)</span>
-                            <span>11.2s (CTA)</span>
-                            <span>15s</span>
+                            <span>4s (Giriş/Çıkış)</span>
+                            <span>8s (Bildirim)</span>
+                            <span>12s (iCal)</span>
+                            <span>17s (Web)</span>
+                            <span>21s (WA)</span>
+                            <span>25s (CTA)</span>
+                            <span>30s</span>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
                         <div class="flex items-center space-x-2.5">
-                            <!-- Play / Pause Button -->
                             <button id="playPauseBtn" class="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm shadow-lg shadow-indigo-600/30 transition active:scale-95 flex items-center space-x-2 cursor-pointer">
                                 <i class="fa-solid fa-play text-xs"></i>
                                 <span id="playPauseText">Oynat</span>
                             </button>
 
-                            <!-- Restart Button -->
                             <button id="restartBtn" class="px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold transition active:scale-95 cursor-pointer" title="Başa Sar">
                                 <i class="fa-solid fa-rotate-left"></i>
                             </button>
 
-                            <!-- Audio Toggle -->
-                            <button id="audioToggleBtn" class="px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-amber-300 text-sm font-semibold transition active:scale-95 flex items-center space-x-1.5 cursor-pointer" title="Müziği ve Sesleri Aç/Kapat">
+                            <button id="audioToggleBtn" class="px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-amber-300 text-sm font-semibold transition active:scale-95 flex items-center space-x-1.5 cursor-pointer">
                                 <i class="fa-solid fa-volume-high"></i>
                                 <span class="text-xs text-slate-300 font-medium">Müzik: Açık</span>
                             </button>
                         </div>
 
-                        <!-- Render & Export Trigger -->
-                        <button id="renderExportBtn" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-sm shadow-xl shadow-emerald-500/25 transition active:scale-95 flex items-center space-x-2.5 cursor-pointer">
+                        <!-- Direct Download Button -->
+                        <a href="TakvimTakip_30s_Reels.mp4" download="TakvimTakip_30s_Reels.mp4" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:brightness-110 text-slate-950 font-black text-sm shadow-xl shadow-amber-400/25 transition active:scale-95 flex items-center space-x-2.5 cursor-pointer">
                             <i class="fa-solid fa-circle-down text-base"></i>
-                            <span>1080x1920 Video İndir</span>
-                        </button>
-                    </div>
-
-                    <!-- Recording Progress Bar (Visible during export) -->
-                    <div id="exportProgressBox" class="hidden pt-2 space-y-2">
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-emerald-400 font-bold flex items-center space-x-2">
-                                <i class="fa-solid fa-spinner fa-spin"></i>
-                                <span>Video 60 FPS Kalitesinde Render Ediliyor...</span>
-                            </span>
-                            <span id="exportProgressPercent" class="font-mono font-bold text-white">0%</span>
-                        </div>
-                        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                            <div id="exportProgressBar" class="h-full bg-emerald-500 transition-all duration-100" style="width: 0%"></div>
-                        </div>
+                            <span>Hazır MP4 İndir (30s)</span>
+                        </a>
                     </div>
 
                 </div>
 
-                <!-- Scene Breakdown & Customization Cards -->
-                <div class="glass-panel rounded-3xl p-6 shadow-xl space-y-5">
-                    
+                <!-- 7-Scene Storyboard Overview -->
+                <div class="glass-panel rounded-3xl p-6 shadow-xl space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
                         <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-layer-group text-amber-400 text-sm"></i>
-                            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">15 Saniyelik Senaryo & Metin Düzenleme</h2>
+                            <i class="fa-solid fa-film text-amber-400 text-sm"></i>
+                            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">30 Saniyelik Storyboard & Sahne Akışı</h2>
                         </div>
-                        <span class="text-[11px] text-slate-400">Canlı Olarak Değiştirebilirsiniz</span>
+                        <span class="text-[11px] text-emerald-400 font-semibold">Seslendirmesiz • Ritmik Beat</span>
                     </div>
 
-                    <div class="space-y-4 text-xs">
+                    <div class="space-y-2.5 text-xs">
                         
-                        <!-- Scene 1 Control -->
-                        <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-rose-400 flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-triangle-exclamation"></i>
-                                    <span>Sahne 1 (0.0s - 3.2s) • Kanca & Karmaşa</span>
-                                </span>
-                                <span class="text-[10px] text-slate-500">Defter & WhatsApp Çıkmazı</span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Üst Başlık</label>
-                                    <input type="text" id="cfg_hook_line1" value="VİLLA & BUNGALOV TAKVİMİNİZİ" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                        <!-- Scene 1 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-amber-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-amber-400/20 text-[10px]">00 - 04 sn</span>
+                                    <span>1. KANCA (Scroll Durdurucu)</span>
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Vurgulu Soru</label>
-                                    <input type="text" id="cfg_hook_line2" value="HÂLÂ DEFTERDE Mİ TUTUYORSUNUZ?" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-amber-300 font-bold focus:outline-none focus:border-indigo-500">
-                                </div>
+                                <div class="text-white font-bold text-xs">🏡 VİLLA VEYA BUNGALOVUNUZ VARSA BU VİDEOYU KAYDEDİN!</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: TakvimTakip Logo + Lüks villa ve telefon animasyonu</div>
                             </div>
                         </div>
 
-                        <!-- Scene 2 Control -->
-                        <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-indigo-400 flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-mobile-screen-button"></i>
-                                    <span>Sahne 2 (3.2s - 7.0s) • Mobil Çözüm</span>
-                                </span>
-                                <span class="text-[10px] text-slate-500">Telefon ve Uygulama Girişi</span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Uygulama Vurgusu</label>
-                                    <input type="text" id="cfg_app_title" value="TakvimTakip Artık Cebinizde!" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white font-bold focus:outline-none focus:border-indigo-500">
+                        <!-- Scene 2 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-emerald-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-[10px]">04 - 08 sn</span>
+                                    <span>2. GİRİŞ / ÇIKIŞ TAKİBİ</span>
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Rozet Metni</label>
-                                    <input type="text" id="cfg_app_badge" value="iOS ve Android'de Yayında!" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-emerald-400 font-semibold focus:outline-none focus:border-indigo-500">
-                                </div>
+                                <div class="text-white font-bold text-xs">📋 BUGÜN KİM GELİYOR, KİM ÇIKIYOR?</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: Gerçek uygulama içi "Bugün Giriş Yapacaklar / Bugün Çıkış Yapacaklar" paneli</div>
                             </div>
                         </div>
 
-                        <!-- Scene 3 Control -->
-                        <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-emerald-400 flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-hand-pointer"></i>
-                                    <span>Sahne 3 (7.0s - 11.2s) • Tek Dokunuş & Paylaşım</span>
-                                </span>
-                                <span class="text-[10px] text-slate-500">Tarih Kapatma & WhatsApp Paylaşımı</span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Aksiyon Açıklaması</label>
-                                    <input type="text" id="cfg_action_title" value="Tek Dokunuşla Tarih Kapatın" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white font-bold focus:outline-none focus:border-indigo-500">
+                        <!-- Scene 3 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-amber-300 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-amber-300/20 text-[10px]">08 - 12 sn</span>
+                                    <span>3. ERTESİ GÜN ÇIKIŞ BİLDİRİMİ</span>
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Paylaşım Butonu Metni</label>
-                                    <input type="text" id="cfg_action_sub" value="WhatsApp'tan Anında Takvim Linki Gönder" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-emerald-300 font-semibold focus:outline-none focus:border-indigo-500">
-                                </div>
+                                <div class="text-white font-bold text-xs">🔔 ERTESİ GÜN ÇIKIŞ BİLDİRİMİ! TEMİZLİĞİ ASLA KAÇIRMAYIN</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: Gerçek "Yarın Çıkış Var: Test Villa" mobil push bildirimi</div>
                             </div>
                         </div>
 
-                        <!-- Scene 4 Control -->
-                        <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-amber-400 flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-gift"></i>
-                                    <span>Sahne 4 (11.2s - 15.0s) • Kampanya & İndirme</span>
-                                </span>
-                                <span class="text-[10px] text-slate-500">App Store & Play Store Çağrısı</span>
+                        <!-- Scene 4 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-indigo-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-indigo-400/20 text-[10px]">12 - 17 sn</span>
+                                    <span>4. OTOMATİK iCAL SENKRONİZASYONU</span>
+                                </div>
+                                <div class="text-white font-bold text-xs">🔄 AIRBNB • BOOKING • ACENTELER İLE %100 UYUM</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: Takvim yönetimi + Airbnb ve Booking rozetleri senkron animasyonu</div>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Büyük Fırsat Bannerı</label>
-                                    <input type="text" id="cfg_cta_offer" value="14 GÜN ÜCRETSİZ DENEYİN" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-amber-300 font-black focus:outline-none focus:border-indigo-500">
+                        </div>
+
+                        <!-- Scene 5 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-purple-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-purple-400/20 text-[10px]">17 - 21 sn</span>
+                                    <span>5. VİLLANIZA ÖZEL WEB TANITIM LİNKİ</span>
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">Son Çağrı</label>
-                                    <input type="text" id="cfg_cta_sub" value="Hemen İndirin • Kredi Kartı Gerekmez" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-indigo-500">
+                                <div class="text-white font-bold text-xs">🌐 FOTOĞRAF • FİYAT • KONUM • TAKVİM TEK SAYFADA</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: Gerçek villa public web sayfası kaydırma (fotoğraflar, fiyatlar, konum)</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 6 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-emerald-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-[10px]">21 - 25 sn</span>
+                                    <span>6. TEK TIKLA WHATSAPP REZERVASYON DETAYLARI</span>
                                 </div>
+                                <div class="text-white font-bold text-xs">💬 TEK TIKLA WHATSAPP'TAN İLETİN!</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: Rezervasyon kaydı modalı ➔ Gerçek WhatsApp onay mesajı fişi</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 7 -->
+                        <div class="p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-amber-400 flex items-center space-x-1.5">
+                                    <span class="px-1.5 py-0.5 rounded bg-amber-400/20 text-[10px]">25 - 30 sn</span>
+                                    <span>7. KAPANIŞ & ÇAĞRI (CTA)</span>
+                                </div>
+                                <div class="text-white font-bold text-xs">📲 APP STORE & GOOGLE PLAY'DE YAYINDA • 14 GÜN ÜCRETSİZ</div>
+                                <div class="text-slate-400 text-[11px]">Görsel: TakvimTakip Logo + Resmi Mağaza Rozetleri + Link Profilde</div>
                             </div>
                         </div>
 
                     </div>
-
-                    <!-- Audio Voiceover Configuration -->
-                    <div class="border-t border-slate-800/80 pt-4 flex flex-wrap items-center justify-between gap-4">
-                        <div class="flex items-center space-x-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="voiceoverToggle" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
-                            </label>
-                            <div>
-                                <div class="text-xs font-bold text-white">Türkçe Yapay Zeka Seslendirme</div>
-                                <div class="text-[10px] text-slate-400">Tarayıcı konuşma sentezleyici ile seslendirir</div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <span class="text-[10px] text-slate-400 font-semibold">Müzik Seviyesi:</span>
-                            <input type="range" id="musicVolSlider" min="0" max="1" step="0.05" value="0.35" class="w-24 accent-indigo-500">
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -402,1406 +374,119 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-900 bg-slate-950/80 py-4 text-center text-xs text-slate-500">
-        &copy; 2026 <strong>TakvimTakip</strong> - 15 Saniyelik Sosyal Medya Video Üretim Aracı
+    <footer class="border-t border-slate-800/80 py-4 bg-slate-950/60 text-center text-xs text-slate-500">
+        TakvimTakip &copy; 2026 • 30 Saniyelik Reels / TikTok Full HD Video Stüdyosu
     </footer>
 
-    <!-- Video & Audio Synthesizer Script -->
     <script>
     (function() {
+        const videoPlayer = document.getElementById('renderedVideoPlayer');
         const canvas = document.getElementById('reelsCanvas');
-        const ctx = canvas.getContext('2d');
-        const W = 1080;
-        const H = 1920;
+        const viewRenderedBtn = document.getElementById('viewRenderedBtn');
+        const viewCanvasBtn = document.getElementById('viewCanvasBtn');
 
-        // Timeline variables
-        const TOTAL_DURATION = 15.0; // 15 seconds
-        let currentTime = 0.0;
-        let isPlaying = false;
-        let lastFrameTimestamp = 0;
-        let animationFrameId = null;
-
-        // DOM elements
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playPauseText = document.getElementById('playPauseText');
         const restartBtn = document.getElementById('restartBtn');
         const audioToggleBtn = document.getElementById('audioToggleBtn');
-        const renderExportBtn = document.getElementById('renderExportBtn');
-        const quickExportBtn = document.getElementById('quickExportBtn');
         const currentTimeDisplay = document.getElementById('currentTimeDisplay');
         const progressBarFill = document.getElementById('progressBarFill');
         const progressBarContainer = document.getElementById('progressBarContainer');
-        const playbackStatusBadge = document.getElementById('playbackStatusBadge');
-        const exportProgressBox = document.getElementById('exportProgressBox');
-        const exportProgressBar = document.getElementById('exportProgressBar');
-        const exportProgressPercent = document.getElementById('exportProgressPercent');
-        const recordingBadge = document.getElementById('recordingBadge');
-        const voiceoverToggle = document.getElementById('voiceoverToggle');
-        const musicVolSlider = document.getElementById('musicVolSlider');
 
-        // Text configuration inputs
-        const cfgHookLine1 = document.getElementById('cfg_hook_line1');
-        const cfgHookLine2 = document.getElementById('cfg_hook_line2');
-        const cfgAppTitle = document.getElementById('cfg_app_title');
-        const cfgAppBadge = document.getElementById('cfg_app_badge');
-        const cfgActionTitle = document.getElementById('cfg_action_title');
-        const cfgActionSub = document.getElementById('cfg_action_sub');
-        const cfgCtaOffer = document.getElementById('cfg_cta_offer');
-        const cfgCtaSub = document.getElementById('cfg_cta_sub');
+        let isCanvasMode = false;
+        const TOTAL_DURATION = 30.0;
 
-        // Scene Pills
-        const scenePills = [
-            document.getElementById('scenePill0'),
-            document.getElementById('scenePill1'),
-            document.getElementById('scenePill2'),
-            document.getElementById('scenePill3')
-        ];
+        // Toggle Between Rendered MP4 & Canvas
+        viewRenderedBtn.addEventListener('click', function() {
+            isCanvasMode = false;
+            videoPlayer.classList.remove('hidden');
+            canvas.classList.add('hidden');
+            viewRenderedBtn.className = 'px-3 py-1.5 rounded-xl font-bold bg-amber-400 text-slate-950 transition flex items-center space-x-1.5';
+            viewCanvasBtn.className = 'px-3 py-1.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5';
+        });
 
-        // Assets loading
-        const assets = {
-            logo: new Image(),
-            phoneView: new Image(),
-            googlePlay: new Image()
-        };
-        assets.logo.src = 'uploads/logo.png';
-        assets.phoneView.src = 'uploads/phone_view.jpeg';
-        assets.googlePlay.src = 'uploads/google-play.png';
+        viewCanvasBtn.addEventListener('click', function() {
+            isCanvasMode = true;
+            videoPlayer.pause();
+            videoPlayer.classList.add('hidden');
+            canvas.classList.remove('hidden');
+            viewCanvasBtn.className = 'px-3 py-1.5 rounded-xl font-bold bg-indigo-600 text-white transition flex items-center space-x-1.5';
+            viewRenderedBtn.className = 'px-3 py-1.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5';
+        });
 
-        // =========================================================================
-        // WEB AUDIO SYNTHESIZER ENGINE (ZERO EXTERNAL AUDIO DEPENDENCIES)
-        // =========================================================================
-        let audioCtx = null;
-        let masterGain = null;
-        let musicGain = null;
-        let sfxGain = null;
-        let audioStreamDest = null;
-        let isAudioMuted = false;
-        let isRecording = false;
-
-        function initAudio() {
-            if (!audioCtx) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContextClass();
-                masterGain = audioCtx.createGain();
-                masterGain.gain.value = 1.0;
-
-                musicGain = audioCtx.createGain();
-                musicGain.gain.value = parseFloat(musicVolSlider.value || 0.35);
-                musicGain.connect(masterGain);
-
-                sfxGain = audioCtx.createGain();
-                sfxGain.gain.value = 0.8;
-                sfxGain.connect(masterGain);
-
-                audioStreamDest = audioCtx.createMediaStreamDestination();
-                masterGain.connect(audioStreamDest);
-                masterGain.connect(audioCtx.destination);
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        }
-
-        // Procedural Drum Kick
-        function playKick(time) {
-            if (!audioCtx || isAudioMuted) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(musicGain);
-
-            osc.frequency.setValueAtTime(140, time);
-            osc.frequency.exponentialRampToValueAtTime(35, time + 0.12);
-
-            gain.gain.setValueAtTime(0.9, time);
-            gain.gain.exponentialRampToValueAtTime(0.001, time + 0.18);
-
-            osc.start(time);
-            osc.stop(time + 0.2);
-        }
-
-        // Procedural Snare / Clap
-        function playSnare(time) {
-            if (!audioCtx || isAudioMuted) return;
-            const bufferSize = audioCtx.sampleRate * 0.12;
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                data[i] = Math.random() * 2 - 1;
-            }
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buffer;
-
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'highpass';
-            filter.frequency.value = 800;
-
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(0.6, time);
-            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.12);
-
-            noise.connect(filter);
-            filter.connect(gain);
-            gain.connect(musicGain);
-
-            noise.start(time);
-        }
-
-        // Procedural Synth Bass & Chords
-        const synthBassFreqs = [55, 65.41, 48.99, 43.65]; // A1, C2, G1, F1
-        function playSynthBass(time, index) {
-            if (!audioCtx || isAudioMuted) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            const filter = audioCtx.createBiquadFilter();
-
-            osc.type = 'sawtooth';
-            const f = synthBassFreqs[index % synthBassFreqs.length];
-            osc.frequency.setValueAtTime(f, time);
-
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(300, time);
-            filter.frequency.exponentialRampToValueAtTime(1200, time + 0.08);
-            filter.frequency.exponentialRampToValueAtTime(300, time + 0.22);
-
-            gain.gain.setValueAtTime(0.45, time);
-            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.22);
-
-            osc.connect(filter);
-            filter.connect(gain);
-            gain.connect(musicGain);
-
-            osc.start(time);
-            osc.stop(time + 0.24);
-        }
-
-        // Procedural Sound Effects (SFX)
-        function playSfxBuzzer() {
-            if (!audioCtx || isAudioMuted) return;
-            const t = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(80, t);
-            osc.frequency.setValueAtTime(75, t + 0.1);
-            gain.gain.setValueAtTime(0.5, t);
-            gain.gain.exponentialRampToValueAtTime(0.01, t + 0.35);
-            osc.connect(gain);
-            gain.connect(sfxGain);
-            osc.start(t);
-            osc.stop(t + 0.36);
-        }
-
-        function playSfxChime() {
-            if (!audioCtx || isAudioMuted) return;
-            const t = audioCtx.currentTime;
-            [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, t + idx * 0.06);
-                gain.gain.setValueAtTime(0.3, t + idx * 0.06);
-                gain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.06 + 0.4);
-                osc.connect(gain);
-                gain.connect(sfxGain);
-                osc.start(t + idx * 0.06);
-                osc.stop(t + idx * 0.06 + 0.42);
-            });
-        }
-
-        function playSfxPop() {
-            if (!audioCtx || isAudioMuted) return;
-            const t = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(450, t);
-            osc.frequency.exponentialRampToValueAtTime(900, t + 0.08);
-            gain.gain.setValueAtTime(0.6, t);
-            gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
-            osc.connect(gain);
-            gain.connect(sfxGain);
-            osc.start(t);
-            osc.stop(t + 0.11);
-        }
-
-        function playSfxCelebration() {
-            if (!audioCtx || isAudioMuted) return;
-            const t = audioCtx.currentTime;
-            [440, 554.37, 659.25, 880].forEach((freq, idx) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(freq, t + idx * 0.08);
-                gain.gain.setValueAtTime(0.4, t + idx * 0.08);
-                gain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.08 + 0.6);
-                osc.connect(gain);
-                gain.connect(sfxGain);
-                osc.start(t + idx * 0.08);
-                osc.stop(t + idx * 0.08 + 0.65);
-            });
-        }
-
-        // Music scheduler
-        let lastBeatIndex = -1;
-        function updateMusicBeat(sec) {
-            if (!audioCtx || isAudioMuted) return;
-            const bpm = 124;
-            const beatDur = 60 / bpm;
-            const currentBeat = Math.floor(sec / beatDur);
-
-            if (currentBeat !== lastBeatIndex && currentBeat >= 0) {
-                lastBeatIndex = currentBeat;
-                const beatInBar = currentBeat % 4;
-                const barIndex = Math.floor(currentBeat / 4);
-                const t = audioCtx.currentTime;
-
-                // Kick on beats 0, 1, 2, 3
-                playKick(t);
-
-                // Snare/Clap on 1 and 3
-                if (beatInBar === 1 || beatInBar === 3) {
-                    playSnare(t);
-                }
-
-                // Synth Bass
-                playSynthBass(t, barIndex);
-            }
-        }
-
-        // SFX Trigger flags to prevent retriggering within same second
-        let sfxTriggered = {
-            buzzer: false,
-            chime: false,
-            pop: false,
-            celebration: false
-        };
-
-        function checkSfxTriggers(sec) {
-            if (sec >= 1.2 && sec < 1.4 && !sfxTriggered.buzzer) {
-                playSfxBuzzer();
-                sfxTriggered.buzzer = true;
-            }
-            if (sec >= 3.2 && sec < 3.4 && !sfxTriggered.chime) {
-                playSfxChime();
-                sfxTriggered.chime = true;
-            }
-            if (sec >= 8.0 && sec < 8.2 && !sfxTriggered.pop) {
-                playSfxPop();
-                sfxTriggered.pop = true;
-            }
-            if (sec >= 11.2 && sec < 11.4 && !sfxTriggered.celebration) {
-                playSfxCelebration();
-                sfxTriggered.celebration = true;
-            }
-        }
-
-        function resetSfxTriggers() {
-            sfxTriggered = { buzzer: false, chime: false, pop: false, celebration: false };
-            lastBeatIndex = -1;
-        }
-
-        // Web Speech API Turkish Voiceover
-        let spokenCues = { s1: false, s2: false, s3: false, s4: false };
-        function speakText(text) {
-            if (!('speechSynthesis' in window) || !voiceoverToggle.checked || isRecording) return;
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'tr-TR';
-            utterance.rate = 1.05;
-            utterance.pitch = 1.0;
-            // Select Turkish voice if available
-            const voices = window.speechSynthesis.getVoices();
-            const trVoice = voices.find(v => v.lang && v.lang.startsWith('tr'));
-            if (trVoice) utterance.voice = trVoice;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function checkVoiceover(sec) {
-            if (!voiceoverToggle.checked || isRecording) return;
-            if (sec >= 0.1 && sec < 0.5 && !spokenCues.s1) {
-                speakText("Villa takviminizi hâlâ defterde mi tutuyorsunuz?");
-                spokenCues.s1 = true;
-            } else if (sec >= 3.3 && sec < 3.7 && !spokenCues.s2) {
-                speakText("TakvimTakip artık cebinizde! Çifte rezervasyon stresine son verin.");
-                spokenCues.s2 = true;
-            } else if (sec >= 7.2 && sec < 7.6 && !spokenCues.s3) {
-                speakText("Tek dokunuşla tarih kapatın, misafirinize takvim linkini anında gönderin.");
-                spokenCues.s3 = true;
-            } else if (sec >= 11.3 && sec < 11.7 && !spokenCues.s4) {
-                speakText("App Store ve Google Play'den hemen indirin, 14 gün ücretsiz deneyin!");
-                spokenCues.s4 = true;
-            }
-        }
-
-        function resetVoiceover() {
-            spokenCues = { s1: false, s2: false, s3: false, s4: false };
-            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-        }
-
-        // =========================================================================
-        // CANVAS RENDERING ENGINE (1080 x 1920)
-        // =========================================================================
-
-        function drawReelsFrame(t) {
-            // Clear canvas
-            ctx.clearRect(0, 0, W, H);
-
-            // Determine active scene
-            // Scene 1: 0.0 - 3.2s
-            // Scene 2: 3.2 - 7.0s
-            // Scene 3: 7.0 - 11.2s
-            // Scene 4: 11.2 - 15.0s
-            let sceneIndex = 0;
-            if (t >= 11.2) sceneIndex = 3;
-            else if (t >= 7.0) sceneIndex = 2;
-            else if (t >= 3.2) sceneIndex = 1;
-
-            updateScenePillsUI(sceneIndex);
-
-            // Render background based on scene
-            if (sceneIndex === 0) {
-                renderScene1(t);
-            } else if (sceneIndex === 1) {
-                renderScene2(t - 3.2);
-            } else if (sceneIndex === 2) {
-                renderScene3(t - 7.0);
+        // Video Player Controls
+        playPauseBtn.addEventListener('click', function() {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                playPauseText.textContent = 'Duraklat';
+                playPauseBtn.querySelector('i').className = 'fa-solid fa-pause text-xs';
             } else {
-                renderScene4(t - 11.2);
+                videoPlayer.pause();
+                playPauseText.textContent = 'Oynat';
+                playPauseBtn.querySelector('i').className = 'fa-solid fa-play text-xs';
             }
+        });
 
-            // Always render kinetic subtitles at bottom
-            renderKineticSubtitles(t, sceneIndex);
-        }
+        restartBtn.addEventListener('click', function() {
+            videoPlayer.currentTime = 0;
+            videoPlayer.play();
+            playPauseText.textContent = 'Duraklat';
+            playPauseBtn.querySelector('i').className = 'fa-solid fa-pause text-xs';
+        });
 
-        // -------------------------------------------------------------
-        // SCENE 1: KANCA & KARMAŞA (0.0s - 3.2s)
-        // -------------------------------------------------------------
-        function renderScene1(t) {
-            // Dark dramatic gradient with subtle alarm red pulse
-            const pulse = (Math.sin(t * 8) + 1) * 0.5;
-            const bgGrad = ctx.createRadialGradient(W/2, H/2, 100, W/2, H/2, 900);
-            bgGrad.addColorStop(0, `rgba(40, 10, 20, 1)`);
-            bgGrad.addColorStop(0.6, `rgba(15, 23, 42, 1)`);
-            bgGrad.addColorStop(1, `rgba(8, 12, 22, 1)`);
-            ctx.fillStyle = bgGrad;
-            ctx.fillRect(0, 0, W, H);
-
-            // Floating background chaotic elements (Notebook paper, crossed-out dates)
-            ctx.save();
-            ctx.translate(W/2, H/2 - 80);
-
-            // Camera shake when alert triggers (t between 1.2 and 1.8)
-            if (t >= 1.2 && t <= 1.8) {
-                const shake = Math.sin(t * 60) * 14;
-                ctx.translate(shake, -shake * 0.5);
-            }
-
-            // Notebook paper simulation
-            ctx.save();
-            ctx.rotate(-0.06);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.shadowColor = 'rgba(0,0,0,0.5)';
-            ctx.shadowBlur = 40;
-            ctx.fillRect(-380, -260, 760, 480);
-
-            // Notebook lines
-            ctx.strokeStyle = '#E2E8F0';
-            ctx.lineWidth = 3;
-            for (let y = -200; y < 200; y += 45) {
-                ctx.beginPath();
-                ctx.moveTo(-350, y);
-                ctx.lineTo(350, y);
-                ctx.stroke();
-            }
-
-            // Red handwritten scratch
-            ctx.strokeStyle = '#EF4444';
-            ctx.lineWidth = 7;
-            ctx.beginPath();
-            ctx.moveTo(-280, -100);
-            ctx.lineTo(260, -85);
-            ctx.stroke();
-
-            // Notes on paper
-            ctx.fillStyle = '#1E293B';
-            ctx.font = 'bold 36px "Plus Jakarta Sans"';
-            ctx.textAlign = 'left';
-            ctx.fillText("📝 15-20 Temmuz - Villa Armona (Dolu mu?)", -330, -145);
-            ctx.fillStyle = '#DC2626';
-            ctx.fillText("❌ İPTAL Mİ? KAPORA NEREDE?", -330, -55);
-            ctx.fillStyle = '#475569';
-            ctx.font = '600 30px "Plus Jakarta Sans"';
-            ctx.fillText("Müşteri aradı, WhatsApp'tan başka biri sordu...", -330, 35);
-            ctx.fillText("Not defteri evde kaldı!", -330, 115);
-            ctx.restore();
-
-            // WhatsApp Message Bubbles floating
-            if (t >= 0.4) {
-                const scaleWp1 = Math.min(1, (t - 0.4) * 5);
-                ctx.save();
-                ctx.translate(-180, 220);
-                ctx.scale(scaleWp1, scaleWp1);
-                drawChatBubble("Müşteri: 15 Temmuz boş mu acil?", '#25D366', '#FFFFFF', true);
-                ctx.restore();
-            }
-
-            if (t >= 0.8) {
-                const scaleWp2 = Math.min(1, (t - 0.8) * 5);
-                ctx.save();
-                ctx.translate(120, 320);
-                ctx.scale(scaleWp2, scaleWp2);
-                drawChatBubble("Acente: Biz o tarihi sattık bile!", '#1E293B', '#F8FAFC', false);
-                ctx.restore();
-            }
-
-            // Glowing Warning Badge (t >= 1.2)
-            if (t >= 1.2) {
-                const warnScale = Math.min(1, (t - 1.2) * 6) + pulse * 0.05;
-                ctx.save();
-                ctx.translate(0, 480);
-                ctx.scale(warnScale, warnScale);
-                ctx.shadowColor = '#EF4444';
-                ctx.shadowBlur = 50 + pulse * 40;
-                
-                // Red badge box
-                ctx.fillStyle = '#DC2626';
-                roundRect(ctx, -380, -60, 760, 120, 28);
-                ctx.fill();
-
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '900 44px "Plus Jakarta Sans"';
-                ctx.textAlign = 'center';
-                ctx.fillText("⚠️ ÇİFTE REZERVASYON RİSKİ!", 0, 14);
-                ctx.restore();
-            }
-
-            ctx.restore();
-
-            // Main Kinetic Hook Text (Top Area)
-            ctx.save();
-            ctx.textAlign = 'center';
-            
-            // Line 1: VİLLA & BUNGALOV TAKVİMİNİZİ
-            ctx.fillStyle = '#E2E8F0';
-            ctx.font = '800 44px "Plus Jakarta Sans"';
-            ctx.shadowColor = 'rgba(0,0,0,0.8)';
-            ctx.shadowBlur = 20;
-            ctx.fillText(cfgHookLine1.value, W/2, 280);
-
-            // Line 2: HÂLÂ DEFTERDE Mİ TUTUYORSUNUZ?
-            if (t >= 0.3) {
-                const hookScale = Math.min(1, (t - 0.3) * 4);
-                ctx.save();
-                ctx.translate(W/2, 370);
-                ctx.scale(hookScale, hookScale);
-                ctx.fillStyle = '#FED452'; // Brand Gold
-                ctx.font = '900 60px "Plus Jakarta Sans"';
-                ctx.shadowColor = '#FED452';
-                ctx.shadowBlur = 25;
-                ctx.fillText(cfgHookLine2.value, 0, 0);
-                ctx.restore();
-            }
-            ctx.restore();
-        }
-
-        // Helper: Chat bubble drawing
-        function drawChatBubble(text, bgColor, textColor, isLeft) {
-            ctx.shadowColor = 'rgba(0,0,0,0.4)';
-            ctx.shadowBlur = 25;
-            ctx.fillStyle = bgColor;
-            roundRect(ctx, -240, -45, 480, 90, 24);
-            ctx.fill();
-
-            ctx.fillStyle = textColor;
-            ctx.font = 'bold 28px "Plus Jakarta Sans"';
-            ctx.textAlign = 'center';
-            ctx.fillText(text, 0, 10);
-        }
-
-        // -------------------------------------------------------------
-        // SCENE 2: ÇÖZÜM & MOBİL UYGULAMA (3.2s - 7.0s)
-        // -------------------------------------------------------------
-        function renderScene2(relT) {
-            // Modern luxury dark indigo background with glowing orbs
-            const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-            bgGrad.addColorStop(0, '#090D1A');
-            bgGrad.addColorStop(0.5, '#151733');
-            bgGrad.addColorStop(1, '#080A12');
-            ctx.fillStyle = bgGrad;
-            ctx.fillRect(0, 0, W, H);
-
-            // Ambient glows
-            drawGlowOrb(W/2, 500, 400, 'rgba(79, 70, 229, 0.25)');
-            drawGlowOrb(W/2 + 200, 1100, 350, 'rgba(16, 185, 129, 0.15)');
-
-            // Top Header: Eyebrow + Title
-            ctx.save();
-            ctx.textAlign = 'center';
-
-            // Top Pill Badge
-            const pillT = Math.min(1, relT * 4);
-            ctx.save();
-            ctx.translate(W/2, 220);
-            ctx.scale(pillT, pillT);
-            ctx.fillStyle = 'rgba(79, 70, 229, 0.25)';
-            ctx.strokeStyle = '#6366F1';
-            ctx.lineWidth = 3;
-            roundRect(ctx, -260, -32, 520, 64, 32);
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.fillStyle = '#A5B4FC';
-            ctx.font = '800 28px "Plus Jakarta Sans"';
-            ctx.fillText("✨ ARTIK DEFTERE GEREK YOK!", 0, 10);
-            ctx.restore();
-
-            // Main Title
-            if (relT >= 0.2) {
-                const titleScale = Math.min(1, (relT - 0.2) * 4);
-                ctx.save();
-                ctx.translate(W/2, 330);
-                ctx.scale(titleScale, titleScale);
-
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '900 68px "Plus Jakarta Sans"';
-                ctx.shadowColor = 'rgba(255,255,255,0.4)';
-                ctx.shadowBlur = 30;
-                ctx.fillText(cfgAppTitle.value, 0, 0);
-
-                // Subtitle
-                ctx.fillStyle = '#FED452'; // Gold
-                ctx.font = '800 38px "Plus Jakarta Sans"';
-                ctx.shadowColor = '#FED452';
-                ctx.shadowBlur = 20;
-                ctx.fillText(cfgAppBadge.value, 0, 65);
-                ctx.restore();
-            }
-            ctx.restore();
-
-            // Smartphone 3D Entrance from bottom
-            // relT 0 -> 1 moves phone from y: 2000 to y: 1100
-            const easeY = easeOutBack(Math.min(1, relT * 0.9));
-            const phoneY = 2100 - easeY * 980;
-
-            ctx.save();
-            ctx.translate(W/2, phoneY);
-            drawSmartphoneMockup(0, 0, 1.0, 0);
-            ctx.restore();
-        }
-
-        // -------------------------------------------------------------
-        // SCENE 3: İŞLEM: TARİH KAPATMA & WHATSAPP (7.0s - 11.2s)
-        // -------------------------------------------------------------
-        function renderScene3(relT) {
-            // Modern deep background
-            const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-            bgGrad.addColorStop(0, '#0B0F1C');
-            bgGrad.addColorStop(0.5, '#13192F');
-            bgGrad.addColorStop(1, '#070A10');
-            ctx.fillStyle = bgGrad;
-            ctx.fillRect(0, 0, W, H);
-
-            // Header titles
-            ctx.save();
-            ctx.textAlign = 'center';
-            ctx.fillStyle = '#34D399'; // Emerald
-            ctx.font = '900 34px "Plus Jakarta Sans"';
-            ctx.fillText("⚡ SADECE 3 SANİYEDE", W/2, 210);
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '900 62px "Plus Jakarta Sans"';
-            ctx.shadowColor = 'rgba(255,255,255,0.3)';
-            ctx.shadowBlur = 25;
-            ctx.fillText(cfgActionTitle.value, W/2, 290);
-            ctx.restore();
-
-            // Smartphone in zoomed focus (scale: 1.15)
-            ctx.save();
-            ctx.translate(W/2, 1020);
-            drawSmartphoneMockup(0, 0, 1.18, relT);
-            ctx.restore();
-
-            // WhatsApp Share Pill popping at relT >= 1.8
-            if (relT >= 1.8) {
-                const wpScale = Math.min(1, (relT - 1.8) * 5);
-                ctx.save();
-                ctx.translate(W/2, 1550);
-                ctx.scale(wpScale, wpScale);
-                ctx.shadowColor = 'rgba(37, 211, 102, 0.4)';
-                ctx.shadowBlur = 40;
-
-                ctx.fillStyle = '#25D366';
-                roundRect(ctx, -380, -55, 760, 110, 32);
-                ctx.fill();
-
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '900 34px "Plus Jakarta Sans"';
-                ctx.textAlign = 'center';
-                ctx.fillText("💬 " + cfgActionSub.value, 0, 12);
-                ctx.restore();
-            }
-
-            // Feature Badges at Top (Anlık Bildirim & 0 Hata)
-            if (relT >= 0.5) {
-                const bScale = Math.min(1, (relT - 0.5) * 5);
-                ctx.save();
-                ctx.translate(W/2, 380);
-                ctx.scale(bScale, bScale);
-                drawFeaturePill(-240, 0, "⚡ Anlık Bildirim");
-                drawFeaturePill(240, 0, "🔒 Sıfır Çifte Rezervasyon");
-                ctx.restore();
-            }
-        }
-
-        // Helper: Feature pill
-        function drawFeaturePill(x, y, text) {
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-            ctx.lineWidth = 2;
-            roundRect(ctx, -210, -28, 420, 56, 28);
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.fillStyle = '#FED452';
-            ctx.font = '800 24px "Plus Jakarta Sans"';
-            ctx.textAlign = 'center';
-            ctx.fillText(text, 0, 8);
-            ctx.restore();
-        }
-
-        // -------------------------------------------------------------
-        // SCENE 4: ÇAĞRI (CTA) & STORE İKONLARI (11.2s - 15.0s)
-        // -------------------------------------------------------------
-        function renderScene4(relT) {
-            // Celebratory high-energy background with radial bursts
-            const bgGrad = ctx.createRadialGradient(W/2, H/2 - 100, 100, W/2, H/2, 1100);
-            bgGrad.addColorStop(0, '#1E1B4B');
-            bgGrad.addColorStop(0.5, '#0F172A');
-            bgGrad.addColorStop(1, '#070A12');
-            ctx.fillStyle = bgGrad;
-            ctx.fillRect(0, 0, W, H);
-
-            // Shimmering background light rays
-            drawCelebrationRays(relT);
-
-            ctx.save();
-            ctx.textAlign = 'center';
-
-            // Top TakvimTakip Logo or Brand Text
-            const logoScale = Math.min(1, relT * 4);
-            ctx.save();
-            ctx.translate(W/2, 280);
-            ctx.scale(logoScale, logoScale);
-
-            if (assets.logo.complete && assets.logo.naturalWidth > 0) {
-                try {
-                    const lW = 420;
-                    const lH = (assets.logo.naturalHeight / assets.logo.naturalWidth) * lW;
-                    ctx.drawImage(assets.logo, -lW/2, -lH/2, lW, lH);
-                } catch(e) {
-                    drawFallbackLogo();
-                }
+        audioToggleBtn.addEventListener('click', function() {
+            videoPlayer.muted = !videoPlayer.muted;
+            if (videoPlayer.muted) {
+                audioToggleBtn.querySelector('span').textContent = 'Müzik: Kapalı';
+                audioToggleBtn.className = 'px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-sm font-semibold transition';
             } else {
-                drawFallbackLogo();
+                audioToggleBtn.querySelector('span').textContent = 'Müzik: Açık';
+                audioToggleBtn.className = 'px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-amber-300 text-sm font-semibold transition';
             }
-            ctx.restore();
+        });
 
-            // Official App Store & Google Play Badges
-            if (relT >= 0.4) {
-                const storeScale = Math.min(1, (relT - 0.4) * 4);
-                ctx.save();
-                ctx.translate(W/2, 580);
-                ctx.scale(storeScale, storeScale);
-
-                // Badge Container Header
-                ctx.fillStyle = '#A5B4FC';
-                ctx.font = '800 32px "Plus Jakarta Sans"';
-                ctx.fillText("RESMİ MOBİL UYGULAMALAR YAYINDA!", 0, -80);
-
-                // Two Store Badges Side-by-Side
-                drawGooglePlayBadge(-230, 0);
-                drawAppStoreBadge(230, 0);
-                ctx.restore();
-            }
-
-            // Big 14-Day Free Offer Card (pulsing golden glow)
-            if (relT >= 0.8) {
-                const offerPulse = (Math.sin(relT * 6) + 1) * 0.5;
-                const offerScale = Math.min(1, (relT - 0.8) * 4) + offerPulse * 0.03;
-
-                ctx.save();
-                ctx.translate(W/2, 980);
-                ctx.scale(offerScale, offerScale);
-
-                ctx.shadowColor = '#FED452';
-                ctx.shadowBlur = 40 + offerPulse * 30;
-
-                // Card background
-                const cardGrad = ctx.createLinearGradient(-380, -140, 380, 140);
-                cardGrad.addColorStop(0, '#1E293B');
-                cardGrad.addColorStop(1, '#0F172A');
-                ctx.fillStyle = cardGrad;
-                ctx.strokeStyle = '#FED452';
-                ctx.lineWidth = 6;
-                roundRect(ctx, -380, -140, 760, 280, 40);
-                ctx.fill();
-                ctx.stroke();
-
-                // Offer Tag
-                ctx.fillStyle = '#FED452';
-                ctx.font = '900 62px "Plus Jakarta Sans"';
-                ctx.fillText("🎉 " + cfgCtaOffer.value, 0, -20);
-
-                // Subtitle
-                ctx.fillStyle = '#F8FAFC';
-                ctx.font = '700 34px "Plus Jakarta Sans"';
-                ctx.fillText(cfgCtaSub.value, 0, 50);
-
-                ctx.fillStyle = '#10B981';
-                ctx.font = '800 26px "Plus Jakarta Sans"';
-                ctx.fillText("✓ Kurulum Yok  •  ✓ Anında Başlayın", 0, 100);
-
-                ctx.restore();
-            }
-
-            // Big Call To Action Finger / Button at Bottom
-            if (relT >= 1.2) {
-                const bounce = Math.sin(relT * 8) * 12;
-                ctx.save();
-                ctx.translate(W/2, 1380 + bounce);
-
-                ctx.shadowColor = '#6366F1';
-                ctx.shadowBlur = 35;
-                ctx.fillStyle = '#4F46E5';
-                roundRect(ctx, -340, -55, 680, 110, 32);
-                ctx.fill();
-
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '900 38px "Plus Jakarta Sans"';
-                ctx.fillText("HEMEN İNDİRİN ➔", 0, 12);
-                ctx.restore();
-            }
-
-            ctx.restore();
-        }
-
-        // -------------------------------------------------------------
-        // SMARTPHONE MOCKUP & INTERACTIVE SCREEN RENDERER
-        // -------------------------------------------------------------
-        function drawSmartphoneMockup(x, y, scale, actionTime) {
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.scale(scale, scale);
-
-            const phoneW = 540;
-            const phoneH = 1100;
-            const r = 56;
-
-            // Outer drop shadow
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
-            ctx.shadowBlur = 60;
-
-            // Smartphone body outer border (Titanium)
-            ctx.fillStyle = '#1E293B';
-            roundRect(ctx, -phoneW/2, -phoneH/2, phoneW, phoneH, r);
-            ctx.fill();
-
-            // Smartphone inner screen bezel
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#0B0F19';
-            roundRect(ctx, -phoneW/2 + 10, -phoneH/2 + 10, phoneW - 20, phoneH - 20, r - 6);
-            ctx.fill();
-
-            // Clip to phone screen
-            ctx.save();
-            ctx.beginPath();
-            roundRect(ctx, -phoneW/2 + 14, -phoneH/2 + 14, phoneW - 28, phoneH - 28, r - 10);
-            ctx.clip();
-
-            // Background of phone screen (Light app UI)
-            ctx.fillStyle = '#F8FAFC';
-            ctx.fillRect(-phoneW/2, -phoneH/2, phoneW, phoneH);
-
-            // If phone_view image is available, draw it
-            let hasDrawnImage = false;
-            if (assets.phoneView.complete && assets.phoneView.naturalWidth > 0) {
-                try {
-                    ctx.drawImage(assets.phoneView, -phoneW/2 + 14, -phoneH/2 + 14, phoneW - 28, phoneH - 28);
-                    hasDrawnImage = true;
-                } catch(e) {}
-            }
-
-            // If image is not loaded or for custom action overlay:
-            if (!hasDrawnImage) {
-                drawInternalAppUI(phoneW, phoneH);
-            }
-
-            // Interactive Action Overlay on Phone Screen (Scene 3 simulation)
-            if (actionTime > 0) {
-                // If actionTime > 0.8: simulate tapping dates and turning them red
-                if (actionTime >= 0.8) {
-                    // Highlighted date range box
-                    ctx.fillStyle = 'rgba(239, 68, 68, 0.85)';
-                    roundRect(ctx, -140, -10, 280, 80, 16);
-                    ctx.fill();
-
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.font = 'bold 22px "Plus Jakarta Sans"';
-                    ctx.textAlign = 'center';
-                    ctx.fillText("🔒 15 - 19 Temmuz DOLU", 0, 38);
-                }
-
-                // Animated finger tap cursor
-                if (actionTime >= 0.3 && actionTime <= 1.6) {
-                    const tapAlpha = Math.max(0, 1 - (actionTime - 0.3) * 0.8);
-                    const tapScale = 1 - Math.sin((actionTime - 0.3) * 4) * 0.2;
-
-                    ctx.save();
-                    ctx.translate(0, 30);
-                    ctx.scale(tapScale, tapScale);
-
-                    // Touch ripple
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${tapAlpha})`;
-                    ctx.lineWidth = 6;
-                    ctx.beginPath();
-                    ctx.arc(0, 0, 50 + (actionTime - 0.3) * 40, 0, Math.PI * 2);
-                    ctx.stroke();
-
-                    // Finger point dot
-                    ctx.fillStyle = 'rgba(99, 102, 241, 0.9)';
-                    ctx.beginPath();
-                    ctx.arc(0, 0, 24, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-                }
-            }
-
-            ctx.restore(); // unclip phone screen
-
-            // Dynamic Island on top of phone
-            ctx.fillStyle = '#000000';
-            roundRect(ctx, -85, -phoneH/2 + 22, 170, 38, 19);
-            ctx.fill();
-
-            ctx.restore();
-        }
-
-        // Draw internal vector UI if image is loading or fallback
-        function drawInternalAppUI(w, h) {
-            // App Top Bar
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(-w/2, -h/2, w, 140);
-            ctx.fillStyle = '#1E293B';
-            ctx.font = 'bold 26px "Plus Jakarta Sans"';
-            ctx.textAlign = 'center';
-            ctx.fillText("🏡 Villa Armona - Müsaitlik", 0, -h/2 + 95);
-
-            // Legend Status Row
-            ctx.fillStyle = '#10B981';
-            ctx.beginPath(); ctx.arc(-140, -h/2 + 180, 10, 0, Math.PI*2); ctx.fill();
-            ctx.fillStyle = '#475569';
-            ctx.font = '600 18px "Plus Jakarta Sans"';
-            ctx.textAlign = 'left';
-            ctx.fillText("Müsait", -120, -h/2 + 186);
-
-            ctx.fillStyle = '#EF4444';
-            ctx.beginPath(); ctx.arc(40, -h/2 + 180, 10, 0, Math.PI*2); ctx.fill();
-            ctx.fillStyle = '#475569';
-            ctx.fillText("Dolu", 60, -h/2 + 186);
-
-            // Calendar Month Header
-            ctx.fillStyle = '#0F172A';
-            ctx.font = 'bold 30px "Plus Jakarta Sans"';
-            ctx.textAlign = 'center';
-            ctx.fillText("Temmuz 2026", 0, -h/2 + 260);
-
-            // Calendar Grid Mockup
-            const startY = -h/2 + 330;
-            const cellSize = 62;
-            const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz'];
+        // Time Updates & Progress
+        videoPlayer.addEventListener('timeupdate', function() {
+            const cur = videoPlayer.currentTime;
+            const pct = (cur / TOTAL_DURATION) * 100;
+            progressBarFill.style.width = pct + '%';
             
-            ctx.fillStyle = '#94A3B8';
-            ctx.font = 'bold 18px "Plus Jakarta Sans"';
-            for (let c = 0; c < 7; c++) {
-                ctx.fillText(days[c], -w/2 + 50 + c * cellSize, startY);
-            }
+            const mins = Math.floor(cur / 60);
+            const secs = Math.floor(cur % 60);
+            const tenths = Math.floor((cur % 1) * 10);
+            currentTimeDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${tenths}`;
 
-            // Draw Day Cells
-            let dayNum = 1;
-            for (let r = 0; r < 5; r++) {
-                for (let c = 0; c < 7; c++) {
-                    if (dayNum > 31) break;
-                    const cx = -w/2 + 50 + c * cellSize;
-                    const cy = startY + 45 + r * cellSize;
+            // Highlight scene pills
+            let sIdx = 0;
+            if (cur >= 25.0) sIdx = 6;
+            else if (cur >= 21.0) sIdx = 5;
+            else if (cur >= 17.0) sIdx = 4;
+            else if (cur >= 12.0) sIdx = 3;
+            else if (cur >= 8.0) sIdx = 2;
+            else if (cur >= 4.0) sIdx = 1;
 
-                    // Some days are booked
-                    if (dayNum >= 15 && dayNum <= 19) {
-                        ctx.fillStyle = '#EF4444';
-                        roundRect(ctx, cx - 24, cy - 26, 48, 48, 12);
-                        ctx.fill();
-                        ctx.fillStyle = '#FFFFFF';
-                    } else if (dayNum === 10 || dayNum === 11) {
-                        ctx.fillStyle = '#F59E0B';
-                        roundRect(ctx, cx - 24, cy - 26, 48, 48, 12);
-                        ctx.fill();
-                        ctx.fillStyle = '#FFFFFF';
+            for (let i = 0; i < 7; i++) {
+                const el = document.getElementById('scenePill' + i);
+                if (el) {
+                    if (i === sIdx) {
+                        el.className = 'px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-amber-400 text-slate-950 border border-amber-300 transition';
                     } else {
-                        ctx.fillStyle = '#F1F5F9';
-                        roundRect(ctx, cx - 24, cy - 26, 48, 48, 12);
-                        ctx.fill();
-                        ctx.fillStyle = '#1E293B';
+                        el.className = 'px-1.5 py-1 rounded-lg text-center text-[9px] font-bold bg-slate-900 text-slate-400 border border-slate-800 transition';
                     }
-
-                    ctx.font = 'bold 20px "Plus Jakarta Sans"';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(dayNum.toString(), cx, cy + 6);
-                    dayNum++;
                 }
             }
+        });
 
-            // Bottom Quick Action Button
-            ctx.fillStyle = '#4F46E5';
-            roundRect(ctx, -w/2 + 40, h/2 - 140, w - 80, 80, 24);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 24px "Plus Jakarta Sans"';
-            ctx.textAlign = 'center';
-            ctx.fillText("Tarihleri Kapat / Aç", 0, h/2 - 90);
-        }
-
-        // -------------------------------------------------------------
-        // CAPCUT STYLE KINETIC SUBTITLES AT SCREEN BOTTOM
-        // -------------------------------------------------------------
-        function renderKineticSubtitles(t, sceneIndex) {
-            ctx.save();
-            ctx.textAlign = 'center';
-
-            let subtitle = "";
-            let highlightWord = "";
-
-            if (sceneIndex === 0) {
-                subtitle = "HÂLÂ DEFTERDE Mİ TUTUYORSUNUZ?";
-                highlightWord = (t >= 1.5) ? "DEFTERDE" : "";
-            } else if (sceneIndex === 1) {
-                subtitle = "TAKVİMTAKİP ARTIK CEBİNİZDE!";
-                highlightWord = "TAKVİMTAKİP";
-            } else if (sceneIndex === 2) {
-                subtitle = "TEK DOKUNUŞLA TARİH KAPATIN VE PAYLAŞIN";
-                highlightWord = (t >= 9.0) ? "PAYLAŞIN" : "TEK DOKUNUŞLA";
-            } else {
-                subtitle = "APP STORE VE GOOGLE PLAY'DEN İNDİRİN!";
-                highlightWord = "ÜCRETSİZ İNDİRİN!";
-            }
-
-            // Subtitle Box Background (Subtle black pill)
-            ctx.font = '900 48px "Plus Jakarta Sans"';
-            const textMetrics = ctx.measureText(subtitle);
-            const boxW = Math.min(W - 80, textMetrics.width + 80);
-
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.82)';
-            ctx.shadowColor = 'rgba(0,0,0,0.6)';
-            ctx.shadowBlur = 25;
-            roundRect(ctx, W/2 - boxW/2, H - 240, boxW, 90, 28);
-            ctx.fill();
-
-            // Text with Stroke and Glow
-            ctx.shadowBlur = 0;
-            ctx.strokeStyle = '#000000';
-            ctx.lineWidth = 10;
-            ctx.strokeText(subtitle, W/2, H - 180);
-
-            ctx.fillStyle = '#FED452'; // CapCut Bright Yellow
-            ctx.fillText(subtitle, W/2, H - 180);
-
-            ctx.restore();
-        }
-
-        // -------------------------------------------------------------
-        // VECTOR STORE BADGES (OFFICIAL GOOGLE PLAY & APPLE STORE)
-        // -------------------------------------------------------------
-        function drawGooglePlayBadge(x, y) {
-            ctx.save();
-            ctx.translate(x, y);
-
-            ctx.fillStyle = '#0F172A';
-            ctx.strokeStyle = '#334155';
-            ctx.lineWidth = 3;
-            roundRect(ctx, -190, -50, 380, 100, 24);
-            ctx.fill();
-            ctx.stroke();
-
-            // Triangle Play Icon
-            ctx.save();
-            ctx.translate(-130, 0);
-            ctx.beginPath();
-            ctx.moveTo(-18, -24);
-            ctx.lineTo(24, 0);
-            ctx.lineTo(-18, 24);
-            ctx.closePath();
-            ctx.fillStyle = '#10B981'; ctx.fill();
-            ctx.restore();
-
-            // Text
-            ctx.textAlign = 'left';
-            ctx.fillStyle = '#94A3B8';
-            ctx.font = 'bold 18px "Plus Jakarta Sans"';
-            ctx.fillText("GOOGLE PLAY'DEN", -85, -8);
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '900 28px "Plus Jakarta Sans"';
-            ctx.fillText("İNDİRİN", -85, 24);
-
-            ctx.restore();
-        }
-
-        function drawAppStoreBadge(x, y) {
-            ctx.save();
-            ctx.translate(x, y);
-
-            ctx.fillStyle = '#0F172A';
-            ctx.strokeStyle = '#334155';
-            ctx.lineWidth = 3;
-            roundRect(ctx, -190, -50, 380, 100, 24);
-            ctx.fill();
-            ctx.stroke();
-
-            // Apple Icon Silhouette
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '48px "Font Awesome 6 Brands", sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText("", -130, 14);
-
-            // Text
-            ctx.textAlign = 'left';
-            ctx.fillStyle = '#94A3B8';
-            ctx.font = 'bold 18px "Plus Jakarta Sans"';
-            ctx.fillText("APP STORE'DAN", -85, -8);
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '900 28px "Plus Jakarta Sans"';
-            ctx.fillText("İNDİRİN", -85, 24);
-
-            ctx.restore();
-        }
-
-        function drawFallbackLogo() {
-            ctx.fillStyle = '#FED452';
-            ctx.font = '900 68px "Plus Jakarta Sans"';
-            ctx.fillText("TakvimTakip", 0, 0);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '700 26px "Plus Jakarta Sans"';
-            ctx.fillText("Müsaitlik & Rezervasyon Takvimi", 0, 48);
-        }
-
-        function drawGlowOrb(x, y, radius, color) {
-            ctx.save();
-            const g = ctx.createRadialGradient(x, y, 10, x, y, radius);
-            g.addColorStop(0, color);
-            g.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.fillStyle = g;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
-
-        function drawCelebrationRays(relT) {
-            ctx.save();
-            ctx.translate(W/2, H/2 - 100);
-            const numRays = 16;
-            ctx.fillStyle = 'rgba(254, 212, 82, 0.05)';
-            for (let i = 0; i < numRays; i++) {
-                ctx.rotate((Math.PI * 2) / numRays + relT * 0.05);
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(-40, -1200);
-                ctx.lineTo(40, -1200);
-                ctx.closePath();
-                ctx.fill();
-            }
-            ctx.restore();
-        }
-
-        // Helper: Canvas Rounded Rectangle
-        function roundRect(context, x, y, width, height, radius) {
-            context.beginPath();
-            context.moveTo(x + radius, y);
-            context.lineTo(x + width - radius, y);
-            context.quadraticCurveTo(x + width, y, x + width, y + radius);
-            context.lineTo(x + width, y + height - radius);
-            context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            context.lineTo(x + radius, y + height);
-            context.quadraticCurveTo(x, y + height, x, y + height - radius);
-            context.lineTo(x, y + radius);
-            context.quadraticCurveTo(x, y, x + radius, y);
-            context.closePath();
-        }
-
-        // Easing functions
-        function easeOutBack(x) {
-            const c1 = 1.70158;
-            const c3 = c1 + 1;
-            return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
-        }
-
-        // =========================================================================
-        // TIMELINE & CONTROLS ENGINE
-        // =========================================================================
-
-        function updateScenePillsUI(sceneIndex) {
-            scenePills.forEach((pill, idx) => {
-                if (idx === sceneIndex) {
-                    pill.className = "px-2 py-1.5 rounded-lg text-center text-[10px] font-black bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-500/20";
-                } else {
-                    pill.className = "px-2 py-1.5 rounded-lg text-center text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-800";
-                }
-            });
-        }
-
-        function formatTimeDisplay(sec) {
-            const s = Math.floor(sec);
-            const ms = Math.floor((sec - s) * 10);
-            return (s < 10 ? '0' + s : s) + '.' + ms + 's';
-        }
-
-        function mainLoop(timestamp) {
-            if (!lastFrameTimestamp) lastFrameTimestamp = timestamp;
-            const delta = (timestamp - lastFrameTimestamp) / 1000;
-            lastFrameTimestamp = timestamp;
-
-            if (isPlaying) {
-                currentTime += delta;
-                if (currentTime >= TOTAL_DURATION) {
-                    currentTime = TOTAL_DURATION;
-                    pauseVideo();
-                }
-
-                // Audio music beat & SFX triggers
-                updateMusicBeat(currentTime);
-                checkSfxTriggers(currentTime);
-                checkVoiceover(currentTime);
-            }
-
-            // Draw current frame
-            drawReelsFrame(currentTime);
-
-            // Update UI
-            currentTimeDisplay.textContent = formatTimeDisplay(currentTime);
-            const progress = (currentTime / TOTAL_DURATION) * 100;
-            progressBarFill.style.width = progress + '%';
-
-            if (isPlaying) {
-                animationFrameId = requestAnimationFrame(mainLoop);
-            }
-        }
-
-        function playVideo() {
-            initAudio();
-            isPlaying = true;
-            playPauseBtn.className = "px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm shadow-lg shadow-amber-500/30 transition active:scale-95 flex items-center space-x-2 cursor-pointer";
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause text-xs"></i><span>Durdur</span>';
-            playbackStatusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span><span>Oynatılıyor</span>';
-
-            if (currentTime >= TOTAL_DURATION) {
-                currentTime = 0;
-                resetSfxTriggers();
-                resetVoiceover();
-            }
-
-            lastFrameTimestamp = performance.now();
-            animationFrameId = requestAnimationFrame(mainLoop);
-        }
-
-        function pauseVideo() {
-            isPlaying = false;
-            playPauseBtn.className = "px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm shadow-lg shadow-indigo-600/30 transition active:scale-95 flex items-center space-x-2 cursor-pointer";
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play text-xs"></i><span>Oynat</span>';
-            playbackStatusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-500"></span><span>Duraklatıldı</span>';
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            if ('speechSynthesis' in window) window.speechSynthesis.pause();
-        }
-
-        function restartVideo() {
-            pauseVideo();
-            currentTime = 0.0;
-            resetSfxTriggers();
-            resetVoiceover();
-            drawReelsFrame(0);
-            currentTimeDisplay.textContent = '00:00.0';
-            progressBarFill.style.width = '0%';
-            playVideo();
-        }
-
-        // Scrub on progress bar click
+        // Scrubbing on Progress Bar
         progressBarContainer.addEventListener('click', function(e) {
             const rect = progressBarContainer.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-            currentTime = ratio * TOTAL_DURATION;
-            resetSfxTriggers();
-            drawReelsFrame(currentTime);
-            currentTimeDisplay.textContent = formatTimeDisplay(currentTime);
-            progressBarFill.style.width = (ratio * 100) + '%';
+            const clickPos = (e.clientX - rect.left) / rect.width;
+            videoPlayer.currentTime = clickPos * TOTAL_DURATION;
         });
 
-        playPauseBtn.addEventListener('click', function() {
-            if (isPlaying) pauseVideo();
-            else playVideo();
-        });
-
-        restartBtn.addEventListener('click', restartVideo);
-
-        // Music toggle
-        audioToggleBtn.addEventListener('click', function() {
-            initAudio();
-            isAudioMuted = !isAudioMuted;
-            if (isAudioMuted) {
-                audioToggleBtn.innerHTML = '<i class="fa-solid fa-volume-xmark text-slate-400"></i><span class="text-xs text-slate-400 font-medium">Müzik: Kapalı</span>';
-                audioToggleBtn.classList.remove('text-amber-300');
-            } else {
-                audioToggleBtn.innerHTML = '<i class="fa-solid fa-volume-high text-amber-300"></i><span class="text-xs text-slate-300 font-medium">Müzik: Açık</span>';
-                audioToggleBtn.classList.add('text-amber-300');
-            }
-        });
-
-        musicVolSlider.addEventListener('input', function() {
-            if (musicGain) {
-                musicGain.gain.value = parseFloat(this.value);
-            }
-        });
-
-        // =========================================================================
-        // FULL HD VIDEO EXPORT ENGINE (MEDIARECORDER TO MP4 / WEBM)
-        // =========================================================================
-
-        async function exportReelsVideo() {
-            initAudio();
-            pauseVideo();
-            isRecording = true;
-
-            // UI updates
-            renderExportBtn.disabled = true;
-            quickExportBtn.disabled = true;
-            exportProgressBox.classList.remove('hidden');
-            recordingBadge.classList.remove('hidden');
-            playbackStatusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span><span>Kaydediliyor...</span>';
-
-            // Reset video to start
-            currentTime = 0.0;
-            resetSfxTriggers();
-            resetVoiceover();
-
-            // Prepare MediaStream combining Canvas 60 FPS + Audio Destination
-            const canvasStream = canvas.captureStream(60);
-            let combinedStream = canvasStream;
-
-            if (audioStreamDest && audioStreamDest.stream) {
-                const audioTrack = audioStreamDest.stream.getAudioTracks()[0];
-                if (audioTrack) {
-                    combinedStream = new MediaStream([
-                        ...canvasStream.getVideoTracks(),
-                        audioTrack
-                    ]);
-                }
-            }
-
-            // Determine best supported mimeType
-            let mimeType = 'video/webm;codecs=vp9,opus';
-            if (!MediaRecorder.isTypeSupported(mimeType)) {
-                mimeType = 'video/webm;codecs=vp8,opus';
-                if (!MediaRecorder.isTypeSupported(mimeType)) {
-                    mimeType = 'video/webm';
-                    if (!MediaRecorder.isTypeSupported(mimeType)) {
-                        mimeType = 'video/mp4';
-                    }
-                }
-            }
-
-            let recorder;
-            try {
-                recorder = new MediaRecorder(combinedStream, {
-                    mimeType: mimeType,
-                    videoBitsPerSecond: 12000000 // 12 Mbps crystal-clear Full HD
-                });
-            } catch(e) {
-                recorder = new MediaRecorder(combinedStream);
-            }
-
-            const recordedChunks = [];
-            recorder.ondataavailable = e => {
-                if (e.data && e.data.size > 0) {
-                    recordedChunks.push(e.data);
-                }
-            };
-
-            recorder.onstop = () => {
-                const blob = new Blob(recordedChunks, { type: mimeType });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                // Save with clean naming
-                const ext = mimeType.includes('mp4') ? 'mp4' : 'webm';
-                a.download = `takvimtakip_reels_15s.${ext}`;
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-
-                // Reset UI
-                isRecording = false;
-                renderExportBtn.disabled = false;
-                quickExportBtn.disabled = false;
-                exportProgressBox.classList.add('hidden');
-                recordingBadge.classList.add('hidden');
-                playbackStatusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>Kayıt Tamamlandı!</span>';
-            };
-
-            recorder.start(100);
-
-            // Record step-by-step 60 FPS in exact real-time to guarantee perfect audio sync
-            const fps = 60;
-            const totalFrames = TOTAL_DURATION * fps;
-            let currentFrame = 0;
-
-            const recordInterval = setInterval(() => {
-                currentFrame++;
-                currentTime = (currentFrame / totalFrames) * TOTAL_DURATION;
-
-                // Audio beats & SFX
-                updateMusicBeat(currentTime);
-                checkSfxTriggers(currentTime);
-
-                // Render Canvas
-                drawReelsFrame(currentTime);
-
-                // Progress update
-                const percent = Math.floor((currentFrame / totalFrames) * 100);
-                exportProgressBar.style.width = percent + '%';
-                exportProgressPercent.textContent = percent + '%';
-                progressBarFill.style.width = percent + '%';
-                currentTimeDisplay.textContent = formatTimeDisplay(currentTime);
-
-                if (currentFrame >= totalFrames) {
-                    clearInterval(recordInterval);
-                    setTimeout(() => {
-                        recorder.stop();
-                    }, 300);
-                }
-            }, 1000 / fps);
-        }
-
-        renderExportBtn.addEventListener('click', exportReelsVideo);
-        quickExportBtn.addEventListener('click', exportReelsVideo);
-
-        // Initial setup on load
-        window.addEventListener('load', function() {
-            drawReelsFrame(0);
+        videoPlayer.addEventListener('ended', function() {
+            playPauseText.textContent = 'Tekrar Oynat';
+            playPauseBtn.querySelector('i').className = 'fa-solid fa-rotate-left text-xs';
         });
 
     })();
