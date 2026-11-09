@@ -77,9 +77,6 @@ class PushNotification
 
         $title = "🗓️ Yarın Çıkış Var: {$villaName}";
         $message = "Sayın {$ownerName}, yarın saat {$checkoutTime}'da {$customerName} konutunuzdan çıkış yapacaktır.";
-        if (!empty($remainingPayment) && $remainingPayment !== '0 ₺') {
-            $message .= " Kalan Tahsilat: {$remainingPayment}.";
-        }
 
         $url = (defined('APP_URL') ? APP_URL : 'https://takvimtakip.com.tr') . '/dashboard';
 

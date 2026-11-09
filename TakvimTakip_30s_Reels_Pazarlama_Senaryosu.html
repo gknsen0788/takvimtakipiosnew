@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakvimTakip - 30 Saniyelik Reels & TikTok Reklam Senaryosu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            line-height: 1.5;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            padding: 40px;
+        }
+        .header {
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 24px;
+            margin-bottom: 28px;
+        }
+        .badge {
+            display: inline-block;
+            background: #EEF2FF;
+            color: #4F46E5;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 12px;
+            border: 1px solid #E0E7FF;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1E1B4B;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #64748B;
+            font-weight: 500;
+        }
+        .actions-bar {
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+        .btn-primary {
+            background: #4F46E5;
+            color: #FFFFFF;
+        }
+        .btn-primary:hover { background: #4338CA; }
+        .btn-secondary {
+            background: #F1F5F9;
+            color: #334155;
+            border: 1px solid #CBD5E1;
+        }
+        .btn-secondary:hover { background: #E2E8F0; }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 28px 0 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Overview Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .info-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 14px;
+            padding: 14px 18px;
+        }
+        .info-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748B;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+        .info-val {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+
+        /* Table */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+        th {
+            background: #312E81;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 14px 16px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th:last-child { border-right: none; }
+        td {
+            padding: 14px 16px;
+            border-top: 1px solid #E2E8F0;
+            border-right: 1px solid #F1F5F9;
+            vertical-align: top;
+        }
+        td:last-child { border-right: none; }
+        tr:nth-child(even) td {
+            background: #F8FAFC;
+        }
+        tr:hover td {
+            background: #F1F5F9;
+        }
+        .time-badge {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 11px;
+            color: #4F46E5;
+            background: #EEF2FF;
+            padding: 4px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+            border: 1px solid #C7D2FE;
+        }
+        .scene-name {
+            font-weight: 800;
+            color: #0F172A;
+            margin-top: 4px;
+            font-size: 12px;
+        }
+        .on-screen-title {
+            font-weight: 800;
+            color: #1E1B4B;
+            font-size: 13px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        .on-screen-sub {
+            font-size: 11px;
+            color: #64748B;
+            font-style: italic;
+        }
+        .voiceover-box {
+            background: #FFFFFF;
+            border-left: 3px solid #10B981;
+            padding: 8px 12px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 6px;
+            font-size: 12.5px;
+            line-height: 1.45;
+            color: #0F172A;
+        }
+        .scene-direction {
+            font-size: 11.5px;
+            color: #64748B;
+            font-style: italic;
+        }
+
+        /* Tips */
+        .tips-box {
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-top: 24px;
+        }
+        .tips-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #92400E;
+            margin-bottom: 10px;
+        }
+        .tips-list {
+            list-style: none;
+            font-size: 12.5px;
+            color: #78350F;
+            line-height: 1.6;
+        }
+        .tips-list li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .tips-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #D97706;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 36px;
+            text-align: center;
+            font-size: 11px;
+            color: #94A3B8;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 16px;
+        }
+
+        @media print {
+            body { padding: 0; background: #FFF; }
+            .container { box-shadow: none; border-radius: 0; padding: 0; }
+            .actions-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="badge">Prodüksiyon & Seslendirme Rehberi</span>
+        <h1>📱 TakvimTakip - 30 Saniyelik Reels / TikTok Reklam Senaryosu</h1>
+        <p class="subtitle">Villa, Bungalov ve Konaklama İşletmecilerine Özel Yüksek Dönüşümlü Video Planı</p>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="actions-bar">
+        <button onclick="window.print()" class="btn btn-primary">
+            🖨️ Yazdır / PDF Olarak Kaydet
+        </button>
+        <button onclick="copyAllScript()" class="btn btn-secondary" id="copyBtn">
+            📋 Tüm Seslendirme Metnini Kopyala
+        </button>
+    </div>
+
+    <!-- Section 1: Overview -->
+    <div class="section-title">🎯 1. Kampanya & Video Özeti</div>
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-label">Format & Çözünürlük</div>
+            <div class="info-val">9:16 Dikey (1080 x 1920 Full HD - 60 FPS)</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Hedef Süre</div>
+            <div class="info-val">Tam 30 Saniye (Reels, TikTok, Shorts & Reklam)</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Hedef Kitle</div>
+            <div class="info-val">Villa & bungalov sahipleri, acenteler, işletmeciler</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Resmi Mağazalar</div>
+            <div class="info-val">App Store & Google Play'de Yayında • 14 Gün Ücretsiz</div>
+        </div>
+    </div>
+
+    <!-- Section 2: Table -->
+    <div class="section-title">⏱️ 2. Saniye Saniye 30 Saniyelik Storyboard Tablosu</div>
+    
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 14%;">Süre</th>
+                    <th style="width: 18%;">Bölüm & Amaç</th>
+                    <th style="width: 32%;">Ekrana Yazılacak Büyük Başlık (Altyazı)</th>
+                    <th style="width: 36%;">Dış Ses (Seslendirme) & Sahne Talimatı</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 1 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">00 - 04 sn</span>
+                        <div class="scene-name">1. KANCA</div>
+                    </td>
+                    <td><strong>Dikkat Çekme</strong><br><span style="font-size:11px; color:#64748B;">Scroll Durdurucu</span></td>
+                    <td>
+                        <div class="on-screen-title">🏡 VİLLA VEYA BUNGALOVUNUZ VARSA BU VİDEOYU KAYDEDİN!</div>
+                        <div class="on-screen-sub">(Büyük Sarı / Beyaz Kalın Font)</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Villa veya bungalov işletiyorsanız bu videoyu mutlaka kaydedin! Rezervasyon karmaşasına son veriyoruz."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Lüks villa / havuz görüntüsü üzerine telefon çerçevesi iner.</div>
+                    </td>
+                </tr>
+
+                <!-- 2 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">04 - 08 sn</span>
+                        <div class="scene-name">2. OPERASYON</div>
+                    </td>
+                    <td><strong>Giriş / Çıkış Takibi</strong><br><span style="font-size:11px; color:#64748B;">Günlük Liste</span></td>
+                    <td>
+                        <div class="on-screen-title">📋 BUGÜN KİM GELİYOR, KİM ÇIKIYOR?</div>
+                        <div class="on-screen-sub">Tek Ekranda Canlı Takip</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Bugün kim giriş yapıyor, hangi misafir çıkıyor? Hepsini tek ekranda anlık görün, kapıda karışıklık yaşamayın."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Paneldeki 'Bugün Giriş' ve 'Bugün Çıkış' kartları gösterilir.</div>
+                    </td>
+                </tr>
+
+                <!-- 3 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">08 - 12 sn</span>
+                        <div class="scene-name">3. BİLDİRİM</div>
+                    </td>
+                    <td><strong>Ertesi Gün Çıkış</strong><br><span style="font-size:11px; color:#64748B;">Temizlik & Hazırlık</span></td>
+                    <td>
+                        <div class="on-screen-title">🔔 ERTESİ GÜN ÇIKIŞ BİLDİRİMİ!</div>
+                        <div class="on-screen-sub">Temizlik & Hazırlığı Asla Kaçırmayın</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Yarın çıkacak misafirler telefonunuza otomatik bildirim gelsin; temizlik ve oda hazırlığını asla son dakikaya bırakmayın."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Telefonun üst bildirim çubuğundan şık TakvimTakip push bildirimi kayar.</div>
+                    </td>
+                </tr>
+
+                <!-- 4 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">12 - 17 sn</span>
+                        <div class="scene-name">4. ENTEGRASYON</div>
+                    </td>
+                    <td><strong>iCal Senkronizasyon</strong><br><span style="font-size:11px; color:#64748B;">Çok Kanallı Yönetim</span></td>
+                    <td>
+                        <div class="on-screen-title">🔄 OTOMATİK iCAL SENKRONİZASYONU</div>
+                        <div class="on-screen-sub">Airbnb • Booking • Acenteler ile %100 Uyum</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Airbnb ve Booking takvimlerinizi iCal ile bağlayın! Bir kanaldan rezervasyon geldiğinde diğer tüm takvimleriniz otomatik kapansın."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Airbnb, Booking ve TakvimTakip logoları çift yönlü dönen oklarla bağlanır.</div>
+                    </td>
+                </tr>
+
+                <!-- 5 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">17 - 21 sn</span>
+                        <div class="scene-name">5. TANITIM LİNKİ</div>
+                    </td>
+                    <td><strong>Web Tanıtım Sayfası</strong><br><span style="font-size:11px; color:#64748B;">Mini Web Sitesi</span></td>
+                    <td>
+                        <div class="on-screen-title">🌐 VİLLANIZA ÖZEL WEB TANITIM LİNKİ!</div>
+                        <div class="on-screen-sub">Fotoğraflar • Fiyatlar • Konum • Takvim Tek Sayfada</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Tek tek fotoğraf, fiyat ve konum göndermeye son! Villanıza özel web sayfasını tek linkle paylaşın, misafirleriniz her şeyi anında incelesin."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Müşterinin telefonunda açılan şık villa sayfası (fotoğraf galerisi, fiyatlar, konum ve takvim) gösterilir.</div>
+                    </td>
+                </tr>
+
+                <!-- 6 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">21 - 25 sn</span>
+                        <div class="scene-name">6. MÜŞTERİ BİLGİSİ</div>
+                    </td>
+                    <td><strong>WhatsApp Onay</strong><br><span style="font-size:11px; color:#64748B;">Tek Tıkla İletim</span></td>
+                    <td>
+                        <div class="on-screen-title">💬 TEK TIKLA WHATSAPP'TAN İLETİN!</div>
+                        <div class="on-screen-sub">Rezervasyon Onay Detayları Misafirin Cebinde</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Giriş-çıkış ve ödeme bilgilerini içeren rezervasyon detaylarını tek dokunuşla müşterinize WhatsApp'tan hemen iletin."
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: Tek tıkla WhatsApp açılır ve hazır rezervasyon bilgi fişi gönderilir.</div>
+                    </td>
+                </tr>
+
+                <!-- 7 -->
+                <tr>
+                    <td>
+                        <span class="time-badge">25 - 30 sn</span>
+                        <div class="scene-name">7. ÇAĞRI (CTA)</div>
+                    </td>
+                    <td><strong>Kapanış & İndir</strong><br><span style="font-size:11px; color:#64748B;">Mağazalar & Fırsat</span></td>
+                    <td>
+                        <div class="on-screen-title">📲 APP STORE & GOOGLE PLAY'DE YAYINDA!</div>
+                        <div class="on-screen-sub">🎁 14 Gün Ücretsiz Deneyin • Link Profilde</div>
+                    </td>
+                    <td>
+                        <div class="voiceover-box">
+                            <strong>Dış Ses:</strong> "Çifte rezervasyona son! TakvimTakip artık App Store ve Google Play'de. Hemen indirin, 14 gün ücretsiz deneyin!"
+                        </div>
+                        <div class="scene-direction">🎬 Sahne: TakvimTakip logosu + App Store & Google Play resmi rozetleri.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 3: Tips -->
+    <div class="tips-box">
+        <div class="tips-title">💡 Çekim ve Sosyal Medya Başarı İpuçları</div>
+        <ul class="tips-list">
+            <li><strong>CapCut Tarzı Büyük Altyazı:</strong> Kullanıcıların %70'inden fazlası videoları sessiz izler. Ekrandaki metinleri ekranın alt-orta kısmında büyük puntolu, kelime kelime yanan sarı/beyaz renklerle gösterin.</li>
+            <li><strong>Gerçek Uygulama Ekran Kaydı:</strong> Telefon ekranında gösterilen sahnelerde TakvimTakip'in gerçek ekran kayıtlarını (Bugün Giriş/Çıkış listesi, Web Tanıtım Sayfası ve WhatsApp paylaşım butonu) aralara serpiştirin.</li>
+            <li><strong>Arka Plan Müziği:</strong> Instagram kütüphanesinden hafif tempolu modern bir elektronik beat seçip ses düzeyini konuşmanın arkasında %12-15 seviyesinde tutun.</li>
+            <li><strong>İlk 3 Saniye Kuralı:</strong> Videonun ilk 3 saniyesinde ekranda büyük ve dikkat çekici "VİLLA VEYA BUNGALOVUNUZ VARSA" başlığı sabit durmalı ve hızlı bir kesmeyle (cut) başlamalıdır.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        TakvimTakip © 2026 • Tüm Hakları Saklıdır • www.takvimtakip.com.tr
+    </div>
+
+</div>
+
+<script>
+function copyAllScript() {
+    const text = `VİLLA & BUNGALOV PAZARLAMA REELS SESLENDİRME METNİ (30 SANİYE)
+
+00-04s: Villa veya bungalov işletiyorsanız bu videoyu mutlaka kaydedin! Rezervasyon karmaşasına son veriyoruz.
+04-08s: Bugün kim giriş yapıyor, hangi misafir çıkıyor? Hepsini tek ekranda anlık görün, kapıda karışıklık yaşamayın.
+08-12s: Yarın çıkacak misafirler telefonunuza otomatik bildirim gelsin; temizlik ve oda hazırlığını asla son dakikaya bırakmayın.
+12-17s: Airbnb ve Booking takvimlerinizi iCal ile bağlayın! Bir kanaldan rezervasyon geldiğinde diğer tüm takvimleriniz otomatik kapansın.
+17-21s: Tek tek fotoğraf, fiyat ve konum göndermeye son! Villanıza özel web sayfasını tek linkle paylaşın, misafirleriniz her şeyi anında incelesin.
+21-25s: Giriş-çıkış ve ödeme bilgilerini içeren rezervasyon detaylarını tek dokunuşla müşterinize WhatsApp'tan hemen iletin.
+25-30s: Çifte rezervasyona son! TakvimTakip artık App Store ve Google Play'de. Hemen indirin, 14 gün ücretsiz deneyin!`;
+
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✅ Metinler Kopyalandı!';
+        setTimeout(() => {
+            btn.textContent = '📋 Tüm Seslendirme Metnini Kopyala';
+        }, 2500);
+    });
+}
+</script>
+
+</body>
+</html>
