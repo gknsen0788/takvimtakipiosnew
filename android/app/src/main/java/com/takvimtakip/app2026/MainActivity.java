@@ -104,10 +104,6 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         OneSignal.getNotifications().addClickListener(event -> {
-            try {
-                event.preventDefault();
-            } catch (Exception ignored) {}
-
             String targetUrl = null;
             if (event.getNotification().getAdditionalData() != null) {
                 targetUrl = event.getNotification().getAdditionalData().optString("target_url", null);
