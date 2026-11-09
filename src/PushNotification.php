@@ -28,6 +28,12 @@ class PushNotification
             ];
         }
 
+        $targetPath = $url ?: '/dashboard';
+        if (str_starts_with($targetPath, 'http')) {
+            $parsedPath = parse_url($targetPath, PHP_URL_PATH);
+            $targetPath = $parsedPath ?: '/dashboard';
+        }
+
         $payload = [
             'app_id' => $appId,
             'include_aliases' => [
@@ -42,9 +48,11 @@ class PushNotification
                 'tr' => $message,
                 'en' => $message
             ],
-            'url' => $url ?: ((defined('APP_URL') ? APP_URL : 'https://takvimtakip.com.tr') . '/dashboard'),
+            // NOT: Root seviyesindeki 'url' parametresi OneSignal tarafından harici web tarayıcısını (Safari/Chrome) açmak için kullanılır.
+            // Bildirime tıklandığında tarayıcı yerine mobil uygulamanın doğrudan açılması için root 'url' gönderilmez; hedef sayfa 'data' içinde taşınır.
             'data' => array_merge([
                 'user_id' => $userId,
+                'target_url' => $targetPath,
                 'sent_at' => date('Y-m-d H:i:s')
             ], $extra),
             'ios_badgeType' => 'Increase',

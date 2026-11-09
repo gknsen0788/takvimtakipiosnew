@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // OneSignal 5.x Initialization
         OneSignal.initialize(AppDelegate.oneSignalAppId, withLaunchOptions: launchOptions)
 
+        // Handle notification click inside the app instead of Safari
+        OneSignal.Notifications.addClickListener({ event in
+            event.preventDefault()
+        })
+
         // If a user ID was previously persisted, log in immediately
         if let savedUserId = UserDefaults.standard.string(forKey: "takvim_user_id"), !savedUserId.isEmpty {
             OneSignal.login(savedUserId)

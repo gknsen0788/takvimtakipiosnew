@@ -104,14 +104,30 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         OneSignal.getNotifications().addClickListener(event -> {
-            String launchUrl = event.getNotification().getLaunchURL();
-            if (launchUrl != null && !launchUrl.isEmpty()) {
-                runOnUiThread(() -> {
-                    if (webView != null) {
-                        webView.loadUrl(launchUrl);
-                    }
-                });
+            try {
+                event.preventDefault();
+            } catch (Exception ignored) {}
+
+            String targetUrl = null;
+            if (event.getNotification().getAdditionalData() != null) {
+                targetUrl = event.getNotification().getAdditionalData().optString("target_url", null);
             }
+            if (targetUrl == null || targetUrl.isEmpty()) {
+                targetUrl = event.getNotification().getLaunchURL();
+            }
+
+            final String destination;
+            if (targetUrl != null && !targetUrl.isEmpty()) {
+                destination = targetUrl.startsWith("http") ? targetUrl : (APP_URL + (targetUrl.startsWith("/") ? targetUrl : "/" + targetUrl));
+            } else {
+                destination = APP_URL + "/dashboard";
+            }
+
+            runOnUiThread(() -> {
+                if (webView != null) {
+                    webView.loadUrl(destination);
+                }
+            });
         });
 
         // Edge-to-Edge with proper system insets handling for targetSdk 35/36+
