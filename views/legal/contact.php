@@ -34,9 +34,15 @@ ob_start();
             <div>
                 <h4 class="font-bold text-slate-900 text-sm">WhatsApp Destek</h4>
                 <p class="text-xs text-slate-500 mt-0.5">Anlık mesajlaşma ve hızlı destek</p>
-                <a href="https://wa.me/902422120174?text=Merhaba,%20TakvimTakip%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="inline-block mt-2 font-bold text-emerald-600 hover:text-emerald-700 text-xs underline">
-                    WhatsApp ile Mesaj Gönder &rarr;
+                <a href="https://wa.me/902422120174?text=Merhaba,%20TakvimTakip%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="inline-block mt-2 font-black text-emerald-600 hover:text-emerald-700 text-base">
+                    0242 212 01 74
                 </a>
+                <div class="mt-1">
+                    <a href="https://wa.me/902422120174?text=Merhaba,%20TakvimTakip%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 underline">
+                        <span>WhatsApp ile Mesaj Gönder</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
