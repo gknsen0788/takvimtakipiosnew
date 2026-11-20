@@ -33,6 +33,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 define('APP_NAME', 'TakvimTakip');
 define('CRON_SECRET', 'takvim_cron_sec_8f9a2b4c');
+define('WHATSAPP_SUPPORT_PHONE', '902422120174');
+define('WHATSAPP_SUPPORT_URL', 'https://wa.me/902422120174');
 
 // OneSignal Native Push Bildirim Ayarları (Android Play Store & iOS App Store)
 $osConfigFile = __DIR__ . '/onesignal.json';
