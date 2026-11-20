@@ -169,7 +169,7 @@ class Mailer {
 
     public static function sendTrialExpirationReminder(string $toEmail, string $userName, int $daysLeft = 3): bool {
         $subject = "⏳ TakvimTakip Ücretsiz Deneme Süreniz Dolmak Üzere!";
-        $whatsappUrl = "https://wa.me/905437161546";
+        $whatsappUrl = "https://wa.me/902422120174";
 
         $plainText = "Merhaba Sayın " . $userName . ",\n\n";
         $plainText .= "TakvimTakip platformundaki ücretsiz deneme süreniz " . ($daysLeft > 0 ? "son {$daysLeft} gün içinde doluyor." : "dolmak üzere.") . "\n\n";

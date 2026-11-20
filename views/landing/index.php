@@ -1217,7 +1217,7 @@ $T = [
                             <td class="py-4 px-4 font-bold text-slate-800 text-center whitespace-nowrap">1.000 TL / yıl</td>
                             <td class="py-4 px-4 font-bold text-slate-800 text-center whitespace-nowrap">1.750 TL / yıl</td>
                             <td class="py-4 px-4 font-bold text-center whitespace-nowrap">
-                                <a href="https://wa.me/905437161546?text=Merhaba,%20TakvimTakip%20kurumsal%20paket%20i%C3%A7in%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-1.5 bg-[#4338ca] hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 space-x-1.5">
+                                <a href="https://wa.me/902422120174?text=Merhaba,%20TakvimTakip%20kurumsal%20paket%20i%C3%A7in%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-1.5 bg-[#4338ca] hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 space-x-1.5">
                                     <span>Teklif Al</span>
                                     <i class="fa-solid fa-arrow-right text-[11px]"></i>
                                 </a>
@@ -1416,15 +1416,15 @@ $T = [
                     <h3 class="text-lg font-bold <?= $T['heading'] ?>">Telefon & WhatsApp</h3>
                     <p class="text-xs <?= $T['body_muted'] ?> leading-relaxed">Hızlı bilgi ve doğrudan irtibat için bizi arayabilir veya WhatsApp üzerinden yazabilirsiniz.</p>
                     <div class="text-xl font-extrabold <?= $isDark ? 'text-white' : 'text-slate-900' ?> pt-1 tracking-tight">
-                        0543 716 15 46
+                        0242 212 01 74
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 pt-4">
-                    <a href="tel:05437161546" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5 shadow-sm shadow-indigo-600/20">
+                    <a href="tel:02422120174" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5 shadow-sm shadow-indigo-600/20">
                         <i class="fa-solid fa-phone text-xs"></i>
                         <span>Hemen Ara</span>
                     </a>
-                    <a href="https://wa.me/905437161546" target="_blank" rel="noopener" class="flex-1 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5">
+                    <a href="https://wa.me/902422120174" target="_blank" rel="noopener" class="flex-1 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5">
                         <i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i>
                         <span>WhatsApp</span>
                     </a>
@@ -1522,9 +1522,9 @@ $T = [
                     Villa, bungalov ve kısa dönem konaklama işletmecileri için pratik rezervasyon takvimi ve müsaitlik yönetim platformu.
                 </p>
                 <div class="pt-1 flex items-center space-x-3 text-xs">
-                    <a href="tel:05437161546" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold hover:bg-emerald-100 transition">
+                    <a href="tel:02422120174" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold hover:bg-emerald-100 transition">
                         <i class="fa-solid fa-phone text-emerald-600"></i>
-                        <span>İrtibat: 0543 716 15 46</span>
+                        <span>İrtibat: 0242 212 01 74</span>
                     </a>
                 </div>
             </div>
@@ -2073,9 +2073,9 @@ function openLegalModal(type) {
             <p><strong>TakvimTakip İrtibat Hattı:</strong></p>
             <p class="text-base font-extrabold text-emerald-600 my-2 flex items-center space-x-2">
                 <i class="fa-solid fa-phone"></i>
-                <a href="tel:05437161546" class="hover:underline">0543 716 15 46</a>
+                <a href="tel:02422120174" class="hover:underline">0242 212 01 74</a>
             </p>
-            <p><strong>WhatsApp Destek:</strong> <a href="https://wa.me/905437161546" target="_blank" rel="noopener" class="text-emerald-600 underline font-bold">WhatsApp İle Mesaj Gönder (0543 716 15 46)</a></p>
+            <p><strong>WhatsApp Destek:</strong> <a href="https://wa.me/902422120174" target="_blank" rel="noopener" class="text-emerald-600 underline font-bold">WhatsApp İle Mesaj Gönder (0242 212 01 74)</a></p>
             <p><strong>Altyapı & Güvence:</strong> <a href="https://www.trendvillas.net" target="_blank" rel="noopener" class="text-indigo-600 underline">www.trendvillas.net</a></p>
             <p>Haftanın 7 günü 09:00 - 22:00 saatleri arasında destek ekibimize ulaşabilir, takvim kurulumu ve üyelik desteği alabilirsiniz.</p>
         `;
@@ -2142,7 +2142,7 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
 <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/905437161546?text=Merhaba,%20TakvimTakip%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." 
+<a href="https://wa.me/902422120174?text=Merhaba,%20TakvimTakip%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." 
    target="_blank" 
    rel="noopener noreferrer" 
    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all duration-300 group"

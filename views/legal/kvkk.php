@@ -18,7 +18,7 @@ ob_start();
             <span>Veri Sorumlusunun Kimliği</span>
         </h3>
         <p class="text-slate-600 pl-8">
-            KVKK 10. maddesi uyarınca veri sorumlusu, TakvimTakip yönetim altyapısı ve www.trendvillas.net güvencesiyle işletilen platformdur. İletişim: <strong>destek@takvimtakip.com.tr</strong> / <strong>0543 716 15 46</strong>.
+            KVKK 10. maddesi uyarınca veri sorumlusu, TakvimTakip yönetim altyapısı ve www.trendvillas.net güvencesiyle işletilen platformdur. İletişim: <strong>destek@takvimtakip.com.tr</strong> / <strong>0242 212 01 74</strong>.
         </p>
     </section>
 

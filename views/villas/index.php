@@ -34,7 +34,7 @@ $buttonLabel = $isDemo ? "Abonelik Satın Al" : "Aboneliği Uzat | Son {$remDays
 $waText = $isDemo 
     ? "Merhaba, TakvimTakip hesabımdan Abonelik Satın Almak istiyorum."
     : "Merhaba, TakvimTakip lisans/aboneliğimi uzatmak istiyorum (Kalan Süre: {$remDaysCount} Gün).";
-$waUrl = "https://wa.me/905437161546?text=" . urlencode($waText);
+$waUrl = "https://wa.me/902422120174?text=" . urlencode($waText);
 
 require __DIR__ . '/../layouts/header.php';
 ?>
