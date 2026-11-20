@@ -580,7 +580,7 @@ if ($userObj) {
         if ($expDate) {
             $today = date('Y-m-d');
             $remDays = (int)floor((strtotime($expDate) - strtotime($today)) / 86400);
-            if ($remDays >= 11) {
+            if ($remDays >= 6) {
                 $displayPlan = 'PRO PLAN';
             } else {
                 $displayPlan = 'BASIC PLAN';

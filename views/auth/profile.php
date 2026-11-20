@@ -15,7 +15,7 @@ $licenseBadge = '<span class="px-2.5 py-1 text-xs font-bold rounded-full bg-rose
 
 if ($expDate) {
     $remDays = (int)floor((strtotime($expDate) - strtotime($today)) / 86400);
-    if ($remDays > 10) {
+    if ($remDays >= 8) {
         $licenseBadge = '<span class="px-2.5 py-1 text-xs font-bold rounded-full bg-emerald-100 text-emerald-700"><i class="fa-solid fa-circle-check mr-1"></i> Aktif (' . date('d.m.Y', strtotime($expDate)) . ')</span>';
     } elseif ($remDays >= 0) {
         $licenseBadge = '<span class="px-2.5 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Son ' . $remDays . ' Gün (' . date('d.m.Y', strtotime($expDate)) . ')</span>';
@@ -25,9 +25,9 @@ if ($expDate) {
 }
 
 $isDemo = ($userRole === 'demo');
-$is7DaysOrLess = ($expDate !== null && $remDays <= 7);
+$isUnder8Days = ($expDate !== null && $remDays < 8);
 
-$showActionButton = (!Auth::isAdmin() && ($isDemo || $is7DaysOrLess));
+$showActionButton = (!Auth::isAdmin() && ($isDemo || $isUnder8Days));
 $remDaysCount = max(0, $remDays);
 $buttonLabel = $isDemo ? "Abonelik Satın Al" : "Aboneliği Uzat | Son {$remDaysCount} Gün";
 
@@ -89,7 +89,7 @@ require __DIR__ . '/../layouts/header.php';
                     </div>
                     <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
                         <span class="text-slate-400 block font-medium mb-0.5">Kalan Lisans Süresi</span>
-                        <span class="font-bold <?= $remDays > 10 ? 'text-emerald-600' : ($remDays >= 0 ? 'text-amber-600' : 'text-rose-600') ?>">
+                        <span class="font-bold <?= $remDays >= 8 ? 'text-emerald-600' : ($remDays >= 0 ? 'text-amber-600' : 'text-rose-600') ?>">
                             <?= $remDays > 0 ? $remDays . ' Gün' : ($remDays === 0 ? 'Bugün Son Gün' : 'Süresi Doldu') ?>
                         </span>
                     </div>

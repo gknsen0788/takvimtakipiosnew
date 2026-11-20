@@ -65,7 +65,7 @@ class User {
         }
 
         $remDays = (int)floor((strtotime($newExp) - strtotime($today)) / 86400);
-        $plan = ($remDays >= 11) ? 'pro' : 'basic';
+        $plan = ($remDays >= 6) ? 'pro' : 'basic';
 
         $db = Database::getConnection();
         $stmt = $db->prepare("UPDATE users SET license_expires_at = :exp, subscription_plan = :plan, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
@@ -75,7 +75,7 @@ class User {
     public static function setLicenseDate(int $userId, string $date): bool {
         $today = date('Y-m-d');
         $remDays = (int)floor((strtotime($date) - strtotime($today)) / 86400);
-        $plan = ($remDays >= 11) ? 'pro' : 'basic';
+        $plan = ($remDays >= 6) ? 'pro' : 'basic';
 
         $db = Database::getConnection();
         $stmt = $db->prepare("UPDATE users SET license_expires_at = :exp, subscription_plan = :plan, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
@@ -90,7 +90,7 @@ class User {
         $phone = trim($data['phone'] ?? '');
         $password = $data['password'] ?? '';
         $role = $data['role'] ?? 'owner';
-        $licenseDays = (int)($data['license_days'] ?? 14);
+        $licenseDays = (int)($data['license_days'] ?? 7);
         $customExpDate = trim($data['license_expires_at'] ?? '');
 
         if (empty($fullName) || empty($email) || empty($password)) {
@@ -135,7 +135,7 @@ class User {
 
         $today = date('Y-m-d');
         $remDays = (int)floor((strtotime($licenseExp) - strtotime($today)) / 86400);
-        $plan = ($remDays >= 11) ? 'pro' : 'basic';
+        $plan = ($remDays >= 6) ? 'pro' : 'basic';
 
         $passHash = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $db->prepare("

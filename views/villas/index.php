@@ -25,9 +25,9 @@ if (!Auth::isAdmin() && $currentUser) {
 }
 
 $isDemo = ($userRole === 'demo');
-$is7DaysOrLess = ($remainingDays !== null && $remainingDays <= 7);
+$isUnder8Days = ($remainingDays !== null && $remainingDays < 8);
 
-$showActionButton = (!Auth::isAdmin() && ($isDemo || $is7DaysOrLess));
+$showActionButton = (!Auth::isAdmin() && ($isDemo || $isUnder8Days));
 $remDaysCount = max(0, (int)($remainingDays ?? 0));
 $buttonLabel = $isDemo ? "Abonelik Satın Al" : "Aboneliği Uzat | Son {$remDaysCount} Gün";
 

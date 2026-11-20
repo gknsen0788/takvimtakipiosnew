@@ -104,7 +104,7 @@ class Mailer {
                         </tr>
                         <tr>
                             <td style="padding:8px 0; color:#64748b; font-weight:bold;">Varsayılan Lisans:</td>
-                            <td style="padding:8px 0; color:#10b981; font-weight:bold;">14 Gün (Ücretsiz Deneme)</td>
+                            <td style="padding:8px 0; color:#10b981; font-weight:bold;">7 Gün (Ücretsiz Deneme)</td>
                         </tr>
                     </table>
                 </div>

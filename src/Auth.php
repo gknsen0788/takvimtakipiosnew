@@ -44,14 +44,14 @@ class Auth {
             return false;
         }
 
-        // Create new user with 14 days free trial
+        // Create new user with 7 days free trial
         $res = User::create([
             'full_name' => $fullName,
             'email' => $email,
             'phone' => $phone,
             'password' => $password,
             'role' => 'owner',
-            'license_days' => 14
+            'license_days' => 7
         ]);
 
         if (!$res['success']) {
