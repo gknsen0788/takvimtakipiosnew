@@ -1513,17 +1513,17 @@ $T = [
             <!-- Column 1: Brand Info -->
             <div class="space-y-4 md:col-span-2">
                 <div class="flex items-center space-x-3">
-                    <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold shadow-sm">
-                        <i class="fa-solid fa-calendar-days text-sm"></i>
+                    <div class="w-12 h-12 rounded-2xl bg-[#4338ca] text-white flex items-center justify-center shadow-md shadow-indigo-600/20 shrink-0">
+                        <i class="fa-solid fa-calendar-days text-xl"></i>
                     </div>
-                    <span class="text-base font-extrabold <?= $T['footer_title'] ?> tracking-tight">TakvimTakip</span>
+                    <span class="text-xl font-bold <?= $T['footer_title'] ?> tracking-tight">TakvimTakip</span>
                 </div>
-                <p class="text-xs <?= $T['footer_subtext'] ?> max-w-sm leading-relaxed">
+                <p class="text-sm <?= $T['footer_subtext'] ?> max-w-md leading-relaxed">
                     Villa, bungalov ve kısa dönem konaklama işletmecileri için pratik rezervasyon takvimi ve müsaitlik yönetim platformu.
                 </p>
-                <div class="pt-1 flex items-center space-x-3 text-xs">
-                    <a href="tel:05437161546" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold hover:bg-emerald-100 transition">
-                        <i class="fa-solid fa-phone text-emerald-600"></i>
+                <div class="pt-1 flex items-center space-x-3">
+                    <a href="tel:05437161546" class="inline-flex items-center space-x-2 px-4 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl font-bold text-sm hover:bg-emerald-100 transition shadow-sm">
+                        <i class="fa-solid fa-phone text-emerald-600 text-sm"></i>
                         <span>İrtibat: 0543 716 15 46</span>
                     </a>
                 </div>
