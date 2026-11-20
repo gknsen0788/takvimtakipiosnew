@@ -254,7 +254,7 @@ $T = [
             <a href="#ical-sync" class="<?= $T['nav_link'] ?> transition-colors">iCal Entegrasyonu</a>
             <a href="#pricing" class="<?= $T['nav_link'] ?> transition-colors">Fiyatlandırma</a>
             <a href="#faq" class="<?= $T['nav_link'] ?> transition-colors">SSS</a>
-            <a href="#contact" class="<?= $T['nav_link'] ?> transition-colors">İletişim</a>
+            <a href="<?= APP_URL ?>/iletisim" class="<?= $T['nav_link'] ?> transition-colors">İletişim</a>
         </nav>
 
         <!-- Action CTAs -->
@@ -296,7 +296,7 @@ $T = [
         <a href="#ical-sync" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">iCal Entegrasyonu</a>
         <a href="#pricing" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">Fiyatlandırma</a>
         <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">SSS</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">İletişim</a>
+        <a href="<?= APP_URL ?>/iletisim" class="block py-2 text-sm font-semibold <?= $T['nav_link'] ?>">İletişim</a>
         <div class="pt-3 border-t <?= $isDark ? 'border-slate-800' : 'border-indigo-900/50' ?> flex flex-col space-y-2">
             <?php if (!$isLoggedIn): ?>
                 <a href="<?= $loginUrl ?>" class="w-full py-2.5 text-center <?= $isDark ? 'bg-slate-800 text-slate-200' : 'bg-indigo-800 text-white' ?> font-bold text-xs rounded-xl">Giriş Yap</a>
@@ -1391,92 +1391,6 @@ $T = [
     </div>
 </section>
 
-<!-- =========================================================================
-     13. İLETİŞİM & DESTEK (CONTACT)
-     ========================================================================= -->
-<section id="contact" class="py-20 <?= $T['sec_alt_bg'] ?>">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div class="text-center max-w-3xl mx-auto space-y-3">
-            <h2 class="text-xs font-bold uppercase tracking-widest <?= $T['tag_indigo'] ?>">İLETİŞİM & DESTEK</h2>
-            <p class="text-2xl sm:text-3xl font-extrabold <?= $T['heading'] ?> tracking-tight">
-                7/24 İrtibat ve Destek Hattı
-            </p>
-            <p class="text-sm <?= $T['body_muted'] ?>">
-                Sorularınız, üyelik detayları veya takvim kurulumu desteği için dilediğiniz an bizimle iletişime geçebilirsiniz.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-            <!-- Card 1: Phone & WhatsApp -->
-            <div class="<?= $T['card'] ?> p-6 rounded-3xl space-y-4 flex flex-col justify-between border">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <h3 class="text-lg font-bold <?= $T['heading'] ?>">Telefon & WhatsApp</h3>
-                    <p class="text-xs <?= $T['body_muted'] ?> leading-relaxed">Hızlı bilgi ve doğrudan irtibat için bizi arayabilir veya WhatsApp üzerinden yazabilirsiniz.</p>
-                    <div class="text-xl font-extrabold <?= $isDark ? 'text-white' : 'text-slate-900' ?> pt-1 tracking-tight">
-                        0543 716 15 46
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2 pt-4">
-                    <a href="tel:05437161546" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5 shadow-sm shadow-indigo-600/20">
-                        <i class="fa-solid fa-phone text-xs"></i>
-                        <span>Hemen Ara</span>
-                    </a>
-                    <a href="https://wa.me/902422120174" target="_blank" rel="noopener" class="flex-1 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold text-xs rounded-xl transition text-center flex items-center justify-center space-x-1.5">
-                        <i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i>
-                        <span>WhatsApp</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Card 2: Hours & Guarantees -->
-            <div class="<?= $T['card'] ?> p-6 rounded-3xl space-y-4 flex flex-col justify-between border">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3 class="text-lg font-bold <?= $T['heading'] ?>">Çalışma Saatleri & Güvence</h3>
-                    <p class="text-xs <?= $T['body_muted'] ?> leading-relaxed">Haftanın 7 günü takvim yönetimi ve teknik konularda kesintisiz destek veriyoruz.</p>
-                    <div class="text-xs font-semibold <?= $T['heading'] ?> space-y-1.5 pt-1">
-                        <div class="flex items-center space-x-2">
-                            <i class="fa-regular fa-clock text-indigo-500"></i>
-                            <span>Pzt - Paz: 09:00 - 22:00</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-emerald-600">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Hızlı Yanıt Garantisi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-4">
-                    <a href="https://www.trendvillas.net" target="_blank" rel="noopener" class="w-full p-2.5 <?= $isDark ? 'bg-slate-800/60 hover:bg-slate-800 border-slate-700 text-indigo-300' : 'bg-indigo-50/80 hover:bg-indigo-100 border-indigo-200/80 text-indigo-700' ?> rounded-xl border text-[11px] text-center font-bold transition flex items-center justify-center space-x-1.5 active:scale-95">
-                        <i class="fa-solid fa-shield-check text-indigo-600"></i>
-                        <span>www.trendvillas.net güvencesiyle</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-75"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Card 3: Free Setup Assistance -->
-            <div class="<?= $T['card'] ?> p-6 rounded-3xl space-y-4 flex flex-col justify-between border">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-user-gear"></i>
-                    </div>
-                    <h3 class="text-lg font-bold <?= $T['heading'] ?>">Ücretsiz Kurulum Desteği</h3>
-                    <p class="text-xs <?= $T['body_muted'] ?> leading-relaxed">Villalarınızı veya Airbnb / Booking iCal bağlantılarınızı eklemekte yardıma ihtiyacınız olursa ekibimiz yanınızda.</p>
-                </div>
-                <div class="pt-4">
-                    <a href="<?= $registerUrl ?>" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition text-center block shadow-sm">
-                        Ücretsiz Hesabınızı Oluşturun
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- =========================================================================
      14. FINAL CTA SECTION
@@ -1539,7 +1453,7 @@ $T = [
                     <li><a href="#uygulama" class="<?= $T['footer_link'] ?> transition">Mobil Uygulama</a></li>
                     <li><a href="#ical-sync" class="<?= $T['footer_link'] ?> transition">iCal Senkronizasyonu</a></li>
                     <li><a href="#pricing" class="<?= $T['footer_link'] ?> transition">Fiyatlandırma</a></li>
-                    <li><a href="#contact" class="<?= $T['footer_link'] ?> transition">İletişim</a></li>
+                    <li><a href="<?= APP_URL ?>/iletisim" class="<?= $T['footer_link'] ?> transition">İletişim</a></li>
                 </ul>
             </div>
 
