@@ -74,7 +74,7 @@ $isLoggedIn = Auth::check();
                 <a href="<?= $appUrl ?>/#ical-sync" class="text-slate-100 hover:text-amber-300 transition-colors">iCal Entegrasyonu</a>
                 <a href="<?= $appUrl ?>/#pricing" class="text-slate-100 hover:text-amber-300 transition-colors">Fiyatlandırma</a>
                 <a href="<?= $appUrl ?>/#faq" class="text-slate-100 hover:text-amber-300 transition-colors">SSS</a>
-                <a href="<?= $appUrl ?>/iletisim" class="<?= $currentKey === 'contact' ? 'text-amber-300 font-bold' : 'text-slate-100 hover:text-amber-300' ?> transition-colors">İletişim</a>
+                <a href="<?= $appUrl ?>/iletisim" class="text-slate-100 hover:text-amber-300 transition-colors">İletişim</a>
             </nav>
 
             <!-- Action CTAs -->
@@ -116,7 +116,7 @@ $isLoggedIn = Auth::check();
             <a href="<?= $appUrl ?>/#ical-sync" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-100 hover:text-amber-300">iCal Entegrasyonu</a>
             <a href="<?= $appUrl ?>/#pricing" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-100 hover:text-amber-300">Fiyatlandırma</a>
             <a href="<?= $appUrl ?>/#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-100 hover:text-amber-300">SSS</a>
-            <a href="<?= $appUrl ?>/iletisim" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-amber-300">İletişim</a>
+            <a href="<?= $appUrl ?>/iletisim" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-100 hover:text-amber-300">İletişim</a>
             <div class="pt-3 border-t border-indigo-900/50 flex flex-col space-y-2">
                 <?php if (!$isLoggedIn): ?>
                     <a href="<?= $appUrl ?>/login" class="w-full py-2.5 text-center bg-indigo-800 text-white font-bold text-xs rounded-xl">Giriş Yap</a>
