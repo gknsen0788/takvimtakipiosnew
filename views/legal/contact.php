@@ -20,8 +20,8 @@ ob_start();
             <div>
                 <h4 class="font-bold text-slate-900 text-sm">İrtibat Hattı</h4>
                 <p class="text-xs text-slate-500 mt-0.5">Doğrudan çağrı merkezi ve arama</p>
-                <a href="tel:02422120174" class="inline-block mt-2 font-black text-emerald-600 hover:text-emerald-700 text-base">
-                    0242 212 01 74
+                <a href="tel:05437161546" class="inline-block mt-2 font-black text-emerald-600 hover:text-emerald-700 text-base">
+                    0543 716 15 46
                 </a>
             </div>
         </div>
